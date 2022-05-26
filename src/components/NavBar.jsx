@@ -24,6 +24,7 @@ import {
   SwitchHorizontal,
   ChevronDown,
 } from 'tabler-icons-react';
+import { Link } from 'react-router-dom';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -114,9 +115,11 @@ function NavBar() {
           >
             <Menu.Label>Account</Menu.Label>
 
-            <Menu.Item icon={<Heart size={14} color={theme.colors.red[6]} />}>
-              Favorite stations
-            </Menu.Item>
+            <Link to="account/favorites">
+              <Menu.Item icon={<Heart size={14} color={theme.colors.red[6]} />}>
+                Favorite stations
+              </Menu.Item>
+            </Link>
             <Menu.Item icon={<PlugConnected size={14} color={theme.colors.yellow[6]} />}>
               Charging stations
             </Menu.Item>
@@ -125,7 +128,9 @@ function NavBar() {
             </Menu.Item>
 
             <Menu.Label>Settings</Menu.Label>
-            <Menu.Item icon={<Settings size={14} />}>Edit account</Menu.Item>
+            <Link to="account">
+              <Menu.Item icon={<Settings size={14} />}>Edit account</Menu.Item>
+            </Link>
             <Menu.Item icon={<Logout size={14} />}>Logout</Menu.Item>
 
             <Divider />

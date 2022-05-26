@@ -6,6 +6,8 @@ import { Container } from '@mantine/core';
 import Home from './pages/Home';
 import NotFound from './pages/NotFound';
 import NavBar from './components/NavBar';
+import Account from './pages/Account';
+import Favorites from './pages/Favorites';
 
 function App() {
 
@@ -24,6 +26,8 @@ function App() {
     <Container size="lg">
     <Routes>
       <Route path='/' element={<Home />} />
+      <Route path='account' element={<Account />} />
+      <Route path='account/favorites' element={<Favorites />} />
       <Route path='/*' element={<NotFound />} />
     </Routes>
     </Container>
