@@ -37,11 +37,7 @@ const useStyles = createStyles((theme) => ({
     paddingBottom: theme.spacing.sm,
   },
 
-  userMenu: {
-    [theme.fn.smallerThan('xs')]: {
-      display: 'none',
-    },
-  },
+
 
   user: {
     color: theme.white,
@@ -51,12 +47,6 @@ const useStyles = createStyles((theme) => ({
 
     '&:hover': {
       backgroundColor: theme.colors.red[theme.colorScheme === 'dark' ? 7 : 5],
-    },
-  },
-
-  burger: {
-    [theme.fn.largerThan('xs')]: {
-      display: 'none',
     },
   },
 
@@ -100,14 +90,6 @@ function NavBar() {
       <Container className={classes.mainSection} size="lg">
         <Group position="apart">
           <div className="logo">Voltaic</div>
-
-          <Burger
-            opened={opened}
-            onClick={() => toggleOpened()}
-            className={classes.burger}
-            size="sm"
-            color={theme.white}
-          />
 
           <Menu
             size={260}

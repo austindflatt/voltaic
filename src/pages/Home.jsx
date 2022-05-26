@@ -1,8 +1,11 @@
 import React from 'react'
+import StationsHome from '../components/StationsHome'
 
 const Home = () => {
   return (
-	<div>Home</div>
+  <>
+    <StationsHome />
+  </>
   )
 }
 
