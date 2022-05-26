@@ -11,6 +11,19 @@ import {
   Burger,
 } from '@mantine/core';
 import { useBooleanToggle } from '@mantine/hooks';
+import {
+  Logout,
+  Heart,
+  Star,
+  PlugConnected,
+  Message,
+  Road,
+  Settings,
+  User,
+  Trash,
+  SwitchHorizontal,
+  ChevronDown,
+} from 'tabler-icons-react';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -86,7 +99,7 @@ function NavBar() {
     <div className={classes.header}>
       <Container className={classes.mainSection} size="lg">
         <Group position="apart">
-          <h3>Voltaic</h3>
+          <div className="logo">Voltaic</div>
 
           <Burger
             opened={opened}
@@ -112,32 +125,34 @@ function NavBar() {
                   <Text weight={500} size="sm" sx={{ lineHeight: 1, color: theme.white }} mr={3}>
                     Austin Flatt
                   </Text>
-                  {/* <ChevronDown size={12} /> */}
+                  <ChevronDown size={12} />
                 </Group>
               </UnstyledButton>
             }
           >
             <Menu.Label>Account</Menu.Label>
 
-            <Menu.Item>
+            <Menu.Item icon={<Heart size={14} color={theme.colors.red[6]} />}>
               Favorite stations
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item icon={<PlugConnected size={14} color={theme.colors.yellow[6]} />}>
               Charging stations
             </Menu.Item>
-            {/* Icon size: 14 */}
-            <Menu.Item>
+            <Menu.Item icon={<Road size={14} color={theme.colors.blue[6]} />}>
               Trips
             </Menu.Item>
 
             <Menu.Label>Settings</Menu.Label>
-            <Menu.Item>Edit account</Menu.Item>
-            <Menu.Item>Logout</Menu.Item>
+            <Menu.Item icon={<Settings size={14} />}>Edit account</Menu.Item>
+            <Menu.Item icon={<Logout size={14} />}>Logout</Menu.Item>
 
             <Divider />
 
             <Menu.Label>Account Controls</Menu.Label>
-            <Menu.Item color="red">
+            <Menu.Item color="primary" icon={<User size={14} />}>
+              Become a host
+            </Menu.Item>
+            <Menu.Item color="red" icon={<Trash size={14} />}>
               Delete account
             </Menu.Item>
           </Menu>
