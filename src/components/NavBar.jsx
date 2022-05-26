@@ -8,14 +8,15 @@ import {
   Text,
   Menu,
   Divider,
-  Burger,
 } from '@mantine/core';
 import { useBooleanToggle } from '@mantine/hooks';
 import {
+  Plug,
   Logout,
   Heart,
   Star,
   PlugConnected,
+  GasStation,
   Message,
   Road,
   Settings,
@@ -90,7 +91,12 @@ function NavBar() {
     <div className={classes.header}>
       <Container className={classes.mainSection} size="lg">
         <Group position="apart">
-          <div className="logo">Voltaic</div>
+          <Link to="/">
+          <div className="logo">
+            <Plug size={35} strokeWidth={2} color={'white'} /> 
+            Voltaic
+          </div>
+          </Link>
 
           <Menu
             size={260}
@@ -115,17 +121,31 @@ function NavBar() {
           >
             <Menu.Label>Account</Menu.Label>
 
-            <Link to="account/favorites">
-              <Menu.Item icon={<Heart size={14} color={theme.colors.red[6]} />}>
-                Favorite stations
+            <Link to="user/12342">
+              <Menu.Item icon={<User size={14} color={theme.colors.blue[6]} />}>
+                Your profile
               </Menu.Item>
             </Link>
-            <Menu.Item icon={<PlugConnected size={14} color={theme.colors.yellow[6]} />}>
-              Charging stations
-            </Menu.Item>
-            <Menu.Item icon={<Road size={14} color={theme.colors.blue[6]} />}>
-              Trips
-            </Menu.Item>
+            <Link to="account/messages">
+              <Menu.Item icon={<Message size={14} color={theme.colors.orange[6]} />}>
+                Your messages
+              </Menu.Item>
+            </Link>
+            <Link to="account/favorites">
+              <Menu.Item icon={<Heart size={14} color={theme.colors.red[6]} />}>
+                Your favorite stations
+              </Menu.Item>
+            </Link>
+            <Link to="account/stations">
+              <Menu.Item icon={<PlugConnected size={14} color={theme.colors.yellow[6]} />}>
+                Your charging stations
+              </Menu.Item>
+            </Link>
+            <Link to="account/trips">
+              <Menu.Item icon={<Road size={14} color={theme.colors.blue[6]} />}>
+                Your trips
+              </Menu.Item>
+            </Link>
 
             <Menu.Label>Settings</Menu.Label>
             <Link to="account">
@@ -136,8 +156,8 @@ function NavBar() {
             <Divider />
 
             <Menu.Label>Account Controls</Menu.Label>
-            <Menu.Item color="primary" icon={<User size={14} />}>
-              Become a host
+            <Menu.Item color="primary" icon={<GasStation size={14} />}>
+              Host home charger
             </Menu.Item>
             <Menu.Item color="red" icon={<Trash size={14} />}>
               Delete account

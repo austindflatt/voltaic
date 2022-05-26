@@ -8,6 +8,10 @@ import NotFound from './pages/NotFound';
 import NavBar from './components/NavBar';
 import Account from './pages/Account';
 import Favorites from './pages/Favorites';
+import Profile from './pages/Profile';
+import AccountStations from './pages/AccountStations';
+import AccountTrips from './pages/AccountTrips';
+import Messages from './pages/Messages';
 
 function App() {
 
@@ -28,6 +32,10 @@ function App() {
       <Route path='/' element={<Home />} />
       <Route path='account' element={<Account />} />
       <Route path='account/favorites' element={<Favorites />} />
+      <Route path='account/stations' element={<AccountStations />} />
+      <Route path='account/trips' element={<AccountTrips />} />
+      <Route path='account/messages' element={<Messages />} />
+      <Route path='user/:id' element={<Profile />} />
       <Route path='/*' element={<NotFound />} />
     </Routes>
     </Container>
