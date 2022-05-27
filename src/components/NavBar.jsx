@@ -91,7 +91,7 @@ function NavBar() {
     <div className={classes.header}>
       <Container className={classes.mainSection} size="lg">
         <Group position="apart">
-          <Link to="/">
+          <Link to="/" style={{ textDecoration: 'none' }}>
           <div className="logo">
             <Plug size={35} strokeWidth={2} color={'white'} /> 
             Voltaic
@@ -156,7 +156,7 @@ function NavBar() {
             <Divider />
 
             <Menu.Label>Account Controls</Menu.Label>
-            <Menu.Item color="primary" icon={<GasStation size={14} />}>
+            <Menu.Item color="green" icon={<GasStation size={14} />}>
               Host home charger
             </Menu.Item>
             <Menu.Item color="red" icon={<Trash size={14} />}>
