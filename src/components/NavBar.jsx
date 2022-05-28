@@ -22,7 +22,6 @@ import {
   Settings,
   User,
   Trash,
-  SwitchHorizontal,
   ChevronDown,
 } from 'tabler-icons-react';
 import { Link } from 'react-router-dom';
@@ -38,8 +37,6 @@ const useStyles = createStyles((theme) => ({
   mainSection: {
     paddingBottom: theme.spacing.sm,
   },
-
-
 
   user: {
     color: theme.white,
