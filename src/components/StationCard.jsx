@@ -15,7 +15,7 @@ const StationCard = (props) => {
       <div className='location'><Text size="lg">Louisville, Kentucky</Text></div>
       <div className='added-by'><Text size="md">Added by Austin Flatt</Text></div>
       <div className='cost'><Text size="md">Payment Required</Text></div>
-      <div className='check-ins'><Text size="md"><Highlight highlightColor="red" highlight="52 Check-Ins">52 Check-Ins</Highlight></Text></div>
+      <div className='check-ins'><Text size="md"><Highlight highlightColor="green" highlight="52 Check-Ins">52 Check-Ins</Highlight></Text></div>
     </div>
   </div>
   )
