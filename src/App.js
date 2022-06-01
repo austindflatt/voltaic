@@ -12,6 +12,7 @@ import Profile from './pages/Profile';
 import AccountStations from './pages/AccountStations';
 import AccountTrips from './pages/AccountTrips';
 import Messages from './pages/Messages';
+import HostCharger from './pages/HostCharger';
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
       <Route path='account/trips' element={<AccountTrips />} />
       <Route path='account/messages' element={<Messages />} />
       <Route path='user/:id' element={<Profile />} />
+      <Route path='account/host-charger' element={<HostCharger />} />
       <Route path='/*' element={<NotFound />} />
     </Routes>
     </Container>
