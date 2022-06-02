@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Text, Highlight } from '@mantine/core';
+import { Image, Text } from '@mantine/core';
 
 const StationCard = (props) => {
   return (
@@ -15,7 +15,7 @@ const StationCard = (props) => {
       <div className='location'><Text size="lg">Louisville, Kentucky</Text></div>
       <div className='added-by'><Text size="md">Added by Austin Flatt</Text></div>
       <div className='cost'><Text size="md">Payment Required</Text></div>
-      <div className='check-ins'><Text size="md"><Highlight highlightColor="green" highlight="52 Check-Ins">52 Check-Ins</Highlight></Text></div>
+      <div className='check-ins'><Text size="md">52 Reviews</Text></div>
     </div>
   </div>
   )
