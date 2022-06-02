@@ -1,7 +1,7 @@
 import React from 'react'
 import { Avatar, Text, Button, Paper } from '@mantine/core';
 
-const ProfileLeftSide = () => {
+const ProfileTop = () => {
   return (
 	  <>
     <Paper
@@ -28,4 +28,4 @@ const ProfileLeftSide = () => {
   )
 }
 
-export default ProfileLeftSide
+export default ProfileTop
