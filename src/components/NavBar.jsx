@@ -123,9 +123,9 @@ function NavBar() {
                 Your profile
               </Menu.Item>
             </Link>
-            <Link to="account/messages">
+            <Link to="account/reviews">
               <Menu.Item icon={<Message size={14} color={theme.colors.orange[6]} />}>
-                Your messages
+                Your reviews
               </Menu.Item>
             </Link>
             <Link to="account/favorites">
@@ -136,11 +136,6 @@ function NavBar() {
             <Link to="account/stations">
               <Menu.Item icon={<PlugConnected size={14} color={theme.colors.yellow[6]} />}>
                 Your charging stations
-              </Menu.Item>
-            </Link>
-            <Link to="account/trips">
-              <Menu.Item icon={<Road size={14} color={theme.colors.blue[6]} />}>
-                Your trips
               </Menu.Item>
             </Link>
 

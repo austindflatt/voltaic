@@ -10,8 +10,7 @@ import Account from './pages/Account';
 import Favorites from './pages/Favorites';
 import Profile from './pages/Profile';
 import AccountStations from './pages/AccountStations';
-import AccountTrips from './pages/AccountTrips';
-import Messages from './pages/Messages';
+import Reviews from './pages/Reviews';
 import HostCharger from './pages/HostCharger';
 
 function App() {
@@ -34,8 +33,7 @@ function App() {
       <Route path='account' element={<Account />} />
       <Route path='account/favorites' element={<Favorites />} />
       <Route path='account/stations' element={<AccountStations />} />
-      <Route path='account/trips' element={<AccountTrips />} />
-      <Route path='account/messages' element={<Messages />} />
+      <Route path='account/reviews' element={<Reviews />} />
       <Route path='user/:id' element={<Profile />} />
       <Route path='account/host-charger' element={<HostCharger />} />
       <Route path='/*' element={<NotFound />} />
