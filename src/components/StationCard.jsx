@@ -12,7 +12,7 @@ const StationCard = (props) => {
     withPlaceholder
     />
     <div className='details'>
-      <div className='location'><Text size="lg">Louisville, Kentucky</Text></div>
+      <div className='location'><Text size="lg">Preston Highway Supercharger</Text></div>
       <div className='added-by'><Text size="md">Added by Austin Flatt</Text></div>
       <div className='cost'><Text size="md">Payment Required</Text></div>
       <div className='check-ins'><Text size="md">52 Reviews</Text></div>

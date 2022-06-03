@@ -73,15 +73,21 @@ function Footer() {
         </Group>
 
         <Group spacing={0} position="right" noWrap>
+          <Link to="https://twitter.com/voltaicapp">
           <ActionIcon size="lg">
             <BrandTwitter size={18} />
           </ActionIcon>
+          </Link>
+          <Link to="https://youtube.com/voltaicapp">
           <ActionIcon size="lg">
             <BrandYoutube size={18} />
           </ActionIcon>
+          </Link>
+          <Link to="https://instagram.com/voltaicapp">
           <ActionIcon size="lg">
             <BrandInstagram size={18} />
           </ActionIcon>
+          </Link>
         </Group>
       </div>
       </Container>
