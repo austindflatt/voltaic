@@ -1,5 +1,5 @@
 import React from 'react'
-import { Avatar, Text, Button, Paper } from '@mantine/core';
+import { Avatar, Text, Button, Paper, SimpleGrid } from '@mantine/core';
 
 const ProfileTop = () => {
   return (
@@ -12,17 +12,24 @@ const ProfileTop = () => {
     backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.white,
     })}
     >
-      <Avatar src="https://pbs.twimg.com/profile_images/1509922129738932267/xNYVrZwa_400x400.jpg" size={120} radius={120} mx="auto" />
-      <Text align="center" size="lg" weight={500} mt="md">
+      <Avatar src="https://pbs.twimg.com/profile_images/1509922129738932267/xNYVrZwa_400x400.jpg" size={150} radius={150} mx="auto" />
+      <Text align="center" size="xl" weight={500} mt="md">
         Austin Flatt
       </Text>
-      <Text align="center" color="dimmed" size="sm">
-        austin@austinflatt.com • Founder
+      <Text align="center" color="dimmed" size="md">
+        @austin • Admin
       </Text>
-      
-      <Button variant="default" fullWidth mt="md">
-        Send message
-      </Button>
+      <SimpleGrid cols={2} style={{ marginTop: '10px' }} breakpoints={[
+        { maxWidth: 'md', cols: 2 },
+        { maxWidth: 'sm', cols: 1 },
+      ]}>
+        <Button color="indigo" fullWidth mt="md">
+          Follow Austin
+        </Button>
+        <Button color="green" fullWidth mt="md">
+          Send message
+        </Button>
+      </SimpleGrid>
     </Paper>
 	  </>
   )
