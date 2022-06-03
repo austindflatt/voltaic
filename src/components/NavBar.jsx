@@ -9,16 +9,13 @@ import {
   Menu,
   Divider,
 } from '@mantine/core';
-import { useBooleanToggle } from '@mantine/hooks';
 import {
   Plug,
   Logout,
   Heart,
-  Star,
   PlugConnected,
   GasStation,
   Message,
-  Road,
   Settings,
   User,
   Trash,
@@ -81,7 +78,6 @@ const useStyles = createStyles((theme) => ({
 
 function NavBar() {
   const { classes, theme, cx } = useStyles();
-  const [opened, toggleOpened] = useBooleanToggle(false);
   const [userMenuOpened, setUserMenuOpened] = useState(false);
 
   return (

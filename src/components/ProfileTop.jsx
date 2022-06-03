@@ -19,12 +19,18 @@ const ProfileTop = () => {
       <Text align="center" color="dimmed" size="md">
         @austin • Admin
       </Text>
+      <Text align="center" color="dimmed" size="md">
+        0 Followers • 0 Following
+      </Text>
+      <Text align="center" color="dimmed" size="md">
+        Founder of Voltaic
+      </Text>
       <SimpleGrid cols={2} style={{ marginTop: '10px' }} breakpoints={[
         { maxWidth: 'md', cols: 2 },
         { maxWidth: 'sm', cols: 1 },
       ]}>
         <Button color="indigo" fullWidth mt="md">
-          Follow Austin
+          Follow
         </Button>
         <Button color="green" fullWidth mt="md">
           Send message
