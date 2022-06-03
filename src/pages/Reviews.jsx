@@ -1,7 +1,7 @@
 import React from 'react'
 import { Title, Table, Avatar, ScrollArea, Button } from '@mantine/core';
 
-const Messages = () => {
+const Reviews = () => {
   return (
     <>
       <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '10px' }}><Title order={1}>Your Reviews (0)</Title></div>
@@ -33,4 +33,4 @@ const Messages = () => {
   )
 }
 
-export default Messages
+export default Reviews
