@@ -12,6 +12,7 @@ import Profile from './pages/Profile';
 import AccountStations from './pages/AccountStations';
 import Reviews from './pages/Reviews';
 import HostCharger from './pages/HostCharger';
+import Footer from './components/Footer';
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
       <Route path='/*' element={<NotFound />} />
     </Routes>
     </Container>
+    <Footer />
     </BrowserRouter>
     </>
   );

@@ -119,7 +119,7 @@ function NavBar() {
             <Menu.Label>Account</Menu.Label>
 
             <Link to="user/12342">
-              <Menu.Item icon={<User size={14} color={theme.colors.blue[6]} />}>
+              <Menu.Item icon={<User size={14} color={theme.colors.indigo[6]} />}>
                 Your profile
               </Menu.Item>
             </Link>
