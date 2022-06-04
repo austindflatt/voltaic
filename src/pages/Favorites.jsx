@@ -10,7 +10,7 @@ const Favorites = () => {
   return (
     <>
       <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '10px' }}><Title order={1}>Your Favorite Stations (0)</Title></div>
-      <Container my="md" size="lg">
+      <div style={{ marginTop: '15px' }}>
       <SimpleGrid cols={2} spacing="md" breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
         <Skeleton height={PRIMARY_COL_HEIGHT} radius="md" animate={false} />
         <Grid gutter="md">
@@ -25,7 +25,7 @@ const Favorites = () => {
           </Grid.Col>
         </Grid>
       </SimpleGrid>
-      </Container>
+      </div>
     </>
   )
 }
