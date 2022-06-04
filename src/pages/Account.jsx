@@ -1,8 +1,11 @@
 import React from 'react'
+import { Title } from '@mantine/core';
 
 const Account = () => {
   return (
-	<div>This is your Edit Account page</div>
+    <>
+      <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '10px' }}><Title order={1}>Edit Your Profile</Title></div>
+    </>
   )
 }
 

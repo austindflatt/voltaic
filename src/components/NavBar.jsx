@@ -146,7 +146,7 @@ function NavBar() {
             <Menu.Label>Account Controls</Menu.Label>
             <Link to="account/host-charger">
               <Menu.Item color="green" icon={<GasStation size={14} />}>
-                Host home charger
+                Add Station
               </Menu.Item>
             </Link>
             <Menu.Item color="red" icon={<Trash size={14} />}>
