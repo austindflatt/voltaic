@@ -1,5 +1,6 @@
 import React from 'react'
-import { Title, Grid, SimpleGrid, Skeleton, Image, useMantineTheme } from '@mantine/core';
+import { Title, Grid, SimpleGrid, Button, Image, useMantineTheme } from '@mantine/core';
+import { Link } from 'react-router-dom';
 
 const PRIMARY_COL_HEIGHT = 300;
 
@@ -50,6 +51,11 @@ const ProfileFavorites = () => {
           </Grid.Col>
         </Grid>
       </SimpleGrid>
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
+        <Link to='/user/austin/favorites'>
+          <Button variant="light" size="sm" color="red">View All</Button>
+        </Link>
+      </div>
       </div>
     </>
   )
