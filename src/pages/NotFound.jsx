@@ -53,7 +53,7 @@ function NotFound() {
       </Text>
       <Group position="center">
         <Button variant="subtle" size="md" color="red">
-          Take me back to home page
+          Take me back to the home page
         </Button>
       </Group>
     </Container>
