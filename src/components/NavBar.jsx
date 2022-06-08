@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   createStyles,
   Container,
@@ -10,25 +10,26 @@ import {
   Divider,
 } from '@mantine/core';
 import {
-  Plug,
   Logout,
   Heart,
   PlugConnected,
   GasStation,
-  Message,
+  Check,
   Settings,
   User,
   Trash,
   ChevronDown,
 } from 'tabler-icons-react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../context/authContext/AuthContext';
+import { logout } from '../context/authContext/AuthActions';
 
 const useStyles = createStyles((theme) => ({
   header: {
     paddingTop: theme.spacing.sm,
     backgroundColor: theme.colors.red[6],
     borderBottom: ``,
-    marginBottom: 100,
+    marginBottom: 50,
   },
 
   mainSection: {
@@ -79,6 +80,7 @@ const useStyles = createStyles((theme) => ({
 function NavBar() {
   const { classes, theme, cx } = useStyles();
   const [userMenuOpened, setUserMenuOpened] = useState(false);
+  const { user, dispatch } = useContext(AuthContext);
 
   return (
     <div className={classes.header}>
@@ -86,11 +88,13 @@ function NavBar() {
         <Group position="apart">
           <Link to="/" style={{ textDecoration: 'none' }}>
           <div className="logo">
-            <Plug size={35} strokeWidth={2} color={'white'} /> 
+            {/* <Plug size={35} strokeWidth={2} color={'white'} />  */}
             Voltaic
           </div>
           </Link>
 
+          { user ?
+          <>
           <Menu
             size={260}
             placement="end"
@@ -103,9 +107,9 @@ function NavBar() {
                 className={cx(classes.user, { [classes.userActive]: userMenuOpened })}
               >
                 <Group spacing={7}>
-                  <Avatar src="https://pbs.twimg.com/profile_images/1509922129738932267/xNYVrZwa_400x400.jpg" alt={null} radius="xl" size={30} />
+                  <Avatar src={user.profilePic} alt={null} radius="xl" size={30} />
                   <Text weight={500} size="sm" sx={{ lineHeight: 1, color: theme.white }} mr={3}>
-                    Austin Flatt
+                    {user.username}
                   </Text>
                   <ChevronDown size={12} />
                 </Group>
@@ -120,8 +124,8 @@ function NavBar() {
               </Menu.Item>
             </Link>
             <Link to="account/reviews">
-              <Menu.Item icon={<Message size={14} color={theme.colors.orange[6]} />}>
-                Your reviews
+              <Menu.Item icon={<Check size={14} color={theme.colors.orange[6]} />}>
+                Your check-ins
               </Menu.Item>
             </Link>
             <Link to="account/favorites">
@@ -139,20 +143,35 @@ function NavBar() {
             <Link to="account">
               <Menu.Item icon={<Settings size={14} />}>Edit account</Menu.Item>
             </Link>
-            <Menu.Item icon={<Logout size={14} />}>Logout</Menu.Item>
+
+            <Menu.Item icon={<Logout size={14} />} onClick={() => dispatch(logout())}>Logout</Menu.Item>
 
             <Divider />
 
             <Menu.Label>Account Controls</Menu.Label>
-            <Link to="account/host-charger">
-              <Menu.Item color="green" icon={<GasStation size={14} />}>
-                Add Station
+            <Link to="account/add-charger">
+              <Menu.Item color="indigo" icon={<GasStation size={14} />}>
+                Add A Station
               </Menu.Item>
             </Link>
             <Menu.Item color="red" icon={<Trash size={14} />}>
               Delete account
             </Menu.Item>
           </Menu>
+          </> :
+          <Link to="login" style={{ textDecoration: 'none' }}>
+          <UnstyledButton
+          size={260}
+          className={cx(classes.user, { [classes.userActive]: userMenuOpened })}
+          >
+            <Group spacing={7}>
+              <Text weight={500} size="sm" sx={{ lineHeight: 1, color: theme.white }} mr={3}>
+                Login / Register
+              </Text>
+            </Group>
+          </UnstyledButton>
+        </Link>
+        }
         </Group>
       </Container>
     </div>

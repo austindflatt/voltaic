@@ -10,7 +10,7 @@ const ProfileStations = () => {
       <StationsHome />
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
         <Link to='/user/austin/favorites'>
-          <Button variant="light" size="sm" color="red">Load More</Button>
+          <Button variant="light" size="sm" color="indigo">Load More</Button>
         </Link>
       </div>
     </>

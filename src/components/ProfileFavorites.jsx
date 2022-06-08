@@ -53,7 +53,7 @@ const ProfileFavorites = () => {
       </SimpleGrid>
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
         <Link to='/user/austin/favorites'>
-          <Button variant="light" size="sm" color="red">View All</Button>
+          <Button variant="light" size="sm" color="indigo">View All</Button>
         </Link>
       </div>
       </div>

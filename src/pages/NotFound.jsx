@@ -1,5 +1,6 @@
 import React from 'react';
 import { createStyles, Title, Text, Button, Container, Group } from '@mantine/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = createStyles((theme) => ({
   root: {
@@ -52,9 +53,11 @@ function NotFound() {
         been moved to another URL.
       </Text>
       <Group position="center">
-        <Button variant="subtle" size="md" color="red">
-          Take me back to the home page
-        </Button>
+        <Link to="/">
+          <Button variant="light" size="md" color="indigo">
+            Take me back to the home page
+          </Button>
+        </Link>
       </Group>
     </Container>
   );

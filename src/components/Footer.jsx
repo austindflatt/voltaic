@@ -40,7 +40,7 @@ function Footer() {
         <Text color="dimmed" size="md">© 2022 Voltaic.</Text>
 
         <Group className={classes.links}>
-          <Link to="privacy">
+          <Link to="privacy" style={{ textDecoration: 'none' }}>
           <Anchor
             color="dimmed"
             key={null}
@@ -50,7 +50,7 @@ function Footer() {
             Privacy
           </Anchor>
           </Link>
-          <Link to="terms">
+          <Link to="terms" style={{ textDecoration: 'none' }}>
           <Anchor
             color="dimmed"
             key={null}
@@ -60,7 +60,7 @@ function Footer() {
             Terms
           </Anchor>
           </Link>
-          <Link to="developers">
+          <Link to="developers" style={{ textDecoration: 'none' }}>
           <Anchor
             color="dimmed"
             key={null}

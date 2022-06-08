@@ -1,5 +1,5 @@
 import React from 'react'
-import { createStyles, Card, Avatar, Text, Group, Button, Paper, SimpleGrid } from '@mantine/core';
+import { createStyles, Card, Avatar, Text, Group, Button } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -12,7 +12,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const ProfileTop = () => {
-  const { classes, theme } = useStyles();
+  const { classes } = useStyles();
   
   return (
 	  <>
@@ -45,20 +45,12 @@ const ProfileTop = () => {
           3
         </Text>
         <Text align="center" size="sm" color="dimmed">
-          Stations
+          Check Ins
         </Text>
       </Group>
-      <SimpleGrid cols={2} style={{ marginTop: '10px' }} breakpoints={[
-        { maxWidth: 'md', cols: 2 },
-        { maxWidth: 'sm', cols: 1 },
-      ]}>
         <Button color="indigo" fullWidth mt="md">
           Follow
         </Button>
-        <Button color="green" fullWidth mt="md">
-          Send message
-        </Button>
-      </SimpleGrid>
       </Card>
 	  </>
   )

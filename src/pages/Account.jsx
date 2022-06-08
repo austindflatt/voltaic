@@ -5,7 +5,11 @@ import { At, User, Eye, Location } from 'tabler-icons-react';
 const Account = () => {
   return (
     <>
-      <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '10px' }}><Title order={1}>Edit Your Profile</Title></div>
+
+      <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '10px' }}>
+        <Title order={1}>Edit Your Profile</Title>
+      </div>
+
       <TextInput
           placeholder="URL to profile picture"
           label="Profile Picture"
@@ -67,9 +71,11 @@ const Account = () => {
         size="md"
         minRows={4}
       />
+      
     <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
       <Button variant="light" size="sm" color="red">Update Account</Button>
     </div>
+
     </>
   )
 }

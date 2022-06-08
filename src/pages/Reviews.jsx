@@ -4,7 +4,7 @@ import { Title, Table, Avatar, ScrollArea, Button } from '@mantine/core';
 const Reviews = () => {
   return (
     <>
-      <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '10px' }}><Title order={1}>Your Reviews (0)</Title></div>
+      <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '10px' }}><Title order={1}>Your Check Ins (0)</Title></div>
       <ScrollArea>
         <Table sx={{ minWidth: 800 }} verticalSpacing="sm" style={{ justifyContent: 'center' }}>
           <thead>
