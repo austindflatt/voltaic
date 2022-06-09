@@ -1,26 +1,33 @@
 import React, { useState, useContext } from "react";
-import { Helmet } from "react-helmet";
-import { Link } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
 import { AuthContext } from '../context/authContext/AuthContext';
-import { TextInput, Button, Title, Modal } from '@mantine/core';
+import { TextInput, Button, Modal } from '@mantine/core';
 import { At, Eye } from 'tabler-icons-react';
 import { login } from "../context/authContext/apiCalls";
+import Register from "./Register";
 
 const Login = ({ opened, setOpened }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { isFetching, dispatch } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const [registerOpened, setRegisterOpened] = useState(false);
 
   const handleLogin = (e) => {
     e.preventDefault();
     login({ email, password }, dispatch);
     setOpened(false);
   }
+
+  const showRegister = () => {
+    setOpened(false)
+    setRegisterOpened(true);
+  }
   
   return (
   <>
+  <Register
+  registerOpened={registerOpened}
+  setRegisterOpened={setRegisterOpened}
+  />
   <Modal
   opened={opened}
   onClose={() => setOpened(false)}
@@ -50,9 +57,7 @@ const Login = ({ opened, setOpened }) => {
 
     <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
       <Button type="Submit" variant="light" size="sm" onClick={handleLogin} disabled={isFetching} style={{ marginRight: '5px' }} color="gray">Login</Button>
-      <Link to='/register'>
-        <Button type="Submit" variant="light" size="sm" color="indigo">Not A User?</Button>
-      </Link>
+      <Button type="Submit" variant="light" size="sm" onClick={() => showRegister()} color="indigo">Not A User?</Button>
     </div>
   </Modal>
   </>

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Helmet } from "react-helmet";
-import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import { TextInput, Button, Title, SimpleGrid, Textarea } from '@mantine/core';
+import { TextInput, Button, SimpleGrid, Textarea, Modal } from '@mantine/core';
 import { At, User, Eye, Location } from 'tabler-icons-react';
+import { usePlacesWidget } from "react-google-autocomplete";
 
-const Register = () => {
+const Register = ({ registerOpened, setRegisterOpened }) => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
@@ -14,7 +13,11 @@ const Register = () => {
   const [profilePic, setProfilePic] = useState('');
   const [bio, setBio] = useState('');
   const [location, setLocation] = useState('');
-  const navigate = useNavigate();
+
+  const { ref } = usePlacesWidget({
+    apiKey: '',
+    onPlaceSelected: (place) => console.log(place)
+  })
 
   const handleFinish = async (e) => {
     e.preventDefault();
@@ -30,7 +33,7 @@ const Register = () => {
     }
     try {
       await axios.post('http://localhost:3001/api/auth/register', newBody);
-      navigate('/login');
+      setRegisterOpened(false)
     } catch (error) {
       console.log('Error')
     }
@@ -38,11 +41,12 @@ const Register = () => {
 
   return (
   <>
-  <Helmet>
-    <title>Register | Voltaic</title>
-    <meta name='description' content='Register' />
-  </Helmet>
-  <Title order={1} style={{ marginBottom: '10px' }}>Register Account</Title>
+  <Modal
+  opened={registerOpened}
+  onClose={() => setRegisterOpened(false)}
+  title="Register An Account"
+  size="lg"
+  >
   <TextInput
   placeholder="Profile Pic URL"
   label="Profile Picture"
@@ -102,6 +106,7 @@ const Register = () => {
     <TextInput
     placeholder="City, State"
     label="Location"
+    ref={ref}
     id="password"
     size="md"
     icon={<Location size={14} />}
@@ -120,10 +125,10 @@ const Register = () => {
   />
   
   <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-    <Button type="Submit" variant="light" size="sm" style={{ marginRight: '5px' }} color="gray">Already A User?</Button>
     <Button type="Submit" variant="light" size="sm" onClick={handleFinish} color="indigo">Register Account</Button>
   </div>
 
+  </Modal>
   </>
   )
 }

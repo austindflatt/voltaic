@@ -24,6 +24,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/authContext/AuthContext';
 import { logout } from '../context/authContext/AuthActions';
 import Login from '../pages/Login';
+import Account from '../pages/Account';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -83,9 +84,14 @@ function NavBar() {
   const [userMenuOpened, setUserMenuOpened] = useState(false);
   const { user, dispatch } = useContext(AuthContext);
   const [opened, setOpened] = useState(false);
+  const [accountOpened, setAccountOpened] = useState(false);
 
-  const showEdit = (id) => {
+  const showLogin = () => {
     setOpened(true);
+  }
+
+  const showEdit = () => {
+    setAccountOpened(true);
   }
 
   return (
@@ -94,7 +100,6 @@ function NavBar() {
         <Group position="apart">
           <Link to="/" style={{ textDecoration: 'none' }}>
           <div className="logo">
-            {/* <Plug size={35} strokeWidth={2} color={'white'} />  */}
             Voltaic
           </div>
           </Link>
@@ -102,6 +107,11 @@ function NavBar() {
           <Login
           opened={opened}
           setOpened={setOpened}
+          />
+
+          <Account
+          accountOpened={accountOpened}
+          setAccountOpened={setAccountOpened}
           />
 
           { user ?
@@ -151,10 +161,8 @@ function NavBar() {
             </Link>
 
             <Menu.Label>Settings</Menu.Label>
-            <Link to="account">
-              <Menu.Item icon={<Settings size={14} />}>Edit account</Menu.Item>
-            </Link>
 
+            <Menu.Item icon={<Settings size={14} />} onClick={() => showEdit()}>Edit account</Menu.Item>
             <Menu.Item icon={<Logout size={14} />} onClick={() => dispatch(logout())}>Logout</Menu.Item>
 
             <Divider />
@@ -173,7 +181,7 @@ function NavBar() {
           <UnstyledButton
           size={260}
           className={cx(classes.user, { [classes.userActive]: userMenuOpened })}
-          onClick={() => showEdit()}
+          onClick={() => showLogin()}
           >
             <Group spacing={7}>
               <Text weight={500} size="sm" sx={{ lineHeight: 1, color: theme.white }} mr={3}>

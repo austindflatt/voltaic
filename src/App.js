@@ -38,7 +38,7 @@ function App() {
       <Route path='account/favorites' element={<Favorites />} />
       <Route path='account/stations' element={<AccountStations />} />
       <Route path='account/checkins' element={<Checkins />} />
-      <Route path='user/:id' element={<Profile />} />
+      <Route path='user/:username' element={<Profile />} />
       <Route path='account/host-charger' element={<HostCharger />} />
       <Route path='account/add-charger' element={<AddCharger />} />
       <Route path='/*' element={<NotFound />} />

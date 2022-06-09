@@ -1,15 +1,16 @@
 import React from 'react'
-import { Title, TextInput, Textarea, Button, SimpleGrid } from '@mantine/core';
+import { TextInput, Textarea, Button, SimpleGrid, Modal } from '@mantine/core';
 import { At, User, Eye, Location } from 'tabler-icons-react';
-import Layout from '../components/Layout';
 
-const Account = () => {
+const Account = ({ accountOpened, setAccountOpened }) => {
   return (
     <>
-    <Layout>
-      <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '10px' }}>
-        <Title order={1}>Edit Your Profile</Title>
-      </div>
+    <Modal
+    opened={accountOpened}
+    onClose={() => setAccountOpened(false)}
+    title="Edit Your Account"
+    size="lg"
+    >
 
       <TextInput
           placeholder="URL to profile picture"
@@ -53,14 +54,12 @@ const Account = () => {
         />
         <TextInput
           placeholder="Username"
-          description="You can only change your username every 60 days"
           label="Username"
           size="md"
           icon={<User size={14} />}
         />
         <TextInput
           placeholder="Location"
-          description="Where are you located?"
           label="Location"
           size="md"
           icon={<Location size={14} />}
@@ -74,10 +73,9 @@ const Account = () => {
       />
       
     <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-      <Button variant="light" size="sm" color="red">Update Account</Button>
+      <Button variant="light" size="sm" color="indigo">Update Account</Button>
     </div>
-    
-    </Layout>
+    </Modal>
     </>
   )
 }

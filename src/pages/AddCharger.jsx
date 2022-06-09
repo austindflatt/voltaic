@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Title, TextInput, Textarea, NativeSelect, MultiSelect, Switch, Button, SimpleGrid } from '@mantine/core';
 import { Note, Location, Clock, Phone, CurrencyDollar, Elevator } from 'tabler-icons-react';
+import { usePlacesWidget } from "react-google-autocomplete";
 
 const parkingAttributes = [
   { value: 'Pull Through Parking', label: 'Pull Through Parking', icon: `` },
@@ -37,6 +38,12 @@ const amenities = [
 
 const AddCharger = () => {
   const [always, setAlways] = useState(false);
+
+  const { ref } = usePlacesWidget({
+    apiKey: '',
+    onPlaceSelected: (place) => console.log(place)
+  })
+
   return (
     <>
 
@@ -68,6 +75,7 @@ const AddCharger = () => {
         size="md"
         icon={<Location size={14} />}
         required
+        ref={ref}
         />
       </SimpleGrid>
 
