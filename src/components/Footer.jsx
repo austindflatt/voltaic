@@ -35,7 +35,7 @@ function Footer() {
 
   return (
     <div className={classes.footer}>
-      <Container className={classes.mainSection} size="lg">
+      <Container className={classes.mainSection} size="xl">
       <div className={classes.inner}>
         <Text color="dimmed" size="md">© 2022 Voltaic.</Text>
 

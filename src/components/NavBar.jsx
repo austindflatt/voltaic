@@ -90,7 +90,7 @@ function NavBar() {
 
   return (
     <div className={classes.header}>
-      <Container className={classes.mainSection} size="lg">
+      <Container className={classes.mainSection} size="xl">
         <Group position="apart">
           <Link to="/" style={{ textDecoration: 'none' }}>
           <div className="logo">
