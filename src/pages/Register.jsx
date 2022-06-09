@@ -27,7 +27,6 @@ const Register = () => {
       profilePic: profilePic,
       bio: bio,
       location: location,
-
     }
     try {
       await axios.post('http://localhost:3001/api/auth/register', newBody);

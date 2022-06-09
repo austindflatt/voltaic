@@ -1,5 +1,6 @@
 import React from 'react'
-import { Title, Container, Grid, SimpleGrid, Skeleton, useMantineTheme } from '@mantine/core';
+import { Title, Grid, SimpleGrid, Skeleton, useMantineTheme } from '@mantine/core';
+import Layout from '../components/Layout';
 
 const PRIMARY_COL_HEIGHT = 300;
 
@@ -9,6 +10,7 @@ const Favorites = () => {
 
   return (
     <>
+    <Layout>
       <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '10px' }}><Title order={1}>Your Favorite Stations (0)</Title></div>
       <div style={{ marginTop: '15px' }}>
       <SimpleGrid cols={2} spacing="md" breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
@@ -26,6 +28,7 @@ const Favorites = () => {
         </Grid>
       </SimpleGrid>
       </div>
+    </Layout>
     </>
   )
 }

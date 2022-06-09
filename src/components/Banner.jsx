@@ -89,7 +89,7 @@ function Banner() {
                 component="span"
                 inherit
                 variant="gradient"
-                gradient={{ from: 'indigo', to: 'black' }}
+                gradient={{ from: 'indigo', to: 'white' }}
               >
                 accurate and complete
               </Text>{' '}

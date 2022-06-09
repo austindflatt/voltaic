@@ -3,11 +3,11 @@ import { Helmet } from "react-helmet";
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from '../context/authContext/AuthContext';
-import { TextInput, Button, Title } from '@mantine/core';
+import { TextInput, Button, Title, Modal } from '@mantine/core';
 import { At, Eye } from 'tabler-icons-react';
 import { login } from "../context/authContext/apiCalls";
 
-const Login = () => {
+const Login = ({ opened, setOpened }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { isFetching, dispatch } = useContext(AuthContext);
@@ -15,18 +15,19 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    login({ email, password }, dispatch)
-    navigate('/');
+    login({ email, password }, dispatch);
+    setOpened(false);
   }
   
   return (
   <>
-  <Helmet>
-    <title>Login | Voltaic</title>
-    <meta name='description' content='Login' />
-  </Helmet>
-  <Title order={1} style={{ marginBottom: '10px' }}>Login</Title>
-  <form>
+  <Modal
+  opened={opened}
+  onClose={() => setOpened(false)}
+  title="Login To Your Account"
+  size="lg"
+  >
+    {/* <Title order={1} style={{ marginBottom: '10px' }}>Login</Title> */}
     <TextInput
     placeholder="Enter your email"
     label="Email"
@@ -53,7 +54,7 @@ const Login = () => {
         <Button type="Submit" variant="light" size="sm" color="indigo">Not A User?</Button>
       </Link>
     </div>
-  </form>
+  </Modal>
   </>
   )
 }

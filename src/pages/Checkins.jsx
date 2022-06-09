@@ -1,9 +1,11 @@
 import React from 'react'
 import { Title, Table, Avatar, ScrollArea, Button } from '@mantine/core';
+import Layout from '../components/Layout';
 
-const Reviews = () => {
+const Checkins = () => {
   return (
     <>
+    <Layout>
       <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '10px' }}><Title order={1}>Your Check Ins (0)</Title></div>
       <ScrollArea>
         <Table sx={{ minWidth: 800 }} verticalSpacing="sm" style={{ justifyContent: 'center' }}>
@@ -29,8 +31,9 @@ const Reviews = () => {
           </tbody>
         </Table>
       </ScrollArea>
+    </Layout>
     </>
   )
 }
 
-export default Reviews
+export default Checkins

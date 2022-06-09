@@ -1,11 +1,12 @@
 import React from 'react'
 import { Title, TextInput, Textarea, Button, SimpleGrid } from '@mantine/core';
 import { At, User, Eye, Location } from 'tabler-icons-react';
+import Layout from '../components/Layout';
 
 const Account = () => {
   return (
     <>
-
+    <Layout>
       <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '10px' }}>
         <Title order={1}>Edit Your Profile</Title>
       </div>
@@ -75,7 +76,8 @@ const Account = () => {
     <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
       <Button variant="light" size="sm" color="red">Update Account</Button>
     </div>
-
+    
+    </Layout>
     </>
   )
 }

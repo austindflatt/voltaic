@@ -1,8 +1,11 @@
 import React from 'react'
+import BigLayout from '../components/BigLayout'
 
 const StationsMap = () => {
   return (
-    <div>StationsMap</div>
+    <BigLayout>
+      Big layout
+    </BigLayout>
   )
 }
 

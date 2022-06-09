@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import {
   createStyles,
-  Container,
   Avatar,
   UnstyledButton,
   Group,
@@ -34,6 +33,8 @@ const useStyles = createStyles((theme) => ({
   },
 
   mainSection: {
+    paddingLeft: theme.spacing.sm,
+    paddingRight: theme.spacing.sm,
     paddingBottom: theme.spacing.sm,
   },
 
@@ -78,7 +79,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function NavBar() {
+function NavBarBig() {
   const { classes, theme, cx } = useStyles();
   const [userMenuOpened, setUserMenuOpened] = useState(false);
   const { user, dispatch } = useContext(AuthContext);
@@ -90,11 +91,10 @@ function NavBar() {
 
   return (
     <div className={classes.header}>
-      <Container className={classes.mainSection} size="lg">
+      <div className={classes.mainSection}>
         <Group position="apart">
           <Link to="/" style={{ textDecoration: 'none' }}>
           <div className="logo">
-            {/* <Plug size={35} strokeWidth={2} color={'white'} />  */}
             Voltaic
           </div>
           </Link>
@@ -134,7 +134,7 @@ function NavBar() {
                 Your profile
               </Menu.Item>
             </Link>
-            <Link to="account/checkins">
+            <Link to="account/reviews">
               <Menu.Item icon={<Check size={14} color={theme.colors.orange[6]} />}>
                 Your check-ins
               </Menu.Item>
@@ -183,9 +183,9 @@ function NavBar() {
           </UnstyledButton>
         }
         </Group>
-      </Container>
+      </div>
     </div>
   );
 }
 
-export default NavBar
+export default NavBarBig
