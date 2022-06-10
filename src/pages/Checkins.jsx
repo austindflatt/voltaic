@@ -25,7 +25,7 @@ const Checkins = () => {
               <td>This was a good charger</td>
               <td>5.0</td>
               <td>
-                <Button type="Submit" variant="light" color="red" size="sm">Delete</Button>
+                <Button type="Submit" variant="light" color="indigo" size="sm">View Station</Button>
               </td>
             </tr>
           </tbody>
