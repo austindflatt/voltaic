@@ -25,6 +25,7 @@ import { AuthContext } from '../context/authContext/AuthContext';
 import { logout } from '../context/authContext/AuthActions';
 import Login from '../pages/Login';
 import Account from '../pages/Account';
+import AddCharger from '../pages/AddCharger';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -85,6 +86,7 @@ function NavBar() {
   const { user, dispatch } = useContext(AuthContext);
   const [opened, setOpened] = useState(false);
   const [accountOpened, setAccountOpened] = useState(false);
+  const [addOpened, setAddOpened] = useState(false);
 
   const showLogin = () => {
     setOpened(true);
@@ -92,6 +94,10 @@ function NavBar() {
 
   const showEdit = () => {
     setAccountOpened(true);
+  }
+
+  const showAdd = () => {
+    setAddOpened(true);
   }
 
   return (
@@ -112,6 +118,11 @@ function NavBar() {
           <Account
           accountOpened={accountOpened}
           setAccountOpened={setAccountOpened}
+          />
+
+          <AddCharger
+          addOpened={addOpened}
+          setAddOpened={setAddOpened}
           />
 
           { user ?
@@ -162,17 +173,19 @@ function NavBar() {
 
             <Menu.Label>Settings</Menu.Label>
 
-            <Menu.Item icon={<Settings size={14} />} onClick={() => showEdit()}>Edit account</Menu.Item>
-            <Menu.Item icon={<Logout size={14} />} onClick={() => dispatch(logout())}>Logout</Menu.Item>
+            <Menu.Item icon={<Settings size={14} />} onClick={() => showEdit()}>
+              Edit account
+            </Menu.Item>
+            <Menu.Item icon={<Logout size={14} />} onClick={() => dispatch(logout())}>
+              Logout
+            </Menu.Item>
 
             <Divider />
 
             <Menu.Label>Account Controls</Menu.Label>
-            <Link to="account/add-charger">
-              <Menu.Item color="indigo" icon={<GasStation size={14} />}>
+            <Menu.Item color="indigo" icon={<GasStation size={14} />} onClick={() => showAdd()}>
                 Add a station
-              </Menu.Item>
-            </Link>
+            </Menu.Item>
             <Menu.Item color="red" icon={<Trash size={14} />}>
               Delete account
             </Menu.Item>

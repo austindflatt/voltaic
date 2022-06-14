@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Title, TextInput, Textarea, NativeSelect, MultiSelect, Switch, Button, SimpleGrid } from '@mantine/core';
+import { TextInput, Textarea, NativeSelect, MultiSelect, Switch, Button, Modal, SimpleGrid } from '@mantine/core';
 import { Note, Location, Clock, Phone, CurrencyDollar, Elevator } from 'tabler-icons-react';
 import { usePlacesWidget } from "react-google-autocomplete";
 
@@ -36,7 +36,7 @@ const amenities = [
   { value: 'Camping', label: 'Camping', icon: `` },
 ];
 
-const AddCharger = () => {
+const AddCharger = ({ addOpened, setAddOpened }) => {
   const [always, setAlways] = useState(false);
 
   const { ref } = usePlacesWidget({
@@ -46,8 +46,12 @@ const AddCharger = () => {
 
   return (
     <>
-
-      <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginBottom: '10px' }}><Title order={1}>Add A Public Charging Station</Title></div>
+    <Modal
+    opened={addOpened}
+    onClose={() => setAddOpened(false)}
+    title="Add A Charging Station"
+    size="lg"
+    >
 
       <TextInput
       placeholder=""
@@ -56,28 +60,22 @@ const AddCharger = () => {
       required
       />
 
+      <TextInput
+      placeholder="University of Louisville"
+      label="Location Name"
+      size="md"
+      icon={<Note size={14} />}
+      required
+      />
 
-      <SimpleGrid cols={2} style={{ marginTop: '20px' }} breakpoints={[
-      { maxWidth: 'lg', cols: 2 },
-      { maxWidth: 'sm', cols: 1 },
-      ]}>
-        <TextInput
-        placeholder="University of Louisville"
-        label="Location Name"
-        size="md"
-        icon={<Note size={14} />}
-        required
-        />
-
-        <TextInput
-        placeholder="1 Electric Way, City, State ZIP, United States"
-        label="Full Street Address"
-        size="md"
-        icon={<Location size={14} />}
-        required
-        ref={ref}
-        />
-      </SimpleGrid>
+      <TextInput
+      placeholder="1 Electric Way, City, State ZIP, United States"
+      label="Full Street Address"
+      size="md"
+      icon={<Location size={14} />}
+      required
+      ref={ref}
+      />
 
       <Textarea
       placeholder="Description"
@@ -219,6 +217,8 @@ const AddCharger = () => {
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
         <Button variant="light" size="sm" color="indigo">Add Station</Button>
       </div>
+
+      </Modal>
 
     </>
   )
