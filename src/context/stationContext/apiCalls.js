@@ -18,7 +18,7 @@ import {
 export const getStations = async (dispatch) => {
   dispatch(getStationsStart())
   try {
-    const res = await axios.get('http://localhost:3001/api/stations')
+    const res = await axios.get('http://localhost:3001/api/stations/')
     dispatch(getStationsSuccess(res.data))
   } catch (error) {
     dispatch(getStationsFailure())
