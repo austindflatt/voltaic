@@ -1,7 +1,6 @@
 import React from 'react'
 import ProfileTop from '../components/ProfileTop'
-import ProfileFavorites from '../components/ProfileFavorites'
-import ProfileStations from '../components/ProfileStations'
+import ProfileLower from '../components/ProfileLower'
 import Layout from '../components/Layout'
 
 const Profile = () => {
@@ -9,8 +8,7 @@ const Profile = () => {
     <>
     <Layout>
       <ProfileTop />
-      <ProfileFavorites />
-      <ProfileStations />
+      <ProfileLower />
     </Layout>
     </>
   )

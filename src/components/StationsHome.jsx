@@ -18,7 +18,7 @@ const StationsHome = () => {
     :
     <SimpleGrid cols={4} style={{ marginTop: '20px' }} breakpoints={[
       { maxWidth: 'lg', cols: 4 },
-      { maxWidth: 'md', cols: 3 },
+      { maxWidth: 'md', cols: 2 },
       { maxWidth: 'sm', cols: 1 },
     ]}>
       {
@@ -29,6 +29,7 @@ const StationsHome = () => {
             key={idx}
             chargerName={station.name}
             image={station.image}
+            payment={station.paymentRequired}
             />
           )
         })

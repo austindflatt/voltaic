@@ -19,8 +19,7 @@ const StationCard = (props) => {
       </Link>
       <div className='details'>
         <div className='location'><Text size="md">{props.chargerName}</Text></div>
-        <div className='cost'><Text size="md">Payment Required</Text></div>
-        <div className='check-ins'><Text size="md">52 Check Ins</Text></div>
+        <div className='cost'><Text size="md">{props.paymentRequired ? <>Payment Required</> : <>No Payment</>}</Text></div>
       </div>
     </Link>
   </div>

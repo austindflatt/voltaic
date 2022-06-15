@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const ProfileStations = () => {
   return (
     <>
-      <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginTop: '10px' }}><Title order={3}>Austin's Charging Stations</Title></div>
+      <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginTop: '10px' }}><Title order={3}>Austin's Hosted Charging Stations</Title></div>
       <StationsHome />
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
         <Link to='/user/austin/favorites'>
