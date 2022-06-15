@@ -38,6 +38,10 @@ const amenities = [
 
 const AddCharger = ({ addOpened, setAddOpened }) => {
   const [always, setAlways] = useState(false);
+  const [restricted, setRestricted] = useState(false);
+  const [payment, setPayment] = useState(false);
+  const [active, setActive] = useState(false);
+  const [homeCharger, setHomeCharger] = useState(false);
 
   const { ref } = usePlacesWidget({
     apiKey: '',
@@ -133,8 +137,8 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         size="md" 
         id="always" 
         color="indigo"
-        checked={always}
-        onChange={() => setAlways(!always)} 
+        checked={restricted}
+        onChange={() => setRestricted(!restricted)} 
         style={{ marginTop: '10px' }}
         />
         <Switch 
@@ -142,8 +146,8 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         size="md" 
         id="always" 
         color="indigo"
-        checked={always}
-        onChange={() => setAlways(!always)} 
+        checked={payment}
+        onChange={() => setPayment(!payment)} 
         style={{ marginTop: '10px' }}
         />
         <Switch 
@@ -151,8 +155,8 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         size="md" 
         id="always" 
         color="indigo"
-        checked={always}
-        onChange={() => setAlways(!always)} 
+        checked={active}
+        onChange={() => setActive(!active)}
         style={{ marginTop: '10px' }}
         required
         />
@@ -161,8 +165,8 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         size="md" 
         id="always" 
         color="indigo"
-        checked={always}
-        onChange={() => setAlways(!always)} 
+        checked={homeCharger}
+        onChange={() => setHomeCharger(!homeCharger)} 
         style={{ marginTop: '10px' }}
         required
         />
@@ -184,19 +188,19 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         label="Phone Number"
         size="md"
         icon={<Phone size={14} />}
-        required
         />  
         <TextInput
         placeholder="Price"
         label="Price"
         size="md"
+        type="number"
         icon={<CurrencyDollar size={14} />}
-        required
         />     
         <TextInput
         placeholder="Parking Level"
         label="Parking Level"
         size="md"
+        type="number"
         icon={<Elevator size={14} />}
         required
         /> 

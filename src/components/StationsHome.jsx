@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import StationCard from './StationCard'
-import { SimpleGrid } from '@mantine/core';
+import { SimpleGrid, Loader } from '@mantine/core';
 import { StationContext } from '../context/stationContext/StationContext';
 import { getStations } from '../context/stationContext/apiCalls';
 
@@ -13,6 +13,9 @@ const StationsHome = () => {
 
   return (
   <>
+  { isFetching ?
+    <Loader color="indigo" size="xl" variant="dots" style={{ padding: '20px', width: '100%', display: 'flex', justifyContent: 'center' }}/>
+    :
     <SimpleGrid cols={4} style={{ marginTop: '20px' }} breakpoints={[
       { maxWidth: 'lg', cols: 4 },
       { maxWidth: 'md', cols: 3 },
@@ -31,6 +34,7 @@ const StationsHome = () => {
         })
       }
     </SimpleGrid>
+  }
   </>
   )
 }

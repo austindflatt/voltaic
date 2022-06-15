@@ -23,6 +23,8 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/authContext/AuthContext';
 import { logout } from '../context/authContext/AuthActions';
 import Login from '../pages/Login';
+import Account from '../pages/Account';
+import AddCharger from '../pages/AddCharger';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -84,9 +86,19 @@ function NavBarBig() {
   const [userMenuOpened, setUserMenuOpened] = useState(false);
   const { user, dispatch } = useContext(AuthContext);
   const [opened, setOpened] = useState(false);
+  const [accountOpened, setAccountOpened] = useState(false);
+  const [addOpened, setAddOpened] = useState(false);
 
-  const showEdit = (id) => {
+  const showLogin = () => {
     setOpened(true);
+  }
+
+  const showEdit = () => {
+    setAccountOpened(true);
+  }
+
+  const showAdd = () => {
+    setAddOpened(true);
   }
 
   return (
@@ -102,6 +114,16 @@ function NavBarBig() {
           <Login
           opened={opened}
           setOpened={setOpened}
+          />
+
+          <Account
+          accountOpened={accountOpened}
+          setAccountOpened={setAccountOpened}
+          />
+
+          <AddCharger
+          addOpened={addOpened}
+          setAddOpened={setAddOpened}
           />
 
           { user ?
@@ -129,42 +151,40 @@ function NavBarBig() {
           >
             <Menu.Label>Account</Menu.Label>
 
-            <Link to="user/12342">
+            <Link to="/user/12342">
               <Menu.Item icon={<User size={14} color={theme.colors.indigo[6]} />}>
                 Your profile
               </Menu.Item>
             </Link>
-            <Link to="account/reviews">
+            <Link to="/account/reviews">
               <Menu.Item icon={<Check size={14} color={theme.colors.orange[6]} />}>
                 Your check-ins
               </Menu.Item>
             </Link>
-            <Link to="account/favorites">
+            <Link to="/account/favorites">
               <Menu.Item icon={<Heart size={14} color={theme.colors.red[6]} />}>
                 Your favorite stations
               </Menu.Item>
             </Link>
-            <Link to="account/stations">
+            <Link to="/account/stations">
               <Menu.Item icon={<PlugConnected size={14} color={theme.colors.yellow[6]} />}>
                 Your charging stations
               </Menu.Item>
             </Link>
 
             <Menu.Label>Settings</Menu.Label>
-            <Link to="account">
-              <Menu.Item icon={<Settings size={14} />}>Edit account</Menu.Item>
-            </Link>
+            <Menu.Item icon={<Settings size={14} />} onClick={() => showEdit()}>
+              Edit account
+            </Menu.Item>
 
             <Menu.Item icon={<Logout size={14} />} onClick={() => dispatch(logout())}>Logout</Menu.Item>
 
             <Divider />
 
             <Menu.Label>Account Controls</Menu.Label>
-            <Link to="account/add-charger">
-              <Menu.Item color="indigo" icon={<GasStation size={14} />}>
-                Add a station
-              </Menu.Item>
-            </Link>
+            <Menu.Item color="indigo" icon={<GasStation size={14} />} onClick={() => showAdd()}>
+              Add a station
+            </Menu.Item>
             <Menu.Item color="red" icon={<Trash size={14} />}>
               Delete account
             </Menu.Item>
@@ -173,7 +193,7 @@ function NavBarBig() {
           <UnstyledButton
           size={260}
           className={cx(classes.user, { [classes.userActive]: userMenuOpened })}
-          onClick={() => showEdit()}
+          onClick={() => showLogin()}
           >
             <Group spacing={7}>
               <Text weight={500} size="sm" sx={{ lineHeight: 1, color: theme.white }} mr={3}>

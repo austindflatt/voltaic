@@ -150,22 +150,22 @@ function NavBar() {
           >
             <Menu.Label>Account</Menu.Label>
 
-            <Link to="user/12342">
+            <Link to="/user/12342">
               <Menu.Item icon={<User size={14} color={theme.colors.indigo[6]} />}>
                 Your profile
               </Menu.Item>
             </Link>
-            <Link to="account/checkins">
+            <Link to="/account/checkins">
               <Menu.Item icon={<Check size={14} color={theme.colors.orange[6]} />}>
                 Your check-ins
               </Menu.Item>
             </Link>
-            <Link to="account/favorites">
+            <Link to="/account/favorites">
               <Menu.Item icon={<Heart size={14} color={theme.colors.red[6]} />}>
                 Your favorite stations
               </Menu.Item>
             </Link>
-            <Link to="account/stations">
+            <Link to="/account/stations">
               <Menu.Item icon={<PlugConnected size={14} color={theme.colors.yellow[6]} />}>
                 Your charging stations
               </Menu.Item>
