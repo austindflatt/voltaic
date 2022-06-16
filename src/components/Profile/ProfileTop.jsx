@@ -20,7 +20,7 @@ const ProfileTop = () => {
       <Card.Section 
       sx={{ 
         backgroundImage: `url(https://tesla-cdn.thron.com/delivery/public/image/tesla/c877126e-0db5-409d-a412-04fc94b59b76/bvlatuR/std/2880x1800/HP-SR-Design-D)`, 
-        height: 500, 
+        height: 300, 
         backgroundRepeat: 'no-repeat', 
         backgroundPosition: 'center', 
         backgroundSize: 'cover' 
