@@ -46,10 +46,17 @@ const useStyles = createStyles((theme, _params, getRef) => {
       zIndex: 1,
     },
 
-    rating: {
+    stationType: {
       position: 'absolute',
       top: theme.spacing.xs - 20,
       right: theme.spacing.xs - 15,
+      pointerEvents: 'none',
+    },
+
+    rating: {
+      position: 'absolute',
+      top: theme.spacing.xs - 20,
+      left: theme.spacing.xs - 15,
       pointerEvents: 'none',
     },
 
@@ -86,8 +93,12 @@ function StationCard(props) {
 
       <div className={classes.content}>
         <div>
-        <Badge radius="sm" className={classes.rating} color={props.stationType ? 'green' : 'indigo'}>
+        <Badge radius="sm" variant="filled" className={classes.stationType} color={props.stationType ? 'green' : 'indigo'}>
           {props.stationType ? <>Residential</> : <>Public</>}
+        </Badge>
+
+        <Badge radius="sm" variant="filled" className={classes.rating} color="gray">
+          {props.rating}
         </Badge>
 
           <Text size="lg" className={classes.title} weight={500}>

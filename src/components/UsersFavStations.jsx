@@ -4,7 +4,7 @@ import { SimpleGrid, Loader } from '@mantine/core';
 import { StationContext } from '../context/stationContext/StationContext';
 import { getStations } from '../context/stationContext/apiCalls';
 
-const StationsHome = () => {
+const UsersFavStations = () => {
   const { stations, isFetching, dispatch } = useContext(StationContext);
 
   useEffect(() => {
@@ -44,4 +44,4 @@ const StationsHome = () => {
   )
 }
 
-export default StationsHome;
+export default UsersFavStations;

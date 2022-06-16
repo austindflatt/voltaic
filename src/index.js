@@ -4,7 +4,7 @@ import App from './App';
 import { AuthContextProvider } from './context/authContext/AuthContext';
 import { StationContextProvider } from './context/stationContext/StationContext';
 import { UserContextProvider } from './context/userContext/UserContext';
-import './index.css'
+import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -17,7 +17,7 @@ const ProfileTop = () => {
   return (
 	  <>
       <Card withBorder p="xl" radius="md" className={classes.card}>
-      <Card.Section sx={{ backgroundImage: `url(https://photos.plugshare.com/photos/912852.jpg)`, height: 300, backgroundRepeat: 'no-repeat', objectFit: 'cover' }} />
+      <Card.Section sx={{ backgroundImage: `url(https://www.tesla.com/ns_videos/homepage-social.jpg)`, height: 300, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }} />
       <Avatar src="https://pbs.twimg.com/profile_images/1509922129738932267/xNYVrZwa_400x400.jpg" size={150} radius={150} mx="auto" mt={-30} className={classes.avatar} />
       <Text align="center" size="xl" weight={500} mt="md">
         Austin Flatt

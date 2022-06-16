@@ -31,6 +31,7 @@ const MapStations = () => {
             checkIns={station.checkIns.length}
             favorites={station.favorites.length}
             stationType={station.homeCharger}
+            rating={station.rating}
             />
           )
         })

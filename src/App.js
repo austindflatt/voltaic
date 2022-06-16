@@ -8,7 +8,6 @@ import Account from './pages/Account';
 import Favorites from './pages/Favorites';
 import Profile from './pages/Profile';
 import AccountStations from './pages/AccountStations';
-import Checkins from './pages/Checkins';
 import AddCharger from './pages/AddCharger';
 import Register from './pages/Register';
 import StationsMap from './pages/StationsMap';
@@ -39,7 +38,6 @@ function App() {
       <Route path='user/:username' element={<Profile />} />
       <Route path='account/favorites' element={<Favorites />} />
       <Route path='account/stations' element={<AccountStations />} />
-      <Route path='account/checkins' element={<Checkins />} />
       <Route path='account/add-charger' element={<AddCharger />} />
       <Route path='/*' element={<NotFound />} />
     </Routes>
