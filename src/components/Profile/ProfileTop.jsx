@@ -17,8 +17,15 @@ const ProfileTop = () => {
   return (
 	  <>
       <Card withBorder p="xl" radius="md" className={classes.card}>
-      <Card.Section sx={{ backgroundImage: `url(https://www.tesla.com/ns_videos/homepage-social.jpg)`, height: 500, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }} />
-      <Avatar src="https://pbs.twimg.com/profile_images/1509922129738932267/xNYVrZwa_400x400.jpg" size={150} radius={150} mx="auto" mt={-50} className={classes.avatar} />
+      <Card.Section 
+      sx={{ 
+        backgroundImage: `url(https://tesla-cdn.thron.com/delivery/public/image/tesla/c877126e-0db5-409d-a412-04fc94b59b76/bvlatuR/std/2880x1800/HP-SR-Design-D)`, 
+        height: 500, 
+        backgroundRepeat: 'no-repeat', 
+        backgroundPosition: 'center', 
+        backgroundSize: 'cover' 
+      }} />
+      <Avatar src="https://www.austinflatt.com/images/headshot.webp" size={150} radius={150} mx="auto" mt={-50} className={classes.avatar} />
       <Text align="center" size="xl" weight={500} mt="md">
         Austin Flatt
       </Text>
