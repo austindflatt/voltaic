@@ -1,7 +1,7 @@
 import { Container } from '@mantine/core'
 import React from 'react'
 import Footer from '../Footer/Footer'
-import NavBar from '../Header/NavBar'
+import NavBar from '../NavBar/NavBar'
 
 const Layout = (props) => {
 	const { children } = props;

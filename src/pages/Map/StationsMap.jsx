@@ -17,8 +17,14 @@ const StationsMap = () => {
   return (
     <BigLayout>
       <div className={classes.mainSection}>
+      <div className='row'>
+      <div class="column left">
       <MapStations />
+      </div>
+      <div class="column right">
       <Map />
+      </div>
+      </div>
       </div>
     </BigLayout>
   )

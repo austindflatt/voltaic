@@ -1,30 +1,13 @@
 import React, { useState, useContext } from 'react';
-import {
-  createStyles,
-  Avatar,
-  UnstyledButton,
-  Group,
-  Text,
-  Menu,
-  Divider,
-} from '@mantine/core';
-import {
-  Logout,
-  Heart,
-  PlugConnected,
-  GasStation,
-  Check,
-  Settings,
-  User,
-  Trash,
-  ChevronDown,
-} from 'tabler-icons-react';
+import { createStyles, Container, Avatar, UnstyledButton, Group, Text, Menu, Divider } from '@mantine/core';
+import { Logout, Heart, PlugConnected, GasStation, Check, Settings, User, Trash, ChevronDown } from 'tabler-icons-react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext/AuthContext';
 import { logout } from '../../context/authContext/AuthActions';
 import Login from '../../pages/Main/Login';
 import Account from '../../pages/Profile/Account';
 import AddCharger from '../../pages/Profile/AddCharger';
+import CheckIns from '../Profile/CheckIns';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -35,8 +18,6 @@ const useStyles = createStyles((theme) => ({
   },
 
   mainSection: {
-    paddingLeft: theme.spacing.sm,
-    paddingRight: theme.spacing.sm,
     paddingBottom: theme.spacing.sm,
   },
 
@@ -81,29 +62,36 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function NavBarBig() {
+function NavBar() {
+  console.log('made it here!');
   const { classes, theme, cx } = useStyles();
   const [userMenuOpened, setUserMenuOpened] = useState(false);
   const { user, dispatch } = useContext(AuthContext);
   const [opened, setOpened] = useState(false);
   const [accountOpened, setAccountOpened] = useState(false);
   const [addOpened, setAddOpened] = useState(false);
-
+  const [checkInOpened, setCheckInOpened] = useState(false);
+  
   const showLogin = () => {
     setOpened(true);
   }
-
+  
   const showEdit = () => {
     setAccountOpened(true);
   }
-
+  
   const showAdd = () => {
     setAddOpened(true);
   }
 
+  const showCheckIns = () => {
+    setCheckInOpened(true);
+  }
+  
   return (
+    <>
     <div className={classes.header}>
-      <div className={classes.mainSection}>
+      <Container className={classes.mainSection} size="xl">
         <Group position="apart">
           <Link to="/" style={{ textDecoration: 'none' }}>
           <div className="logo">
@@ -124,6 +112,11 @@ function NavBarBig() {
           <AddCharger
           addOpened={addOpened}
           setAddOpened={setAddOpened}
+          />
+
+          <CheckIns
+          checkInOpened={checkInOpened}
+          setCheckInOpened={setCheckInOpened}
           />
 
           { user ?
@@ -151,16 +144,15 @@ function NavBarBig() {
           >
             <Menu.Label>Account</Menu.Label>
 
-            <Link to="/user/12342">
+            <Link to={`/${user.username}`}>
               <Menu.Item icon={<User size={14} color={theme.colors.indigo[6]} />}>
+                {/* onClick={() => viewProfile(user._id)} */}
                 Your profile
               </Menu.Item>
             </Link>
-            <Link to="/account/reviews">
-              <Menu.Item icon={<Check size={14} color={theme.colors.orange[6]} />}>
-                Your check-ins
-              </Menu.Item>
-            </Link>
+            <Menu.Item icon={<Check size={14} color={theme.colors.orange[6]} />} onClick={() => showCheckIns()}>
+              Your check-ins
+            </Menu.Item>
             <Link to="/account/favorites">
               <Menu.Item icon={<Heart size={14} color={theme.colors.red[6]} />}>
                 Your favorite stations
@@ -173,17 +165,19 @@ function NavBarBig() {
             </Link>
 
             <Menu.Label>Settings</Menu.Label>
+
             <Menu.Item icon={<Settings size={14} />} onClick={() => showEdit()}>
               Edit account
             </Menu.Item>
-
-            <Menu.Item icon={<Logout size={14} />} onClick={() => dispatch(logout())}>Logout</Menu.Item>
+            <Menu.Item icon={<Logout size={14} />} onClick={() => dispatch(logout())}>
+              Logout
+            </Menu.Item>
 
             <Divider />
 
             <Menu.Label>Account Controls</Menu.Label>
             <Menu.Item color="indigo" icon={<GasStation size={14} />} onClick={() => showAdd()}>
-              Add a station
+                Add a station
             </Menu.Item>
             <Menu.Item color="red" icon={<Trash size={14} />}>
               Delete account
@@ -203,9 +197,10 @@ function NavBarBig() {
           </UnstyledButton>
         }
         </Group>
-      </div>
+      </Container>
     </div>
+    </>
   );
 }
 
-export default NavBarBig
+export default NavBar

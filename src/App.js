@@ -31,11 +31,11 @@ function App() {
     <Routes>
       <Route path='/' element={<Home />} />
       <Route path='maps' element={<StationsMap />} />
-      <Route path='chargers/:id' element={<StationPage />} />
+      <Route path='charger/:id' element={<StationPage />} />
       <Route path='/login' element={user ? <Profile /> : <Login />} />
       <Route path='/register' element={user ? <Profile /> : <Register />} />
       <Route path='account' element={<Account />} />
-      <Route path='user/:username' element={<Profile />} />
+      <Route path='/:username' element={<Profile />} />
       <Route path='account/favorites' element={<Favorites />} />
       <Route path='account/stations' element={<AccountStations />} />
       <Route path='account/add-charger' element={<AddCharger />} />
