@@ -3,7 +3,7 @@ import { AuthContext } from '../../context/authContext/AuthContext';
 import { TextInput, Button, Modal } from '@mantine/core';
 import { At, Eye } from 'tabler-icons-react';
 import { login } from "../../context/authContext/apiCalls";
-import Register from "./Register";
+import Register from "../Register/Register";
 
 const Login = ({ opened, setOpened }) => {
   const [email, setEmail] = useState('');

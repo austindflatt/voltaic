@@ -1,17 +1,17 @@
 import React, { useContext } from 'react';
 import { Helmet } from "react-helmet";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/Main/Home';
+import Home from './pages/Home/Home';
 import NotFound from './pages/Misc/NotFound';
-import Login from './pages/Main/Login';
+import Login from './components/Login/Login';
 import Account from './components/Profile/AccountModal';
 import Favorites from './pages/Profile/AccountFavorites';
 import Profile from './pages/Profile/ProfilePage';
 import AccountStations from './pages/Profile/AccountStations';
 import AddCharger from './components/Profile/AddChargerModal';
-import Register from './pages/Main/Register';
+import Register from './components/Register/Register';
 import StationsMap from './pages/Map/StationsMap';
-import StationPage from './pages/Main/StationPage';
+import StationPage from './pages/Station/StationPage';
 import { AuthContext } from './context/authContext/AuthContext';
 
 function App() {

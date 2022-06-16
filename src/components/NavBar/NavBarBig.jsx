@@ -4,7 +4,7 @@ import { Logout, Heart, PlugConnected, GasStation, Check, Settings, User, Trash,
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext/AuthContext';
 import { logout } from '../../context/authContext/AuthActions';
-import Login from '../../pages/Main/Login';
+import Login from '../Login/Login';
 import Account from '../Profile/AccountModal';
 import AddCharger from '../Profile/AddChargerModal';
 import CheckIns from '../Profile/CheckInsModal';
