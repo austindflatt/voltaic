@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react'
-import StationCard from './StationCard'
+import MapStation from './MapStation'
 import { SimpleGrid, Loader } from '@mantine/core';
-import { StationContext } from '../context/stationContext/StationContext';
-import { getStations } from '../context/stationContext/apiCalls';
+import { StationContext } from '../../context/stationContext/StationContext';
+import { getStations } from '../../context/stationContext/apiCalls';
 
-const UsersStations = () => {
+const MapStations = () => {
   const { stations, isFetching, dispatch } = useContext(StationContext);
 
   useEffect(() => {
@@ -16,16 +16,14 @@ const UsersStations = () => {
   { isFetching ?
     <Loader color="indigo" size="xl" variant="dots" style={{ padding: '20px', width: '100%', display: 'flex', justifyContent: 'center' }}/>
     :
-    <SimpleGrid cols={4} style={{ marginTop: '20px' }} breakpoints={[
-      { maxWidth: 'lg', cols: 4 },
-      { maxWidth: 'md', cols: 2 },
+    <SimpleGrid cols={2} style={{ marginTop: '20px' }} breakpoints={[
       { maxWidth: 'sm', cols: 1 },
     ]}>
       {
         stations
         .map((station, idx) => {
           return (
-            <StationCard
+            <MapStation
             key={idx}
             chargerName={station.name}
             image={station.image}
@@ -44,4 +42,4 @@ const UsersStations = () => {
   )
 }
 
-export default UsersStations;
+export default MapStations;

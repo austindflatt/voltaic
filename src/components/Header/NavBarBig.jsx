@@ -20,11 +20,11 @@ import {
   ChevronDown,
 } from 'tabler-icons-react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../context/authContext/AuthContext';
-import { logout } from '../context/authContext/AuthActions';
-import Login from '../pages/Login';
-import Account from '../pages/Account';
-import AddCharger from '../pages/AddCharger';
+import { AuthContext } from '../../context/authContext/AuthContext';
+import { logout } from '../../context/authContext/AuthActions';
+import Login from '../../pages/Main/Login';
+import Account from '../../pages/Profile/Account';
+import AddCharger from '../../pages/Profile/AddCharger';
 
 const useStyles = createStyles((theme) => ({
   header: {

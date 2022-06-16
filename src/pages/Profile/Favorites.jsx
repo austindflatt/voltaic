@@ -1,7 +1,7 @@
 import React from 'react'
 import { Title } from '@mantine/core';
-import Layout from '../components/Layout';
-import UsersFavStations from '../components/UsersFavStations';
+import Layout from '../../components/Layout/Layout';
+import UsersFavStations from '../../components/Profile/UsersFavStations';
 
 const Favorites = () => {
 

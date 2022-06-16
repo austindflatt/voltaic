@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { TextInput, Textarea, Switch, Button, Modal, SimpleGrid } from '@mantine/core';
 import { Note, Location, Clock, Phone, CurrencyDollar, Elevator } from 'tabler-icons-react';
 import { usePlacesWidget } from "react-google-autocomplete";
-import { createStation } from '../context/stationContext/apiCalls';
-import { StationContext } from '../context/stationContext/StationContext';
+import { createStation } from '../../context/stationContext/apiCalls';
+import { StationContext } from '../../context/stationContext/StationContext';
 import { useContext } from 'react';
 
 // const parkingAttributes = [

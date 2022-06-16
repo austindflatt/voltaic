@@ -1,6 +1,6 @@
 import React from 'react'
-import FooterBig from './FooterBig'
-import NavBarBig from './NavBarBig'
+import FooterBig from '../Footer/FooterBig'
+import NavBarBig from '../Header/NavBarBig'
 
 const Layout = (props) => {
 	const { children } = props;

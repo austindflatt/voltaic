@@ -1,8 +1,8 @@
 import React from 'react'
-import BigLayout from '../components/BigLayout'
+import BigLayout from '../../components/Layout/BigLayout'
 import { createStyles } from '@mantine/core';
-import MapStations from '../components/MapStations';
-import Map from '../components/Map';
+import MapStations from '../../components/Map/MapStations';
+import Map from '../../components/Map/Map';
 
 const useStyles = createStyles((theme) => ({
   mainSection: {

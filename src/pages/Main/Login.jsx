@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
-import { AuthContext } from '../context/authContext/AuthContext';
+import { AuthContext } from '../../context/authContext/AuthContext';
 import { TextInput, Button, Modal } from '@mantine/core';
 import { At, Eye } from 'tabler-icons-react';
-import { login } from "../context/authContext/apiCalls";
+import { login } from "../../context/authContext/apiCalls";
 import Register from "./Register";
 
 const Login = ({ opened, setOpened }) => {

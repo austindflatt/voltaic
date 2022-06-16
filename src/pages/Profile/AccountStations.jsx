@@ -1,7 +1,7 @@
 import React from 'react'
 import { Title } from '@mantine/core';
-import UsersStations from '../components/UsersStations'
-import Layout from '../components/Layout';
+import UsersStations from '../../components/Profile/UsersStations'
+import Layout from '../../components/Layout/Layout';
 
 const AccountStations = () => {
   return (

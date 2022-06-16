@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStyles, Title, Text, Button, Container, Group } from '@mantine/core';
 import { Link } from 'react-router-dom';
-import Layout from '../components/Layout';
+import Layout from '../../components/Layout/Layout';
 
 const useStyles = createStyles((theme) => ({
   root: {
