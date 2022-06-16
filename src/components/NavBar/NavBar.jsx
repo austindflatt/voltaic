@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext/AuthContext';
 import { logout } from '../../context/authContext/AuthActions';
 import Login from '../../pages/Main/Login';
-import Account from '../../pages/Profile/Account';
-import AddCharger from '../../pages/Profile/AddCharger';
-import CheckIns from '../Profile/CheckIns';
+import Account from '../Profile/AccountModal';
+import AddCharger from '../Profile/AddChargerModal';
+import CheckIns from '../Profile/CheckInsModal';
 
 const useStyles = createStyles((theme) => ({
   header: {
