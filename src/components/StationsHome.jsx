@@ -30,6 +30,9 @@ const StationsHome = () => {
             chargerName={station.name}
             image={station.image}
             payment={station.paymentRequired}
+            checkIns={station.checkIns.length}
+            favorites={station.favorites.length}
+            stationType={station.homeCharger}
             />
           )
         })

@@ -17,13 +17,8 @@ const StationsMap = () => {
   return (
     <BigLayout>
       <div className={classes.mainSection}>
-      <div
-      className="flex flex-col flex-grow w-screen h-full lg:flex-row"
-      style={{ height: `100vh` }}
-    >
       <MapStations />
       <Map />
-      </div>
       </div>
     </BigLayout>
   )

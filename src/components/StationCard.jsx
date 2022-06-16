@@ -1,29 +1,124 @@
-import React from 'react'
-import { Image, Text, ActionIcon } from '@mantine/core';
+import React from 'react';
+import { Heart, Check } from 'tabler-icons-react';
+import { Card, Text, Group, Center, Badge,  createStyles } from '@mantine/core';
 import { Link } from 'react-router-dom';
-import { Heart } from 'tabler-icons-react';
 
-const StationCard = (props) => {
+const useStyles = createStyles((theme, _params, getRef) => {
+  const image = getRef('image');
+
+  return {
+    card: {
+      position: 'relative',
+      height: 280,
+      backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.colors.gray[0],
+
+      [`&:hover .${image}`]: {
+        transform: 'scale(1.03)',
+      },
+    },
+
+    image: {
+      ref: image,
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundSize: 'cover',
+      transition: 'transform 500ms ease',
+    },
+
+    overlay: {
+      position: 'absolute',
+      top: '20%',
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundImage: 'linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .85) 90%)',
+    },
+
+    content: {
+      height: '100%',
+      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'flex-end',
+      zIndex: 1,
+    },
+
+    rating: {
+      position: 'absolute',
+      top: theme.spacing.xs - 20,
+      right: theme.spacing.xs - 15,
+      pointerEvents: 'none',
+    },
+
+    title: {
+      color: theme.white,
+      marginBottom: 5,
+    },
+
+    bodyText: {
+      color: theme.colors.dark[2],
+      marginLeft: 7,
+    },
+
+    author: {
+      color: theme.colors.dark[2],
+    },
+  };
+});
+
+function StationCard(props) {
+  const { classes, theme } = useStyles();
+
   return (
-  <div className='card-container' style={{ width: '100%', margin: 'auto' }} key={props.idx}>
     <Link to="/chargers/2138912" style={{ textDecoration: 'none', color: 'black' }}>
-      <Image
+    <Card
+      p="lg"
+      shadow="lg"
+      className={classes.card}
       radius="md"
-      src={props.image}
-      alt="Random tesla"
-      height='285px'
-      withPlaceholder
-      />
-      <Link to="user">
-        <button className="btn"><ActionIcon variant="transparent"><Heart size={28} strokeWidth={2} color={'#fff'} /></ActionIcon></button>
-      </Link>
-      <div className='details'>
-        <div className='location'><Text size="md">{props.chargerName}</Text></div>
-        <div className='cost'><Text size="md">{props.paymentRequired ? <>Payment Required</> : <>No Payment</>}</Text></div>
+      component="a"
+    >
+      <div className={classes.image} style={{ backgroundImage: `url(${props.image})` }} />
+      <div className={classes.overlay} />
+
+      <div className={classes.content}>
+        <div>
+        <Badge radius="sm" className={classes.rating} color={props.stationType ? 'green' : 'indigo'}>
+          {props.stationType ? <>Residential</> : <>Public</>}
+        </Badge>
+
+          <Text size="lg" className={classes.title} weight={500}>
+            {props.chargerName}
+          </Text>
+
+          <Group position="apart" spacing="xs">
+            <Text size="sm" className={classes.author}>
+              {props.payment ? <>Payment Required</> : <>No Payment Needed</>}
+            </Text>
+
+            <Group spacing="lg">
+              <Center>
+                <Heart size={16} color={theme.colors.dark[2]} />
+                <Text size="sm" className={classes.bodyText}>
+                  {props.favorites}
+                </Text>
+              </Center>
+              <Center>
+                <Check size={16} color={theme.colors.dark[2]} />
+                <Text size="sm" className={classes.bodyText}>
+                  {props.checkIns}
+                </Text>
+              </Center>
+            </Group>
+          </Group>
+        </div>
       </div>
+    </Card>
     </Link>
-  </div>
-  )
+  );
 }
 
-export default StationCard;
+export default StationCard
