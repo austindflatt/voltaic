@@ -80,7 +80,7 @@ function Stations(props) {
   const { classes, theme } = useStyles();
 
   return (
-    <Link to="/chargers/2138912" style={{ textDecoration: 'none', color: 'black' }}>
+    <Link to="/charger/1" style={{ textDecoration: 'none', color: 'black' }}>
     <Card
       p="lg"
       shadow="lg"

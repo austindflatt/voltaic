@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { createStyles, Card, Avatar, Text, Group, Button, SimpleGrid } from '@mantine/core';
+import { AuthContext } from '../../context/authContext/AuthContext';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -13,43 +14,45 @@ const useStyles = createStyles((theme) => ({
 
 const ProfileTop = () => {
   const { classes } = useStyles();
+  const { user } = useContext(AuthContext);
   
   return (
 	  <>
       <Card withBorder p="xl" radius="md" className={classes.card}>
       <Card.Section 
       sx={{ 
-        backgroundImage: `url(https://tesla-cdn.thron.com/delivery/public/image/tesla/c877126e-0db5-409d-a412-04fc94b59b76/bvlatuR/std/2880x1800/HP-SR-Design-D)`, 
+        backgroundImage: `url(${user.coverPhoto})`, 
         height: 300, 
         backgroundRepeat: 'no-repeat', 
         backgroundPosition: 'center', 
         backgroundSize: 'cover' 
-      }} />
-      <Avatar src="https://www.austinflatt.com/images/headshot.webp" size={150} radius={150} mx="auto" mt={-50} className={classes.avatar} />
+      }}
+      />
+      <Avatar src={user.profilePic} size={150} radius={150} mx="auto" mt={-50} className={classes.avatar} />
       <Text align="center" size="xl" weight={500} mt="md">
-        Austin Flatt
+        {user.firstName} {user.lastName}
       </Text>
       <Text align="center" color="dimmed" size="md">
-        @austin • Admin
+        @{user.username} • {user.isAdmin ? <>Admin</> : <>Member</>}
       </Text>
       <Text align="center" color="dimmed" size="md">
-        Founder of Voltaic
+        {user.bio}
       </Text>
       <Group mt="md" position="center" spacing={30}>
         <Text align="center" size="lg" weight={500}>
-          44
+          {user.followers.length}
         </Text>
         <Text align="center" size="sm" color="dimmed">
           Followers
         </Text>
         <Text align="center" size="lg" weight={500}>
-          0
+          {user.following.length}
         </Text>
         <Text align="center" size="sm" color="dimmed">
           Following
         </Text>
         <Text align="center" size="lg" weight={500}>
-          3
+          {user.checkIns.length}
         </Text>
         <Text align="center" size="sm" color="dimmed">
           Check Ins
