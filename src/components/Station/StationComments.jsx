@@ -11,7 +11,7 @@ const useStyles = createStyles((theme) => ({
 function StationComments() {
   const { classes } = useStyles();
   return (
-    <div>
+    <div style={{ marginTop: '10px' }}>
       <Group>
         <Avatar src='https://www.austinflatt.com/images/headshot.webp' alt='Austin' radius="xl" />
         <div>
