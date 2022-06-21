@@ -6,13 +6,17 @@ import { Image } from '@mantine/core';
 const StationDetails = () => {
   const params = useParams();
   const [name, setName] = useState('');
-  
+  const [image, setImage] = useState('');
+  const [address, setAddress] = useState('');
+
   // Using params below to get the stations ID and used a GET request to get the data from that ID
   useEffect(() => {
     const getStationData = async () => {
       const response = await axios.get(`http://localhost:3001/api/stations/find/${params.stationId}`);
       const data = response.data.payload;
       setName(data.name);
+      setImage(data.image);
+      setAddress(data.address);
       console.log(response)
     }
     getStationData();
@@ -23,12 +27,12 @@ const StationDetails = () => {
     <div style={{ width: 500 }}>
       <Image
         radius="md"
-        src="https://photos.plugshare.com/photos/687091.jpg"
-        alt="Random unsplash image"
+        src={image}
+        alt={name}
       />
     </div>
     <p>{name}</p>
-    <p>station address</p>
+    <p>{address}</p>
     </>
   )
 }
