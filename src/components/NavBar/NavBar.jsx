@@ -63,7 +63,6 @@ const useStyles = createStyles((theme) => ({
 }));
 
 function NavBar() {
-  console.log('made it here!');
   const { classes, theme, cx } = useStyles();
   const [userMenuOpened, setUserMenuOpened] = useState(false);
   const { user, dispatch } = useContext(AuthContext);
