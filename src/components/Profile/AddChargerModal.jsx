@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { TextInput, Textarea, Switch, Button, Modal, SimpleGrid } from '@mantine/core';
-import { Note, Location, Clock, Phone, CurrencyDollar, Elevator } from 'tabler-icons-react';
+import { Note, Location, Phone, Elevator } from 'tabler-icons-react';
 import { usePlacesWidget } from "react-google-autocomplete";
 import { createStation } from '../../context/stationContext/apiCalls';
 import { StationContext } from '../../context/stationContext/StationContext';
@@ -104,7 +104,7 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
       />
 
       <TextInput
-      placeholder="University of Louisville"
+      placeholder="Preston Highway Supercharger"
       label="Location Name"
       size="md"
       icon={<Note size={14} />}
@@ -208,7 +208,7 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         style={{ marginTop: '10px' }}
         />
         <Switch 
-        label="Is this charging location open/active?" 
+        label="Location open?" 
         size="md" 
         color="indigo"
         checked={active}
@@ -231,30 +231,28 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
       { maxWidth: 'lg', cols: 2 },
       { maxWidth: 'sm', cols: 1 },
       ]}>
-        <TextInput
-        placeholder="Hours"
+        <Textarea
+        placeholder="Please list the hours this is available"
         label="Hours"
         size="md"
-        icon={<Clock size={14} />}
         required
         onChange={(e) => setHours(e.target.value)}
-        />     
+        />
+        <Textarea
+        placeholder="What is the cost of this location? e.g. $0.39/kWh + tax"
+        label="Price"
+        size="md"
+        type="number"
+        required
+        onChange={(e) => setPrice(e.target.value)}
+        />
         <TextInput
         placeholder="000-000-000"
         label="Phone Number"
         size="md"
         icon={<Phone size={14} />}
         onChange={(e) => setPhoneNumber(e.target.value)}
-        /> 
-        <TextInput
-        placeholder="Price"
-        label="Price"
-        size="md"
-        type="number"
-        icon={<CurrencyDollar size={14} />}
-        required
-        onChange={(e) => setPrice(e.target.value)}
-        />     
+        />
         <TextInput
         placeholder="Parking Level"
         label="Parking Level"

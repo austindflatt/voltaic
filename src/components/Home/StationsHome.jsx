@@ -34,6 +34,7 @@ const StationsHome = () => {
             favorites={station.favorites.length}
             stationType={station.homeCharger}
             rating={station.rating}
+            id={station._id}
             />
           )
         })

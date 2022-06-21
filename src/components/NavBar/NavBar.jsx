@@ -144,7 +144,7 @@ function NavBar() {
           >
             <Menu.Label>Account</Menu.Label>
 
-            <Link to={`/${user.username}`}>
+            <Link to={`/user/${user._id}`}>
               <Menu.Item icon={<User size={14} color={theme.colors.indigo[6]} />}>
                 {/* onClick={() => viewProfile(user._id)} */}
                 Your profile

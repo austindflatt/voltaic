@@ -1,6 +1,7 @@
-import React, { useContext } from 'react'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
 import { createStyles, Card, Avatar, Text, Group, Button, SimpleGrid } from '@mantine/core';
-import { AuthContext } from '../../context/authContext/AuthContext';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -14,45 +15,64 @@ const useStyles = createStyles((theme) => ({
 
 const ProfileTop = () => {
   const { classes } = useStyles();
-  const { user } = useContext(AuthContext);
+  const params = useParams();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [profilePic, setProfilePic] = useState('');
+  const [coverPhoto, setCoverPhoto] = useState('');
+  const [bio, setBio] = useState('');
+
+  // Using params below to get the user ID and used a GET request to get the data from that ID
+  useEffect(() => {
+    const getUserData = async () => {
+      const response = await axios.get(`http://localhost:3001/api/users/find/${params.userId}`);
+      const data = response.data.info;
+      setFirstName(data.firstName);
+      setLastName(data.lastName);
+      setProfilePic(data.profilePic);
+      setCoverPhoto(data.coverPhoto);
+      setBio(data.bio);
+    }
+    getUserData();
+  }, [params.userId]);
   
   return (
 	  <>
       <Card withBorder p="xl" radius="md" className={classes.card}>
       <Card.Section 
       sx={{ 
-        backgroundImage: `url(${user.coverPhoto})`, 
+        backgroundImage: `url(${coverPhoto})`, 
         height: 300, 
         backgroundRepeat: 'no-repeat', 
         backgroundPosition: 'center', 
         backgroundSize: 'cover' 
       }}
       />
-      <Avatar src={user.profilePic} size={150} radius={150} mx="auto" mt={-50} className={classes.avatar} />
+      <Avatar src={profilePic} size={150} radius={150} mx="auto" mt={-50} className={classes.avatar} />
       <Text align="center" size="xl" weight={500} mt="md">
-        {user.firstName} {user.lastName}
+        {firstName} {lastName}
       </Text>
       <Text align="center" color="dimmed" size="md">
-        @{user.username} • {user.isAdmin ? <>Admin</> : <>Member</>}
+        {/* @{user.username} • {user.isAdmin ? <>Admin</> : <>Member</>} */}
       </Text>
       <Text align="center" color="dimmed" size="md">
-        {user.bio}
+        {/* {user.bio} */}
       </Text>
       <Group mt="md" position="center" spacing={30}>
         <Text align="center" size="lg" weight={500}>
-          {user.followers.length}
+          {/* {user.followers.length} */}
         </Text>
         <Text align="center" size="sm" color="dimmed">
           Followers
         </Text>
         <Text align="center" size="lg" weight={500}>
-          {user.following.length}
+          {/* {user.following.length} */}
         </Text>
         <Text align="center" size="sm" color="dimmed">
           Following
         </Text>
         <Text align="center" size="lg" weight={500}>
-          {user.checkIns.length}
+          {/* {user.checkIns.length} */}
         </Text>
         <Text align="center" size="sm" color="dimmed">
           Check Ins
