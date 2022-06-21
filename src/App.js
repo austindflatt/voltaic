@@ -32,8 +32,8 @@ function App() {
       <Route path='/' element={<Home />} />
       <Route path='maps' element={<StationsMap />} />
       <Route path='charger/:stationId' element={<StationPage />} />
-      <Route path='/login' element={user ? <Profile /> : <Login />} />
-      <Route path='/register' element={user ? <Profile /> : <Register />} />
+      <Route path='login' element={user ? <Profile /> : <Login />} />
+      <Route path='register' element={user ? <Profile /> : <Register />} />
       <Route path='account' element={<Account />} />
       <Route path='user/:userId' element={<Profile />} />
       <Route path='account/favorites' element={<Favorites />} />

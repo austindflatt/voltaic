@@ -18,9 +18,14 @@ const ProfileTop = () => {
   const params = useParams();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [username, setUsername] = useState('');
   const [profilePic, setProfilePic] = useState('');
   const [coverPhoto, setCoverPhoto] = useState('');
   const [bio, setBio] = useState('');
+  const [followers, setFollowers] = useState([]);
+  const [following, setFollowing] = useState([]);
+  const [checkIns, setCheckins] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   // Using params below to get the user ID and used a GET request to get the data from that ID
   useEffect(() => {
@@ -29,9 +34,14 @@ const ProfileTop = () => {
       const data = response.data.info;
       setFirstName(data.firstName);
       setLastName(data.lastName);
+      setUsername(data.username);
       setProfilePic(data.profilePic);
       setCoverPhoto(data.coverPhoto);
       setBio(data.bio);
+      setFollowers(data.followers);
+      setFollowing(data.following);
+      setCheckins(data.checkIns);
+      setIsAdmin(data.isAdmin);
     }
     getUserData();
   }, [params.userId]);
@@ -53,26 +63,26 @@ const ProfileTop = () => {
         {firstName} {lastName}
       </Text>
       <Text align="center" color="dimmed" size="md">
-        {/* @{user.username} • {user.isAdmin ? <>Admin</> : <>Member</>} */}
+        @{username} • {isAdmin ? <>Admin</> : <>Member</>}
       </Text>
       <Text align="center" color="dimmed" size="md">
-        {/* {user.bio} */}
+        {bio}
       </Text>
       <Group mt="md" position="center" spacing={30}>
         <Text align="center" size="lg" weight={500}>
-          {/* {user.followers.length} */}
+          {followers.length}
         </Text>
         <Text align="center" size="sm" color="dimmed">
           Followers
         </Text>
         <Text align="center" size="lg" weight={500}>
-          {/* {user.following.length} */}
+          {following.length}
         </Text>
         <Text align="center" size="sm" color="dimmed">
           Following
         </Text>
         <Text align="center" size="lg" weight={500}>
-          {/* {user.checkIns.length} */}
+          {checkIns.length}
         </Text>
         <Text align="center" size="sm" color="dimmed">
           Check Ins
