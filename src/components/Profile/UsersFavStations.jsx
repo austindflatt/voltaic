@@ -1,28 +1,32 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import StationCard from '../Stations/StationCard'
-import { SimpleGrid, Loader } from '@mantine/core';
-import { StationContext } from '../../context/stationContext/StationContext';
-import { getStations } from '../../context/stationContext/apiCalls';
+import { SimpleGrid } from '@mantine/core';
+import axios from 'axios';
 
-const UsersFavStations = () => {
-  const { stations, isFetching, dispatch } = useContext(StationContext);
+const UsersStations = () => {
+  const params = useParams();
+  const [favStations, setFavStations] = useState([]);
 
+  // Using params below to get the user ID and used a GET request to get the data from that ID
   useEffect(() => {
-    getStations(dispatch);
-  }, [dispatch]);
+    const getUserData = async () => {
+      const response = await axios.get(`http://localhost:3001/api/users/find/${params.userId}`);
+      const data = response.data.info;
+      setFavStations(data.savedStations);
+    }
+    getUserData();
+  }, [params.userId]);
 
   return (
   <>
-  { isFetching ?
-    <Loader color="indigo" size="xl" variant="dots" style={{ padding: '20px', width: '100%', display: 'flex', justifyContent: 'center' }}/>
-    :
     <SimpleGrid cols={4} style={{ marginTop: '20px' }} breakpoints={[
       { maxWidth: 'lg', cols: 4 },
       { maxWidth: 'md', cols: 2 },
       { maxWidth: 'sm', cols: 1 },
     ]}>
       {
-        stations
+        favStations
         .map((station, idx) => {
           return (
             <StationCard
@@ -39,9 +43,8 @@ const UsersFavStations = () => {
         })
       }
     </SimpleGrid>
-  }
   </>
   )
 }
 
-export default UsersFavStations;
+export default UsersStations;

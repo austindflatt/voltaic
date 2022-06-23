@@ -7,7 +7,7 @@ import ProfileFavorites from './ProfileFavorites';
 const ProfileLower = () => {
   return (
     <Tabs variant="outline" tabPadding="md" style={{ marginTop: '20px' }}>
-      <Tabs.Tab label="Hosted Chargers" icon={<GasStation size={14} />}><ProfileStations /></Tabs.Tab>
+      <Tabs.Tab label="Chargers" icon={<GasStation size={14} />}><ProfileStations /></Tabs.Tab>
       <Tabs.Tab label="Favorites" icon={<Heart size={14} />}><ProfileFavorites /></Tabs.Tab>
     </Tabs>
   )

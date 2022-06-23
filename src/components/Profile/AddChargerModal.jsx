@@ -4,6 +4,7 @@ import { Note, Location, Phone, Elevator } from 'tabler-icons-react';
 import { usePlacesWidget } from "react-google-autocomplete";
 import { createStation } from '../../context/stationContext/apiCalls';
 import { StationContext } from '../../context/stationContext/StationContext';
+import { AuthContext } from '../../context/authContext/AuthContext';
 import { useContext } from 'react';
 
 // const parkingAttributes = [
@@ -41,6 +42,7 @@ import { useContext } from 'react';
 
 const AddCharger = ({ addOpened, setAddOpened }) => {
   const { dispatch } = useContext(StationContext);
+  const { user } = useContext(AuthContext);
   const [image, setImage] = useState('');
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
@@ -82,6 +84,7 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
       paymentRequired: payment,
       active: active,
       homeCharger: homeCharger,
+      chargerCreator: user._id
     }
     createStation(station, dispatch);
   }
@@ -235,7 +238,6 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         placeholder="Please list the hours this is available"
         label="Hours"
         size="md"
-        required
         onChange={(e) => setHours(e.target.value)}
         />
         <Textarea
@@ -243,7 +245,6 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         label="Price"
         size="md"
         type="number"
-        required
         onChange={(e) => setPrice(e.target.value)}
         />
         <TextInput
