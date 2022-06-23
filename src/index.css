@@ -56,3 +56,7 @@
   overflow:scroll;
   overflow-x:hidden;
 }
+
+.map-container {
+  height: 1100px;
+}

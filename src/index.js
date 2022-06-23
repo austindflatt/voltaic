@@ -5,6 +5,7 @@ import { AuthContextProvider } from './context/authContext/AuthContext';
 import { StationContextProvider } from './context/stationContext/StationContext';
 import { UserContextProvider } from './context/userContext/UserContext';
 import './index.css';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

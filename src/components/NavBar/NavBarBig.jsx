@@ -14,7 +14,7 @@ const useStyles = createStyles((theme) => ({
     paddingTop: theme.spacing.sm,
     backgroundColor: theme.colors.red[6],
     borderBottom: ``,
-    marginBottom: 50,
+    marginBottom: 0,
   },
 
   mainSection: {

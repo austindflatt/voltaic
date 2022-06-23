@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { createStyles, Card, Avatar, Text, Group, Button, SimpleGrid } from '@mantine/core';
+import ProfileCheckIns from './ProfileCheckIns';
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -26,6 +27,7 @@ const ProfileTop = () => {
   const [following, setFollowing] = useState([]);
   const [checkIns, setCheckins] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [checkInOpened, setCheckInOpened] = useState(false);
 
   // Using params below to get the user ID and used a GET request to get the data from that ID
   useEffect(() => {
@@ -45,9 +47,18 @@ const ProfileTop = () => {
     }
     getUserData();
   }, [params.userId]);
+
+  const showCheckIns = () => {
+    setCheckInOpened(true);
+  }
   
   return (
 	  <>
+      <ProfileCheckIns
+      checkInOpened={checkInOpened}
+      setCheckInOpened={setCheckInOpened}
+      />
+
       <Card withBorder p="xl" radius="md" className={classes.card}>
       <Card.Section 
       sx={{ 
@@ -94,7 +105,7 @@ const ProfileTop = () => {
         <Button color="indigo" fullWidth mt="md">
           Follow
         </Button>
-        <Button color="green" fullWidth mt="md">
+        <Button color="green" fullWidth mt="md" onClick={() => showCheckIns()}>
           View Check In History
         </Button>
       </SimpleGrid>

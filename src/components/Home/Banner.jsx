@@ -99,7 +99,7 @@ function Banner() {
               Find and review EV charging stations, and connect with other plug-in vehicle owners.
             </Text>
 
-            <Link to="maps">
+            <Link to="map">
               <Button
                 color="red"
                 size="xl"

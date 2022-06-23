@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { createStyles, Text, Avatar, Group } from '@mantine/core';
+import { createStyles, Text, Title, Avatar, Group, Paper, Image, SimpleGrid } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
   body: {
@@ -27,8 +27,12 @@ function StationComments() {
   }, [params.stationId]);
 
   return (
-    <div style={{ marginTop: '10px' }}>
-      <h1>{checkins.length} Check Ins</h1>
+    <div style={{ marginTop: '20px' }}>
+      <Title order={1} style={{ marginBottom: '20px' }}>{checkins.length} Check Ins</Title>
+      <SimpleGrid cols={2} style={{ marginTop: '20px' }} breakpoints={[
+      { maxWidth: 'sm', cols: 1 },
+    ]}>
+      <Paper shadow="xs" p="md">
       <Group>
         <Avatar src='https://www.austinflatt.com/images/headshot.webp' alt='Austin' radius="xl" />
         <div>
@@ -39,8 +43,18 @@ function StationComments() {
         </div>
       </Group>
       <Text className={classes.body} size="sm">
-        This is a review for this station
+        This was a great location! Plenty of chargers
       </Text>
+      <Image
+      className={classes.body}
+      radius="md"
+      src='https://photos.plugshare.com/photos/484494.jpg'
+      alt={null}
+      height='200px'
+      width='350px'
+      />
+      </Paper>
+      </SimpleGrid>
     </div>
   );
 }
