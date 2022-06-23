@@ -7,7 +7,6 @@ import UsersFavStations from './UsersFavStations';
 const ProfileStations = () => {
   const params = useParams();
   const [name, setName] = useState('');
-  const [favorites, setFavorites] = ([]);
   
   // Using params below to get the user ID and used a GET request to get the data from that ID
   useEffect(() => {
@@ -15,7 +14,6 @@ const ProfileStations = () => {
       const response = await axios.get(`http://localhost:3001/api/users/find/${params.userId}`);
       const data = response.data.info;
       setName(data.firstName);
-      setFavorites(data.savedStations);
     }
     getUserData();
   }, [params.userId]);
