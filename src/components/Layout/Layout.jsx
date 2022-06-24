@@ -5,15 +5,18 @@ import NavBar from '../NavBar/NavBar'
 
 const Layout = (props) => {
 	const { children } = props;
+
+  // This is the default layout for the web app.
+  
   return (
-  <>
-    <NavBar />
-    <Container size="xl">
-      {children}
-    </Container>
-    <Footer />
-  </>
+    <>
+      <NavBar />
+      <Container size="xl">
+        {children}
+      </Container>
+      <Footer />
+    </>
   )
 }
 
-export default Layout
+export default Layout;

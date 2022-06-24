@@ -6,4 +6,4 @@ const StationMap = () => {
   )
 }
 
-export default StationMap
+export default StationMap;

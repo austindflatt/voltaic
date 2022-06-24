@@ -71,24 +71,27 @@ function NavBar() {
   const [addOpened, setAddOpened] = useState(false);
   const [checkInOpened, setCheckInOpened] = useState(false);
   
+  // showLogin function will open the modal for logging a user in.
   const showLogin = () => {
     setOpened(true);
   }
   
+  // showEdit function will open the modal for editing a users account details.
   const showEdit = () => {
     setAccountOpened(true);
   }
   
+  // showAdd will open the modal for creating a charging station.
   const showAdd = () => {
     setAddOpened(true);
   }
 
+  // showCheckIns will open the modal for showing the current users check in history.
   const showCheckIns = () => {
     setCheckInOpened(true);
   }
   
   return (
-    <>
     <div className={classes.header}>
       <Container className={classes.mainSection} size="xl">
         <Group position="apart">
@@ -103,10 +106,10 @@ function NavBar() {
           setOpened={setOpened}
           />
 
-          {/* <Account
+          <Account
           accountOpened={accountOpened}
           setAccountOpened={setAccountOpened}
-          /> */}
+          />
 
           <AddCharger
           addOpened={addOpened}
@@ -119,6 +122,9 @@ function NavBar() {
           />
 
           { user ?
+
+          // This area will show when a user is successfull logged in
+
           <>
           <Menu
             size={260}
@@ -145,7 +151,6 @@ function NavBar() {
 
             <Link to={`/user/${user._id}`}>
               <Menu.Item icon={<User size={14} color={theme.colors.indigo[6]} />}>
-                {/* onClick={() => viewProfile(user._id)} */}
                 Your profile
               </Menu.Item>
             </Link>
@@ -183,6 +188,9 @@ function NavBar() {
             </Menu.Item>
           </Menu>
           </> :
+
+          // This area shows when a user is not logged in
+
           <UnstyledButton
           size={260}
           className={cx(classes.user, { [classes.userActive]: userMenuOpened })}
@@ -198,8 +206,7 @@ function NavBar() {
         </Group>
       </Container>
     </div>
-    </>
   );
 }
 
-export default NavBar
+export default NavBar;

@@ -6,4 +6,4 @@ const CheckInModal = () => {
   )
 }
 
-export default CheckInModal
+export default CheckInModal;

@@ -132,4 +132,4 @@ function StationCard(props) {
   );
 }
 
-export default StationCard
+export default StationCard;

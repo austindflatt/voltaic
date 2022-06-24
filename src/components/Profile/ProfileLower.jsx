@@ -13,4 +13,4 @@ const ProfileLower = () => {
   )
 }
 
-export default ProfileLower
+export default ProfileLower;

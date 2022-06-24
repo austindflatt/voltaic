@@ -29,4 +29,4 @@ const ProfileStations = () => {
   )
 }
 
-export default ProfileStations
+export default ProfileStations;

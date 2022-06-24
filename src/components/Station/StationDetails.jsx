@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Image, SimpleGrid, Paper, Text, Title } from '@mantine/core';
+import { InfoCircle, MapPin, Plug } from 'tabler-icons-react';
 
 const StationDetails = () => {
   const params = useParams();
@@ -53,7 +54,14 @@ const StationDetails = () => {
   return (
     <>
     <Title order={1}>{name}</Title>
-    <Title order={4} style={{ marginBottom: '10px' }}>{address}</Title>
+    <Title order={4} style={{ marginBottom: '10px' }}>
+      <MapPin
+      size={28}
+      strokeWidth={2}
+      color={'black'}
+      /> 
+      <Link to="" style={{ color: 'black' }}>{address}</Link>
+    </Title>
     <div style={{ marginBottom: '20px' }}>
     <Image
       radius="md"
@@ -63,6 +71,11 @@ const StationDetails = () => {
     />
     </div>
     <Paper shadow="xs" p="md">
+      <InfoCircle
+      size={28}
+      strokeWidth={2}
+      color={'black'}
+      /> 
       <Text>
         {description}
       </Text>
@@ -71,11 +84,21 @@ const StationDetails = () => {
       { maxWidth: 'sm', cols: 1 },
     ]}>
       <Paper shadow="xs" p="md">
+        <Plug
+        size={28}
+        strokeWidth={2}
+        color={'black'}
+        />
         <Text>
           - {plugType}
           <br />
           - {network}
           <br />
+          - 16 stations
+        </Text>
+      </Paper>
+      <Paper shadow="xs" p="md">
+        <Text>
           {open247 ? <>Open 24/7</> : <>See Hours</>}
           <br />
           {restricted ? <>Restrictions</> : <>No Restrictions</>}

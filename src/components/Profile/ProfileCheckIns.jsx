@@ -2,6 +2,8 @@ import React from 'react';
 import { Modal } from '@mantine/core';
 
 const ProfileCheckIns = ({ checkInOpened, setCheckInOpened }) => {
+
+  // Check In modal for user profile visited.
   return (
     <>
     <Modal
@@ -10,10 +12,12 @@ const ProfileCheckIns = ({ checkInOpened, setCheckInOpened }) => {
     title="Austin's Check In History"
     size="lg"
     >
+
       <p>Your check in history goes hereeeee</p>
+
     </Modal>
     </>
   )
 }
 
-export default ProfileCheckIns
+export default ProfileCheckIns;

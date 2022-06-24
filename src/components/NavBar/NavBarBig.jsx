@@ -73,18 +73,22 @@ function NavBarBig() {
   const [addOpened, setAddOpened] = useState(false);
   const [checkInOpened, setCheckInOpened] = useState(false);
 
+  // showLogin function will open the modal for logging a user in.
   const showLogin = () => {
     setOpened(true);
   }
-
+  
+  // showEdit function will open the modal for editing a users account details.
   const showEdit = () => {
     setAccountOpened(true);
   }
-
+  
+  // showAdd will open the modal for creating a charging station.
   const showAdd = () => {
     setAddOpened(true);
   }
 
+  // showCheckIns will open the modal for showing the current users check in history.
   const showCheckIns = () => {
     setCheckInOpened(true);
   }
@@ -120,6 +124,9 @@ function NavBarBig() {
           />
 
           { user ?
+
+          // This area will show when a user is successfull logged in
+
           <>
           <Menu
             size={260}
@@ -144,7 +151,7 @@ function NavBarBig() {
           >
             <Menu.Label>Account</Menu.Label>
 
-            <Link to={`/${user.username}`}>
+            <Link to={`/user/${user._id}`}>
               <Menu.Item icon={<User size={14} color={theme.colors.indigo[6]} />}>
                 Your profile
               </Menu.Item>
@@ -181,6 +188,9 @@ function NavBarBig() {
             </Menu.Item>
           </Menu>
           </> :
+
+          // This area shows when a user is not logged in
+
           <UnstyledButton
           size={260}
           className={cx(classes.user, { [classes.userActive]: userMenuOpened })}
@@ -199,4 +209,4 @@ function NavBarBig() {
   );
 }
 
-export default NavBarBig
+export default NavBarBig;

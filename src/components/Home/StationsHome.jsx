@@ -11,37 +11,40 @@ const StationsHome = () => {
     getStations(dispatch);
   }, [dispatch]);
 
+  // This component is holding the Station Card component where props are passed to.
+  // The folder for the Station Card is the Stations folder under components.
+
   return (
-  <>
-  { isFetching ?
-    <Loader color="indigo" size="xl" variant="dots" style={{ padding: '20px', width: '100%', display: 'flex', justifyContent: 'center' }}/>
-    :
-    <SimpleGrid cols={4} style={{ marginTop: '20px' }} breakpoints={[
-      { maxWidth: 'lg', cols: 4 },
-      { maxWidth: 'md', cols: 2 },
-      { maxWidth: 'sm', cols: 1 },
-    ]}>
-      {
-        stations
-        .map((station, idx) => {
-          return (
-            <StationCard
-            key={idx}
-            chargerName={station.name}
-            image={station.image}
-            payment={station.paymentRequired}
-            checkIns={station.checkIns.length}
-            favorites={station.favorites.length}
-            stationType={station.homeCharger}
-            rating={station.rating}
-            id={station._id}
-            />
-          )
-        })
-      }
-    </SimpleGrid>
-  }
-  </>
+    <>
+    { isFetching ?
+      <Loader color="indigo" size="xl" variant="dots" style={{ padding: '20px', width: '100%', display: 'flex', justifyContent: 'center' }}/>
+      :
+      <SimpleGrid cols={4} style={{ marginTop: '20px' }} breakpoints={[
+        { maxWidth: 'lg', cols: 4 },
+        { maxWidth: 'md', cols: 2 },
+        { maxWidth: 'sm', cols: 1 },
+      ]}>
+        {
+          stations
+          .map((station, idx) => {
+            return (
+              <StationCard
+              key={idx}
+              chargerName={station.name}
+              image={station.image}
+              payment={station.paymentRequired}
+              checkIns={station.checkIns.length}
+              favorites={station.favorites.length}
+              stationType={station.homeCharger}
+              rating={station.rating}
+              id={station._id}
+              />
+            )
+          })
+        }
+      </SimpleGrid>
+    }
+    </>
   )
 }
 

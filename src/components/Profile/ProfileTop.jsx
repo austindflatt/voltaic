@@ -114,4 +114,4 @@ const ProfileTop = () => {
   )
 }
 
-export default ProfileTop
+export default ProfileTop;

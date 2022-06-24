@@ -1,11 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { TextInput, Textarea, Switch, Button, Modal, SimpleGrid } from '@mantine/core';
 import { Note, Location, Phone, Elevator } from 'tabler-icons-react';
 import { usePlacesWidget } from "react-google-autocomplete";
 import { createStation } from '../../context/stationContext/apiCalls';
 import { StationContext } from '../../context/stationContext/StationContext';
 import { AuthContext } from '../../context/authContext/AuthContext';
-import { useContext } from 'react';
 
 // const parkingAttributes = [
 //   { value: 'Pull Through Parking', label: 'Pull Through Parking', icon: `` },
@@ -52,9 +51,9 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
   const [hours, setHours] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [parkingLevel, setParkingLevel] = useState('');
-  // const [amenities, setAmenities] = useState('');
-  // const [parkingAttributes, setParkingAttributes] = useState('');
-  // const [accessRestrictions, setAccessRestrictions] = useState('');
+  const [amenities, setAmenities] = useState([]);
+  const [parkingAttributes, setParkingAttributes] = useState([]);
+  const [accessRestrictions, setAccessRestrictions] = useState([]);
   const [price, setPrice] = useState('');
   const [always, setAlways] = useState(false);
   const [restricted, setRestricted] = useState(false);
@@ -133,39 +132,6 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
       onChange={(e) => setDescription(e.target.value)}
       />
 
-      {/* <NativeSelect
-      data={[
-      'CCS/SAE', 
-      'CHAdeMO', 
-      'J-1772', 
-      'NEMA 14-50', 
-      'Tesla', 
-      'Tesla (Roadster)', 
-      'NEMA 14-50', 
-      'Wall', 
-      'Dual J-1772 and Wall Outlet', 
-      'CHAdeMO and CCS/SAE Combo', 
-      'Dual CHAdeMO Plugs',
-      'Dual CCS/SAE Combo',
-      'Dual CCS plus CHAdeMO',
-      'Triple J-1772',
-      'Supercharger'
-      ]}
-      placeholder="Select Plug"
-      label="Stations"
-      description="Select Plug"
-      required
-      onChange={(e) => setPlugType(e.target.value)}
-      />
-
-      <NativeSelect
-      data={['Non-networked', 'AmpUp', 'Tesla (Roadster)', 'NEMA 14-50', 'Wall']}
-      placeholder="Select Network"
-      label="Networks"
-      required
-      onChange={(e) => setNetwork(e.target.value)}
-      /> */}
-
       <Textarea
       placeholder="Network"
       label="Network"
@@ -186,6 +152,7 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
       { maxWidth: 'lg', cols: 3 },
       { maxWidth: 'sm', cols: 1 },
       ]}>
+
         <Switch 
         label="Open 24/7" 
         size="md" 
@@ -194,6 +161,7 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         onChange={() => setAlways(!always)}
         style={{ marginTop: '10px' }}
         />
+
         <Switch 
         label="Restricted Access" 
         size="md" 
@@ -202,6 +170,7 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         onChange={() => setRestricted(!restricted)} 
         style={{ marginTop: '10px' }}
         />
+
         <Switch 
         label="Payment Required" 
         size="md" 
@@ -210,6 +179,7 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         onChange={() => setPayment(!payment)}
         style={{ marginTop: '10px' }}
         />
+
         <Switch 
         label="Location open?" 
         size="md" 
@@ -219,6 +189,7 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         style={{ marginTop: '10px' }}
         required
         />
+
         <Switch 
         label="Is this a home charger?" 
         size="md" 
@@ -228,18 +199,21 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         style={{ marginTop: '10px' }}
         required
         />
+
       </SimpleGrid>
 
       <SimpleGrid cols={2} style={{ marginTop: '20px' }} breakpoints={[
       { maxWidth: 'lg', cols: 2 },
       { maxWidth: 'sm', cols: 1 },
       ]}>
+
         <Textarea
         placeholder="Please list the hours this is available"
         label="Hours"
         size="md"
         onChange={(e) => setHours(e.target.value)}
         />
+
         <Textarea
         placeholder="What is the cost of this location? e.g. $0.39/kWh + tax"
         label="Price"
@@ -247,6 +221,7 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         type="number"
         onChange={(e) => setPrice(e.target.value)}
         />
+
         <TextInput
         placeholder="000-000-000"
         label="Phone Number"
@@ -254,6 +229,7 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         icon={<Phone size={14} />}
         onChange={(e) => setPhoneNumber(e.target.value)}
         />
+
         <TextInput
         placeholder="Parking Level"
         label="Parking Level"
@@ -262,7 +238,8 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         icon={<Elevator size={14} />}
         required
         onChange={(e) => setParkingLevel(e.target.value)}
-        /> 
+        />
+
         {/* <MultiSelect
         data={parkingAttributes}
         label="Parking Attributes"
@@ -278,11 +255,12 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         label="Amenities"
         onChange={(e) => setAmenities(e.target.value)}
         />     */}
+
       </SimpleGrid>
 
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-        <Button variant="light" size="sm" color="indigo" onClick={handleSubmit}>Add Station</Button>
-      </div>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
+          <Button variant="light" size="sm" color="indigo" onClick={handleSubmit}>Add Station</Button>
+        </div>
 
       </Modal>
 
@@ -290,4 +268,4 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
   )
 }
 
-export default AddCharger
+export default AddCharger;

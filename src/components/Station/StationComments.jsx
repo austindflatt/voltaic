@@ -41,7 +41,7 @@ function StationComments() {
         <div>
           <Text size="sm">Austin</Text>
           <Text size="xs" color="dimmed">
-            Posted 10 mins ago
+            Posted 10 mins ago • Successfully Charged
           </Text>
         </div>
       </Group>
@@ -92,4 +92,4 @@ function StationComments() {
   );
 }
 
-export default StationComments
+export default StationComments;
