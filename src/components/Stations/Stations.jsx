@@ -25,7 +25,6 @@ const Stations = () => {
     { maxWidth: 'md', cols: 3 },
     { maxWidth: 'sm', cols: 1 },
   ]}>
-
     <StationCard
     />
   </SimpleGrid>

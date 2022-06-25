@@ -79,6 +79,8 @@ const useStyles = createStyles((theme, _params, getRef) => {
 function StationCard(props) {
   const { classes, theme } = useStyles();
 
+  // Props are passed in from certain station component, this is the main card.
+
   return (
     <Link to={`/charger/${props.id}`} style={{ textDecoration: 'none', color: 'black' }}>
     <Card
