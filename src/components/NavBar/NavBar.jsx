@@ -106,10 +106,10 @@ function NavBar() {
           setOpened={setOpened}
           />
 
-          <Account
+          {/* <Account
           accountOpened={accountOpened}
           setAccountOpened={setAccountOpened}
-          />
+          /> */}
 
           <AddCharger
           addOpened={addOpened}

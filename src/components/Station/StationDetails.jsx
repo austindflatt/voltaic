@@ -55,12 +55,7 @@ const StationDetails = () => {
     <>
     <Title order={1}>{name}</Title>
     <Title order={4} style={{ marginBottom: '10px' }}>
-      <MapPin
-      size={28}
-      strokeWidth={2}
-      color={'black'}
-      /> 
-      <Link to="" style={{ color: 'black' }}>{address}</Link>
+      📍 <Link to="" style={{ color: 'black' }}>{address}</Link>
     </Title>
     <div style={{ marginBottom: '20px' }}>
     <Image
@@ -71,11 +66,14 @@ const StationDetails = () => {
     />
     </div>
     <Paper shadow="xs" p="md">
+      <Title order={3}>
       <InfoCircle
-      size={28}
+      size={25}
       strokeWidth={2}
       color={'black'}
-      /> 
+      />
+      Description
+      </Title>
       <Text>
         {description}
       </Text>
@@ -84,17 +82,20 @@ const StationDetails = () => {
       { maxWidth: 'sm', cols: 1 },
     ]}>
       <Paper shadow="xs" p="md">
+        <Title order={3}>
         <Plug
-        size={28}
+        size={25}
         strokeWidth={2}
         color={'black'}
         />
+          Charger Info
+        </Title>
         <Text>
-          - {plugType}
+          • {plugType}
           <br />
-          - {network}
+          • {network}
           <br />
-          - 16 stations
+          • 16 stations
         </Text>
       </Paper>
       <Paper shadow="xs" p="md">
@@ -114,16 +115,16 @@ const StationDetails = () => {
         <Text>
           - {hours}
           <br />
-          - {phoneNumber}
+          ☎️ {phoneNumber}
           <br />
-          - {parkingLevel}
+          🅿️ {parkingLevel}
         </Text>
       </Paper>
       <Paper shadow="xs" p="md">
         <Text>
-        <p>{parkingAttributes}</p>
-    <p>{accessRestrictions}</p>
-    <p>{amenities.join(', ')}</p>
+          <p>{parkingAttributes}</p>
+          <p>{accessRestrictions}</p>
+          <p>{amenities.join(', ')}</p>
         </Text>
       </Paper>
     </SimpleGrid>
