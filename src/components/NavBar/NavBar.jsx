@@ -1,13 +1,12 @@
 import React, { useState, useContext } from 'react';
 import { createStyles, Container, Avatar, UnstyledButton, Group, Text, Menu, Divider } from '@mantine/core';
-import { Logout, Heart, PlugConnected, GasStation, Check, Settings, User, Trash, ChevronDown } from 'tabler-icons-react';
+import { Logout, Heart, PlugConnected, GasStation, Settings, User, Trash, ChevronDown } from 'tabler-icons-react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext/AuthContext';
 import { logout } from '../../context/authContext/AuthActions';
 import Login from '../Login/Login';
 import Account from '../Profile/AccountModal';
 import AddCharger from '../Profile/AddChargerModal';
-import CheckIns from '../Profile/CheckInsModal';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -69,7 +68,6 @@ function NavBar() {
   const [opened, setOpened] = useState(false);
   const [accountOpened, setAccountOpened] = useState(false);
   const [addOpened, setAddOpened] = useState(false);
-  const [checkInOpened, setCheckInOpened] = useState(false);
   
   // showLogin function will open the modal for logging a user in.
   const showLogin = () => {
@@ -84,11 +82,6 @@ function NavBar() {
   // showAdd will open the modal for creating a charging station.
   const showAdd = () => {
     setAddOpened(true);
-  }
-
-  // showCheckIns will open the modal for showing the current users check in history.
-  const showCheckIns = () => {
-    setCheckInOpened(true);
   }
   
   return (
@@ -114,11 +107,6 @@ function NavBar() {
           <AddCharger
           addOpened={addOpened}
           setAddOpened={setAddOpened}
-          />
-
-          <CheckIns
-          checkInOpened={checkInOpened}
-          setCheckInOpened={setCheckInOpened}
           />
 
           { user ?
@@ -154,9 +142,6 @@ function NavBar() {
                 Your profile
               </Menu.Item>
             </Link>
-            <Menu.Item icon={<Check size={14} color={theme.colors.orange[6]} />} onClick={() => showCheckIns()}>
-              Your check-ins
-            </Menu.Item>
             <Link to="/account/favorites">
               <Menu.Item icon={<Heart size={14} color={theme.colors.red[6]} />}>
                 Your favorite stations

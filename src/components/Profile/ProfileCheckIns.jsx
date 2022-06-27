@@ -14,6 +14,7 @@ const ProfileCheckIns = ({ checkInOpened, setCheckInOpened }) => {
   const { classes } = useStyles();
   const params = useParams();
   const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
   const [avatar, setAvatar] = useState('');
   const [checkIns, setCheckIns] = useState([]);
@@ -24,6 +25,7 @@ const ProfileCheckIns = ({ checkInOpened, setCheckInOpened }) => {
       const response = await axios.get(`http://localhost:3001/api/users/find/${params.userId}`);
       const data = response.data.info;
       setFirstName(data.firstName);
+      setLastName(data.lastName);
       setUsername(data.username);
       setCheckIns(data.checkIns);
       setAvatar(data.profilePic);
@@ -50,7 +52,7 @@ const ProfileCheckIns = ({ checkInOpened, setCheckInOpened }) => {
             <Group>
               <Avatar src='https://www.austinflatt.com/images/headshot.webp' alt='Austin' radius="xl" />
               <div>
-                <Text size="sm">Austin</Text>
+                <Text size="sm">{firstName} {lastName} • @{username}</Text>
                 <Text size="xs" color="dimmed">
                   Posted {checkIn.createdAt} • {checkIn.chargeStatus}
                 </Text>

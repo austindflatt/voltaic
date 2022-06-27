@@ -7,7 +7,6 @@ import { logout } from '../../context/authContext/AuthActions';
 import Login from '../Login/Login';
 import Account from '../Profile/AccountModal';
 import AddCharger from '../Profile/AddChargerModal';
-import CheckIns from '../Profile/CheckInsModal';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -71,7 +70,6 @@ function NavBarBig() {
   const [opened, setOpened] = useState(false);
   const [accountOpened, setAccountOpened] = useState(false);
   const [addOpened, setAddOpened] = useState(false);
-  const [checkInOpened, setCheckInOpened] = useState(false);
 
   // showLogin function will open the modal for logging a user in.
   const showLogin = () => {
@@ -86,11 +84,6 @@ function NavBarBig() {
   // showAdd will open the modal for creating a charging station.
   const showAdd = () => {
     setAddOpened(true);
-  }
-
-  // showCheckIns will open the modal for showing the current users check in history.
-  const showCheckIns = () => {
-    setCheckInOpened(true);
   }
 
   return (
@@ -116,11 +109,6 @@ function NavBarBig() {
           <AddCharger
           addOpened={addOpened}
           setAddOpened={setAddOpened}
-          />
-
-          <CheckIns
-          checkInOpened={checkInOpened}
-          setCheckInOpened={setCheckInOpened}
           />
 
           { user ?
@@ -156,9 +144,6 @@ function NavBarBig() {
                 Your profile
               </Menu.Item>
             </Link>
-            <Menu.Item icon={<Check size={14} color={theme.colors.orange[6]} />} onClick={() => showCheckIns()}>
-              Your check-ins
-            </Menu.Item>
             <Link to="/account/favorites">
               <Menu.Item icon={<Heart size={14} color={theme.colors.red[6]} />}>
                 Your favorite stations
