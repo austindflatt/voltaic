@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Image, SimpleGrid, Paper, Text, Title, Button } from '@mantine/core';
-import { InfoCircle, MapPin, Plug } from 'tabler-icons-react';
+import { Image, SimpleGrid, Paper, Text, TextInput, Title, Button } from '@mantine/core';
 
 const StationDetails = () => {
   const params = useParams();
@@ -118,10 +117,34 @@ const StationDetails = () => {
           Amenities
         </Title>
         <Text>
-          <p>{parkingAttributes}</p>
-          <p>{accessRestrictions}</p>
           {amenities.join(', ')}
         </Text>
+      </Paper>
+      <Paper shadow="xs" p="md">
+        <Title order={3}>
+          Parking Attributes
+        </Title>
+        <Text>
+          {parkingAttributes.length > 0 ? <>Parking Attributes goes here</> : <>None to show</>}
+        </Text>
+      </Paper>
+      <Paper shadow="xs" p="md">
+        <Title order={3}>
+          Access Restrictions
+        </Title>
+        <Text>
+          {accessRestrictions.length > 0 ? <>Access Restrictions goes here</> : <>None to show</>}
+        </Text>
+      </Paper>
+      <Paper shadow="xs" p="md">
+        <Title order={3}>
+          Share Link
+        </Title>
+        <TextInput
+        value={`http://localhost:3000/charger/${params.stationId}`}
+        description="You can also copy the link from your browser's address bar."
+        style={{ marginTop: '10px' }}
+        />
       </Paper>
     </SimpleGrid>
     </>
