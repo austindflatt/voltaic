@@ -35,58 +35,38 @@ function StationComments() {
       <SimpleGrid cols={2} style={{ marginTop: '20px' }} breakpoints={[
       { maxWidth: 'sm', cols: 1 },
     ]}>
-      <Paper shadow="xs" p="md">
-      <Group>
-        <Avatar src='https://www.austinflatt.com/images/headshot.webp' alt='Austin' radius="xl" />
-        <div>
-          <Text size="sm">Austin</Text>
-          <Text size="xs" color="dimmed">
-            Posted 10 mins ago • Successfully Charged
-          </Text>
-        </div>
-      </Group>
-      <Text className={classes.body} size="sm">
-        This was a great location! Plenty of chargers
-      </Text>
-      <Image
-      className={classes.body}
-      radius="md"
-      src='https://photos.plugshare.com/photos/484494.jpg'
-      alt={null}
-      height='200px'
-      width='350px'
-      />
-      </Paper>
-
-      <Paper shadow="xs" p="md">
-      <Group>
-        <Avatar src='https://www.austinflatt.com/images/headshot.webp' alt='Austin' radius="xl" />
-        <div>
-          <Text size="sm">Austin</Text>
-          <Text size="xs" color="dimmed">
-            Posted 10 mins ago
-          </Text>
-        </div>
-      </Group>
-      <Text className={classes.body} size="sm">
-        This was a great location! Plenty of chargers
-      </Text>
-      </Paper>
-      <Paper shadow="xs" p="md">
-      <Group>
-        <Avatar src='https://www.austinflatt.com/images/headshot.webp' alt='Austin' radius="xl" />
-        <div>
-          <Text size="sm">Austin</Text>
-          <Text size="xs" color="dimmed">
-            Posted 10 mins ago
-          </Text>
-        </div>
-      </Group>
-      <Text className={classes.body} size="sm">
-        This was a great location! Plenty of chargers
-      </Text>
-      </Paper>
-      
+      {
+        checkins
+        .map((checkIn) => {
+          return (
+            <Paper shadow="xs" p="md">
+              <Group>
+                <Avatar src='https://www.austinflatt.com/images/headshot.webp' alt='Austin' radius="xl" />
+                <div>
+                  <Text size="sm">Austin</Text>
+                  <Text size="xs" color="dimmed">
+                    Posted {checkIn.createdAt} • {checkIn.chargeStatus}
+                  </Text>
+                </div>
+              </Group>
+              <Text className={classes.body} size="sm">
+                {checkIn.review}
+              </Text>
+              {checkIn.photo ?
+              <Image
+              className={classes.body}
+              radius="md"
+              src={checkIn.photo}
+              alt={checkIn.name}
+              height='200px'
+              width='350px'
+              />
+              : <></>
+              }
+            </Paper>
+          )
+        })
+      }
       </SimpleGrid>
     </div>
   );

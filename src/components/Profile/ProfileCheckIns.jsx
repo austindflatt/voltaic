@@ -46,7 +46,7 @@ const ProfileCheckIns = ({ checkInOpened, setCheckInOpened }) => {
         .slice(0, 5)
         .map((checkIn) => {
         return (
-          <Paper shadow="xs" p="md">
+          <Paper shadow="xs" p="md" style={{ marginTop: '20px' }}>
             <Group>
               <Avatar src='https://www.austinflatt.com/images/headshot.webp' alt='Austin' radius="xl" />
               <div>
@@ -64,7 +64,7 @@ const ProfileCheckIns = ({ checkInOpened, setCheckInOpened }) => {
             className={classes.body}
             radius="md"
             src={checkIn.photo}
-            alt={null}
+            alt={checkIn.name}
             height='100px'
             width='150px'
             />

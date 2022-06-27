@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Image, SimpleGrid, Paper, Text, Title } from '@mantine/core';
+import { Image, SimpleGrid, Paper, Text, Title, Button } from '@mantine/core';
 import { InfoCircle, MapPin, Plug } from 'tabler-icons-react';
 
 const StationDetails = () => {
@@ -65,13 +65,11 @@ const StationDetails = () => {
       height='500px'
     />
     </div>
+    <Button color="red" style={{ marginBottom: '20px' }}>
+      Add To Favorites
+    </Button>
     <Paper shadow="xs" p="md">
       <Title order={3}>
-      <InfoCircle
-      size={25}
-      strokeWidth={2}
-      color={'black'}
-      />
       Description
       </Title>
       <Text>
@@ -83,11 +81,6 @@ const StationDetails = () => {
     ]}>
       <Paper shadow="xs" p="md">
         <Title order={3}>
-        <Plug
-        size={25}
-        strokeWidth={2}
-        color={'black'}
-        />
           Charger Info
         </Title>
         <Text>
@@ -99,6 +92,9 @@ const StationDetails = () => {
         </Text>
       </Paper>
       <Paper shadow="xs" p="md">
+        <Title order={3}>
+          Station Details
+        </Title>
         <Text>
           {open247 ? <>Open 24/7</> : <>See Hours</>}
           <br />
@@ -109,10 +105,7 @@ const StationDetails = () => {
           {active ? <>Active/Open</> : <>Coming Soon/Closed</>}
           <br />
           {homeCharger ? <>Home Charger</> : <>Public Location</>}
-        </Text>
-      </Paper>
-      <Paper shadow="xs" p="md">
-        <Text>
+          <br />
           - {hours}
           <br />
           ☎️ {phoneNumber}
@@ -121,10 +114,13 @@ const StationDetails = () => {
         </Text>
       </Paper>
       <Paper shadow="xs" p="md">
+        <Title order={3}>
+          Amenities
+        </Title>
         <Text>
           <p>{parkingAttributes}</p>
           <p>{accessRestrictions}</p>
-          <p>{amenities.join(', ')}</p>
+          {amenities.join(', ')}
         </Text>
       </Paper>
     </SimpleGrid>
