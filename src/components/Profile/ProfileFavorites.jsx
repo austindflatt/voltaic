@@ -7,6 +7,7 @@ import UsersFavStations from './UsersFavStations';
 const ProfileStations = () => {
   const params = useParams();
   const [name, setName] = useState('');
+  const [favorites, setFavorites] = useState([]);
   
   // Using params below to get the user ID and used a GET request to get the data from that ID
   useEffect(() => {
@@ -14,16 +15,21 @@ const ProfileStations = () => {
       const response = await axios.get(`http://localhost:3001/api/users/find/${params.userId}`);
       const data = response.data.info;
       setName(data.firstName);
+      setFavorites(data.savedStations);
     }
     getUserData();
   }, [params.userId]);
 
   return (
     <>
-      <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginTop: '10px' }}><Title order={3}>{name}'s Favorite Stations</Title></div>
+      <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginTop: '10px' }}>
+        <Title order={3}>
+        {favorites.length <= 0 ? <>{name} doesn't have any favorites yet 💔</> : <>{name}'s Favorite Stations</>}
+        </Title>
+      </div>
       <UsersFavStations />
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-        <Button variant="light" size="sm" color="indigo">Load More</Button>
+        {favorites.length <= 0 ? <></> : <><Button variant="light" size="sm" color="indigo">Load More</Button></>}
       </div>
     </>
   )
