@@ -7,6 +7,7 @@ import UsersStations from './UsersStations';
 const ProfileStations = () => {
   const params = useParams();
   const [name, setName] = useState('');
+  const [stations, setStations] = useState([]);
   
   // Using params below to get the user ID and used a GET request to get the data from that ID
   useEffect(() => {
@@ -14,16 +15,21 @@ const ProfileStations = () => {
       const response = await axios.get(`http://localhost:3001/api/users/find/${params.userId}`);
       const data = response.data.info;
       setName(data.firstName);
+      setStations(data.addedStations);
     }
     getUserData();
   }, [params.userId]);
 
   return (
     <>
-      <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginTop: '10px' }}><Title order={3}>Charging Stations Added By {name}</Title></div>
+      <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginTop: '10px' }}>
+        <Title order={3}>
+          {stations.length <= 0 ? <>{name} hasn't added any stations yet 😕</> : <>Charging Stations Added By {name}</>}
+        </Title>
+      </div>
       <UsersStations />
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-        <Button variant="light" size="sm" color="indigo">Load More</Button>
+        {stations.length <= 0 ? <></> : <><Button variant="light" size="sm" color="indigo">Load More</Button></>}
       </div>
     </>
   )

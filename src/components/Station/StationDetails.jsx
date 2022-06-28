@@ -19,6 +19,7 @@ const StationDetails = () => {
   const [hours, setHours] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [parkingLevel, setParkingLevel] = useState('');
+  const [count, setCount] = useState('');
   const [parkingAttributes, setParkingAttributes] = useState([]);
   const [accessRestrictions, setAccessRestrictions] = useState([]);
   const [amenities, setAmenities] = useState([]);
@@ -42,6 +43,7 @@ const StationDetails = () => {
       setHours(data.hours);
       setPhoneNumber(data.phoneNumber);
       setParkingLevel(data.parkingLevel);
+      setCount(data.count);
       setParkingAttributes(data.parkingAttributes);
       setAccessRestrictions(data.accessRestrictions);
       setAmenities(data.amenities);
@@ -54,7 +56,7 @@ const StationDetails = () => {
     <>
     <Title order={1}>{name}</Title>
     <Title order={4} style={{ marginBottom: '10px' }}>
-      📍 <Link to="" style={{ color: 'black' }}>{address}</Link>
+      📍 <Link to={{ pathname: `https://www.google.com/maps/dir/${address}` }} target="_blank" style={{ color: 'black' }}>{address}</Link>
     </Title>
     <div style={{ marginBottom: '20px' }}>
     <Image
@@ -83,11 +85,11 @@ const StationDetails = () => {
           Charger Info
         </Title>
         <Text>
-          • {plugType}
+          Plug Type: {plugType}
           <br />
-          • {network}
+          Network: {network}
           <br />
-          • 16 stations
+          Stations: {count}
         </Text>
       </Paper>
       <Paper shadow="xs" p="md">
@@ -95,7 +97,7 @@ const StationDetails = () => {
           Station Details
         </Title>
         <Text>
-          {open247 ? <>Open 24/7</> : <>See Hours</>}
+          {open247 ? <>Open 24/7</> : <>See Hours Below</>}
           <br />
           {restricted ? <>Restrictions</> : <>No Restrictions</>}
           <br />
@@ -105,11 +107,11 @@ const StationDetails = () => {
           <br />
           {homeCharger ? <>Home Charger</> : <>Public Location</>}
           <br />
-          - {hours}
+          Hours: {hours}
           <br />
-          ☎️ {phoneNumber}
+          Phone Number: {phoneNumber}
           <br />
-          🅿️ {parkingLevel}
+          Parking Level: {parkingLevel}
         </Text>
       </Paper>
       <Paper shadow="xs" p="md">
@@ -117,7 +119,7 @@ const StationDetails = () => {
           Amenities
         </Title>
         <Text>
-          {amenities.join(', ')}
+          {amenities.length > 0 ? <>{amenities.join(', ')}</> : <>No amenities to show</>}
         </Text>
       </Paper>
       <Paper shadow="xs" p="md">
@@ -125,7 +127,7 @@ const StationDetails = () => {
           Parking Attributes
         </Title>
         <Text>
-          {parkingAttributes.length > 0 ? <>Parking Attributes goes here</> : <>None to show</>}
+          {parkingAttributes.length > 0 ? <>{parkingAttributes.join(', ')}</> : <>No parking attributes to show</>}
         </Text>
       </Paper>
       <Paper shadow="xs" p="md">
@@ -133,7 +135,7 @@ const StationDetails = () => {
           Access Restrictions
         </Title>
         <Text>
-          {accessRestrictions.length > 0 ? <>Access Restrictions goes here</> : <>None to show</>}
+          {accessRestrictions.length > 0 ? <>{accessRestrictions.join(', ')}</> : <>No access restrictions</>}
         </Text>
       </Paper>
       <Paper shadow="xs" p="md">

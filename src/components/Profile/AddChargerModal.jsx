@@ -51,6 +51,7 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
   const [hours, setHours] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [parkingLevel, setParkingLevel] = useState('');
+  const [count, setCount] = useState('');
   const [amenities, setAmenities] = useState([]);
   const [parkingAttributes, setParkingAttributes] = useState([]);
   const [accessRestrictions, setAccessRestrictions] = useState([]);
@@ -77,6 +78,7 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
       hours: hours,
       phoneNumber: phoneNumber,
       parkingLevel: parkingLevel,
+      count: count,
       price: price,
       open247: always,
       restricted: restricted,
@@ -146,6 +148,15 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
       size="md"
       required
       onChange={(e) => setPlugType(e.target.value)}
+      />
+
+      <Textarea
+      placeholder="Station Count"
+      label="How Many Stations Are There?"
+      size="md"
+      type="number"
+      required
+      onChange={(e) => setCount(e.target.value)}
       />
 
       <SimpleGrid cols={3} style={{ marginTop: '20px' }} breakpoints={[
