@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Image, SimpleGrid, Paper, Text, TextInput, Title, Button } from '@mantine/core';
+import { Image, SimpleGrid, Paper, Text, TextInput, Title, Button, Anchor } from '@mantine/core';
 
 const StationDetails = () => {
   const params = useParams();
@@ -56,7 +56,7 @@ const StationDetails = () => {
     <>
     <Title order={1}>{name}</Title>
     <Title order={4} style={{ marginBottom: '10px' }}>
-      📍 <Link to={{ pathname: `https://www.google.com/maps/dir/${address}` }} target="_blank" style={{ color: 'black' }}>{address}</Link>
+      📍 <Anchor href={`https://www.google.com/maps/dir//${address}`} target="_blank" style={{ color: 'black', textDecoration: 'underline' }}>{address}</Anchor>
     </Title>
     <div style={{ marginBottom: '20px' }}>
     <Image

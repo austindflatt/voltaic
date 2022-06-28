@@ -1,43 +1,77 @@
 import React, { useState, useContext } from 'react'
-import { TextInput, Textarea, Switch, Button, Modal, SimpleGrid } from '@mantine/core';
+import { TextInput, Textarea, Switch, Button, Modal, SimpleGrid, NativeSelect, Checkbox } from '@mantine/core';
 import { Note, Location, Phone, Elevator } from 'tabler-icons-react';
 import { usePlacesWidget } from "react-google-autocomplete";
 import { createStation } from '../../context/stationContext/apiCalls';
 import { StationContext } from '../../context/stationContext/StationContext';
 import { AuthContext } from '../../context/authContext/AuthContext';
 
-// const parkingAttributes = [
-//   { value: 'Pull Through Parking', label: 'Pull Through Parking', icon: `` },
-//   { value: 'Pull In Parking', label: 'Pull In Parking', icon: `` },
-//   { value: 'Trailer Parking', label: 'Trailer Parking', icon: `` },
-//   { value: 'Trailer Friendly', label: 'Trailer Friendly', icon: `` },
-//   { value: 'Garage', label: 'Garage', icon: `` },
-//   { value: 'Handicap Parking', label: 'Handicap Parking', icon: `` },
-//   { value: 'Wheelchair Accessible', label: 'Wheelchair Accessible', icon: `` },
-//   { value: 'Illuminated', label: 'Illuminated', icon: `` },
-// ];
+const parkingAttributes = [
+  { value: 'Pull Through Parking', label: 'Pull Through Parking', icon: `` },
+  { value: 'Pull In Parking', label: 'Pull In Parking', icon: `` },
+  { value: 'Trailer Parking', label: 'Trailer Parking', icon: `` },
+  { value: 'Trailer Friendly', label: 'Trailer Friendly', icon: `` },
+  { value: 'Garage', label: 'Garage', icon: `` },
+  { value: 'Handicap Parking', label: 'Handicap Parking', icon: `` },
+  { value: 'Wheelchair Accessible', label: 'Wheelchair Accessible', icon: `` },
+  { value: 'Illuminated', label: 'Illuminated', icon: `` },
+];
 
-// const accessRestrictions = [
-//   { value: 'Customers Only', label: 'Customers Only', icon: `` },
-//   { value: 'Guests Only', label: 'Guests Only', icon: `` },
-//   { value: 'Employees Only', label: 'Employees Only', icon: `` },
-//   { value: 'Students Only', label: 'Students Only', icon: `` },
-//   { value: 'Residents Only', label: 'Residents Only', icon: `` },
-// ];
+const accessRestrictions = [
+  { value: 'Customers Only', label: 'Customers Only', icon: `` },
+  { value: 'Guests Only', label: 'Guests Only', icon: `` },
+  { value: 'Employees Only', label: 'Employees Only', icon: `` },
+  { value: 'Students Only', label: 'Students Only', icon: `` },
+  { value: 'Residents Only', label: 'Residents Only', icon: `` },
+];
 
-// const amenities = [
-//   { value: 'Lodging', label: 'Lodging', icon: `` },
-//   { value: 'Dining', label: 'Dining', icon: `` },
-//   { value: 'Restrooms', label: 'Restrooms', icon: `` },
-//   { value: 'EV Parking', label: 'EV Parking', icon: `` },
-//   { value: 'Valet Parking', label: 'Valet Parking', icon: `` },
-//   { value: 'Park', label: 'Park', icon: `` },
-//   { value: 'WiFi', label: 'WiFi', icon: `` },
-//   { value: 'Shopping', label: 'Shopping', icon: `` },
-//   { value: 'Grocery', label: 'Grocery', icon: `` },
-//   { value: 'Hiking', label: 'Hiking', icon: `` },
-//   { value: 'Camping', label: 'Camping', icon: `` },
-// ];
+const amenitiesList = [
+  'Lodging',
+  'Dining',
+  'Restrooms',
+  'EV Parking',
+  'Valet Parking',
+  'Park',
+  'WiFi',
+  'Shopping',
+  'Grocery',
+  'Hiking',
+  'Camping'
+];
+
+const networks = [
+  'Non-networked',
+  'BC Hydro EV',
+  'Blink',
+  'ChargePoint',
+  'Circuit Electrique',
+  'Electrify America',
+  'Electrify Canada',
+  'EV Connect',
+  'EV Connect Canada',
+  'EVCS',
+  'EVgo',
+  'EVsmart',
+  'FLO',
+  'Francis Energy',
+  'GE WattStation',
+  'IVY',
+  'OpConnect',
+  'Petro-Canada',
+  'SemaConnect',
+  'Shell Recharge',
+  'Sun Country',
+  'Supercharger',
+  'SWTCH',
+  'Tesla Destination',
+  'Volta',
+  'Webasto',
+  'Other',
+];
+
+const plugs = [
+  'Tesla (Fast)'
+];
 
 const AddCharger = ({ addOpened, setAddOpened }) => {
   const { dispatch } = useContext(StationContext);
@@ -134,25 +168,31 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
       onChange={(e) => setDescription(e.target.value)}
       />
 
-      <Textarea
-      placeholder="Network"
-      label="Network"
+      <NativeSelect
       size="md"
-      required
-      onChange={(e) => setNetwork(e.target.value)}
-      />
-
-      <Textarea
-      placeholder="Plug Type"
       label="Plug Type"
-      size="md"
-      required
+      data={plugs}
       onChange={(e) => setPlugType(e.target.value)}
+      value={plugType}
+      placeholder="Select one"
+      style={{ marginTop: '10px', marginBottom: '10px' }}
+      required
       />
 
-      <Textarea
+      <NativeSelect
+      size="md"
+      label="Network"
+      data={networks}
+      onChange={(e) => setNetwork(e.target.value)}
+      value={network}
+      placeholder="Select one"
+      style={{ marginTop: '10px', marginBottom: '10px' }}
+      required
+      />
+
+      <TextInput
       placeholder="Station Count"
-      label="How Many Stations Are There?"
+      label="How Many Stations?"
       size="md"
       type="number"
       required
@@ -256,16 +296,19 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         label="Parking Attributes"
         onChange={(e) => setParkingAttributes(e.target.value)}
         />    
+
         <MultiSelect
         data={accessRestrictions}
         label="Access Restrictions"
         onChange={(e) => setAccessRestrictions(e.target.value)}
-        />    
-        <MultiSelect
-        data={amenities}
+        /> */}
+
+        <NativeSelect
+        data={amenitiesList}
         label="Amenities"
+        value={amenities}
         onChange={(e) => setAmenities(e.target.value)}
-        />     */}
+        />
 
       </SimpleGrid>
 
