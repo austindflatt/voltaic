@@ -26,6 +26,7 @@ const ProfileCheckIns = ({ checkInOpened, setCheckInOpened }) => {
       const data = response.data.info;
       setFirstName(data.firstName);
       setLastName(data.lastName);
+      setAvatar(data.profilePic);
       setUsername(data.username);
       setCheckIns(data.checkIns);
       setAvatar(data.profilePic);
@@ -50,7 +51,7 @@ const ProfileCheckIns = ({ checkInOpened, setCheckInOpened }) => {
         return (
           <Paper shadow="xs" p="md" style={{ marginTop: '20px' }}>
             <Group>
-              <Avatar src='https://www.austinflatt.com/images/headshot.webp' alt='Austin' radius="xl" />
+              <Avatar src={avatar} alt='Austin' radius="xl" />
               <div>
                 <Text size="sm">{firstName} {lastName} • @{username}</Text>
                 <Text size="xs" color="dimmed">

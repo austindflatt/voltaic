@@ -5,9 +5,7 @@ import Home from './pages/Home/Home';
 import NotFound from './pages/Misc/NotFound';
 import Login from './components/Login/Login';
 import Account from './components/Profile/AccountModal';
-import Favorites from './pages/Profile/AccountFavorites';
 import Profile from './pages/Profile/ProfilePage';
-import AccountStations from './pages/Profile/AccountStations';
 import Register from './components/Register/Register';
 import StationsMap from './pages/Map/StationsMap';
 import StationPage from './pages/Station/StationPage';
@@ -35,8 +33,6 @@ function App() {
       <Route path='register' element={user ? <Profile /> : <Register />} />
       <Route path='account' element={<Account />} />
       <Route path='user/:userId' element={<Profile />} />
-      <Route path='account/favorites' element={<Favorites />} />
-      <Route path='account/stations' element={<AccountStations />} />
       <Route path='/*' element={<NotFound />} />
     </Routes>
     </BrowserRouter>

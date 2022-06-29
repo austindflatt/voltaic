@@ -142,16 +142,6 @@ function NavBar() {
                 Your profile
               </Menu.Item>
             </Link>
-            <Link to="/account/favorites">
-              <Menu.Item icon={<Heart size={14} color={theme.colors.red[6]} />}>
-                Your favorite stations
-              </Menu.Item>
-            </Link>
-            <Link to="/account/stations">
-              <Menu.Item icon={<PlugConnected size={14} color={theme.colors.yellow[6]} />}>
-                Your charging stations
-              </Menu.Item>
-            </Link>
 
             <Menu.Label>Settings</Menu.Label>
 
