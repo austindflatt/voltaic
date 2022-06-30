@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Image, SimpleGrid, Paper, Text, TextInput, Title, Button, Anchor } from '@mantine/core';
+import StationMap from './StationMap';
 
 const StationDetails = () => {
   const params = useParams();
   const [name, setName] = useState('');
   const [image, setImage] = useState('');
   const [address, setAddress] = useState('');
+  const [lat ,setLat] = useState('');
+  const [long, setLong] = useState('');
   const [description, setDescription] = useState('');
   const [plugType, setPlugType] = useState('');
   const [network, setNetwork] = useState('');
@@ -32,6 +35,8 @@ const StationDetails = () => {
       setName(data.name);
       setImage(data.image);
       setAddress(data.address);
+      setLat(data.lat);
+      setLong(data.long);
       setDescription(data.description);
       setPlugType(data.plugType);
       setNetwork(data.network);
@@ -56,15 +61,15 @@ const StationDetails = () => {
     <>
     <Title order={1}>{name}</Title>
     <Title order={4} style={{ marginBottom: '10px' }}>
-      📍 <Anchor href={`https://www.google.com/maps/dir//${address}`} target="_blank" style={{ color: 'black', textDecoration: 'underline' }}>{address}</Anchor>
+      📍 <Anchor href={`https://www.google.com/maps/dir//${address}`} target="_blank" style={{ color: 'black', textDecoration: 'underline' }}>
+        {address}
+      </Anchor>
     </Title>
     <div style={{ marginBottom: '20px' }}>
-    <Image
-      radius="md"
-      src={image}
-      alt={name}
-      height='500px'
-    />
+      <StationMap
+      latitudeProp={lat}
+      longitudeProp={long}
+      />
     </div>
     <Button color="red" style={{ marginBottom: '20px' }}>
       Add To Favorites
@@ -112,6 +117,8 @@ const StationDetails = () => {
           Phone Number: {phoneNumber}
           <br />
           Parking Level: {parkingLevel}
+          <br />
+          Lat: {lat}, Long: {long}
         </Text>
       </Paper>
       <Paper shadow="xs" p="md">

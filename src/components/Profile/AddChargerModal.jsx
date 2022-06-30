@@ -1,3 +1,5 @@
+import Geocode from "react-geocode";
+
 import React, { useState, useContext } from 'react'
 import { TextInput, Textarea, Switch, Button, Modal, SimpleGrid, NativeSelect, Checkbox } from '@mantine/core';
 import { Note, Location, Phone, Elevator } from 'tabler-icons-react';
@@ -70,8 +72,18 @@ const networks = [
 ];
 
 const plugs = [
-  'Tesla (Fast)'
+  'Tesla (Fast)',
+  'CHAdeMO',
+  'J-1772',
+  'Tesla',
+  'NEMA 14-50',
+  'Wall',
+  'CCS/SAE',
+  'Tesla (Roadster)',
+  'NEMA TT-30'
 ];
+
+Geocode.setApiKey("AIzaSyDEWwXXvI0jwh_yHvD21qeDn486QHNqoTQ");
 
 const AddCharger = ({ addOpened, setAddOpened }) => {
   const { dispatch } = useContext(StationContext);
@@ -101,11 +113,18 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
     onPlaceSelected: (place) => console.log(place)
   })
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
+
+    const response = await Geocode.fromAddress(address);
+    const { lat, lng } = response.results[0].geometry.location;
+    console.log('lat, lng: ', {lat, lng});
+
     const station = {
       image: image,
       name: name,
       address: address,
+      lat: lat,
+      long: lng,
       description: description,
       plugType: plugType,
       network: network,
@@ -303,12 +322,12 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         onChange={(e) => setAccessRestrictions(e.target.value)}
         /> */}
 
-        <NativeSelect
+        {/* <NativeSelect
         data={amenitiesList}
         label="Amenities"
         value={amenities}
         onChange={(e) => setAmenities(e.target.value)}
-        />
+        /> */}
 
       </SimpleGrid>
 

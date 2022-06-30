@@ -29,7 +29,7 @@ const ProfileStations = () => {
       </div>
       <UsersFavStations />
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-        {favorites.length <= 0 ? <></> : <><Button variant="light" size="sm" color="indigo">Load More</Button></>}
+        {favorites.length <= 0 ? <></> : <><Button size="sm" color="indigo">Load More</Button></>}
       </div>
     </>
   )

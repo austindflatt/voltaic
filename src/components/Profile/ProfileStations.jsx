@@ -29,7 +29,7 @@ const ProfileStations = () => {
       </div>
       <UsersStations />
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-        {stations.length <= 0 ? <></> : <><Button variant="light" size="sm" color="indigo">Load More</Button></>}
+        {stations.length <= 0 ? <></> : <><Button size="sm" color="indigo">Load More</Button></>}
       </div>
     </>
   )

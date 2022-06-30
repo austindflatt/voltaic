@@ -1,28 +1,31 @@
 import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl from '!mapbox-gl'; // eslint-disable-line import/no-webpack-loader-syntax
+import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiYXVzdGluZmxhdHQiLCJhIjoiY2w0cjd5emdwMDNxMTNjbXNtdzFvbWRnciJ9.qXo_uz5njzmO_yePHZs-Mw';
+const containerStyle = {
+  height: '1100px',
+};
+
+const center = {
+  lat: 38.2563789,
+  lng: -85.764802
+};
 
 const Map = () => {
-  const mapContainer = useRef(null);
-  const map = useRef(null);
-  const [lng, setLng] = useState(-85.764771);
-  const [lat, setLat] = useState(38.328732);
-  const [zoom, setZoom] = useState(11);
-
-  useEffect(() => {
-    if (map.current) return; // initialize map only once
-    map.current = new mapboxgl.Map({
-      container: mapContainer.current,
-      style: 'mapbox://styles/austinflatt/cl4raapof001815qmtlzpfcnr',
-      center: [lng, lat],
-      zoom: zoom
-    });
-  });
   
   return (
     <div>
-      <div ref={mapContainer} className="map-container" />
+      <LoadScript
+      googleMapsApiKey={process.env.GOOGLE_MAPS}
+      >
+        <GoogleMap
+        mapContainerStyle={containerStyle}
+        center={center}
+        zoom={7}
+        >
+          { /* Child components, such as markers, info windows, etc. */ }
+          <></>
+        </GoogleMap>
+      </LoadScript>
     </div>
   )
 }

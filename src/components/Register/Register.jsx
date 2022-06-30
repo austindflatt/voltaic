@@ -54,7 +54,6 @@ const Register = ({ registerOpened, setRegisterOpened }) => {
         id="profilePic"
         size="md"
         onChange={(e) => setProfilePic(e.target.value)}
-        required
         />
 
         <SimpleGrid cols={2} style={{ marginTop: '20px' }} breakpoints={[
@@ -120,7 +119,6 @@ const Register = ({ registerOpened, setRegisterOpened }) => {
           icon={<Location size={14} />}
           type="location"
           onChange={(e) => setLocation(e.target.value)}
-          required
           />
           
         </SimpleGrid>
@@ -131,11 +129,10 @@ const Register = ({ registerOpened, setRegisterOpened }) => {
         id="bio"
         size="md"
         onChange={(e) => setBio(e.target.value)}
-        required
         />
         
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-          <Button type="Submit" variant="light" size="sm" onClick={handleFinish} color="indigo">Register Account</Button>
+          <Button type="Submit" size="sm" onClick={handleFinish} color="indigo">Register Account</Button>
         </div>
 
       </Modal>

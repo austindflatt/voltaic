@@ -111,7 +111,7 @@ function NavBar() {
 
           { user ?
 
-          // This area will show when a user is successfull logged in
+          // This area will show when a user is successfully logged in
 
           <>
           <Menu

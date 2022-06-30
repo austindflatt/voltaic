@@ -63,8 +63,8 @@ const Login = ({ opened, setOpened }) => {
       />
 
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-        <Button type="Submit" variant="light" size="sm" onClick={handleLogin} disabled={isFetching} style={{ marginRight: '5px' }} color="gray">Login</Button>
-        <Button type="Submit" variant="light" size="sm" onClick={() => showRegister()} color="indigo">Not A User?</Button>
+        <Button type="Submit" size="sm" onClick={handleLogin} disabled={isFetching} style={{ marginRight: '5px' }} color="gray">Login</Button>
+        <Button type="Submit" size="sm" onClick={() => showRegister()} color="indigo">Not A User?</Button>
       </div>
       
     </Modal>
