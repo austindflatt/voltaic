@@ -7,26 +7,29 @@ const containerStyle = {
   borderRadius: '4px',
 };
 
-const center = {
-  lat: 38.2563789,
-  lng: -85.764802
-};
+const onLoad = marker => {
+  console.log('marker: ', marker)
+}
 
 
-const StationMap = ({ latitudeProp, longitudeProp }) => {
+const StationMap = ({ latitudeProp, longitudeProp, titleProp }) => {
+  const position = { lat: parseFloat(latitudeProp), lng: parseFloat(longitudeProp)};
+
   return (
     <div>
       <LoadScript
-      googleMapsApiKey={process.env.GOOGLE_MAPS}
+      googleMapsApiKey="test"
       >
         <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
-        zoom={14}
+        center={position}
+        zoom={17}
         >
           <Marker
+          onLoad={onLoad}
+          position={position}
+          clickable
           />
-          { /* Child components, such as markers, info windows, etc. */ }
           <></>
         </GoogleMap>
       </LoadScript>

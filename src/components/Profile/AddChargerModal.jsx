@@ -1,5 +1,3 @@
-import Geocode from "react-geocode";
-
 import React, { useState, useContext } from 'react'
 import { TextInput, Textarea, Switch, Button, Modal, SimpleGrid, NativeSelect, Checkbox } from '@mantine/core';
 import { Note, Location, Phone, Elevator } from 'tabler-icons-react';
@@ -7,6 +5,7 @@ import { usePlacesWidget } from "react-google-autocomplete";
 import { createStation } from '../../context/stationContext/apiCalls';
 import { StationContext } from '../../context/stationContext/StationContext';
 import { AuthContext } from '../../context/authContext/AuthContext';
+import Geocode from "react-geocode";
 
 const parkingAttributes = [
   { value: 'Pull Through Parking', label: 'Pull Through Parking', icon: `` },
@@ -28,17 +27,17 @@ const accessRestrictions = [
 ];
 
 const amenitiesList = [
-  'Lodging',
-  'Dining',
-  'Restrooms',
-  'EV Parking',
-  'Valet Parking',
-  'Park',
-  'WiFi',
-  'Shopping',
-  'Grocery',
-  'Hiking',
-  'Camping'
+  "Lodging",
+  "Dining",
+  "Restrooms",
+  "EV Parking",
+  "Valet Parking",
+  "Park",
+  "WiFi",
+  "Shopping",
+  "Grocery",
+  "Hiking",
+  "Camping"
 ];
 
 const networks = [
@@ -83,7 +82,7 @@ const plugs = [
   'NEMA TT-30'
 ];
 
-Geocode.setApiKey("AIzaSyDEWwXXvI0jwh_yHvD21qeDn486QHNqoTQ");
+Geocode.setApiKey("test");
 
 const AddCharger = ({ addOpened, setAddOpened }) => {
   const { dispatch } = useContext(StationContext);
@@ -112,6 +111,17 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
     apiKey: '',
     onPlaceSelected: (place) => console.log(place)
   })
+
+    // Add/Remove checked item from list
+    const handleCheck = (event) => {
+      const updatedList = [...amenities];
+      if (event.target.checked) {
+        updatedList = [...amenities, event.target.value];
+      } else {
+        updatedList.splice(amenities.indexOf(event.target.value), 1);
+      }
+      setAmenities(updatedList);
+    };
 
   const handleSubmit = async () => {
 
@@ -168,7 +178,7 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
       required
       onChange={(e) => setName(e.target.value)}
       />
-
+      
       <TextInput
       placeholder="1 Electric Way, City, State ZIP, United States"
       label="Full Street Address"
@@ -321,6 +331,15 @@ const AddCharger = ({ addOpened, setAddOpened }) => {
         label="Access Restrictions"
         onChange={(e) => setAccessRestrictions(e.target.value)}
         /> */}
+
+        <div className="list-container">
+        {amenitiesList.map((item, index) => (
+        <div key={index}>
+          <input value={item} type="checkbox" onChange={handleCheck} />
+          <span>{item}</span>
+        </div>
+        ))}
+        </div>
 
         {/* <NativeSelect
         data={amenitiesList}

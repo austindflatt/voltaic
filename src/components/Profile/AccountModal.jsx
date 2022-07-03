@@ -142,7 +142,7 @@ const Account = ({ accountOpened, setAccountOpened }) => {
         />
 
         <TextInput
-          placeholder="Location"
+          placeholder="Enter your location"
           label="Location"
           size="md"
           icon={<Location size={14} />}

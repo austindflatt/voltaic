@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { Image, SimpleGrid, Paper, Text, TextInput, Title, Button, Anchor } from '@mantine/core';
+import { Image, SimpleGrid, Paper, Text, TextInput, Title, Button, Anchor, Badge } from '@mantine/core';
 import StationMap from './StationMap';
 
 const StationDetails = () => {
@@ -69,6 +69,7 @@ const StationDetails = () => {
       <StationMap
       latitudeProp={lat}
       longitudeProp={long}
+      titleProp={name}
       />
     </div>
     <Button color="red" style={{ marginBottom: '20px' }}>
@@ -93,8 +94,6 @@ const StationDetails = () => {
           Plug Type: {plugType}
           <br />
           Network: {network}
-          <br />
-          Stations: {count}
         </Text>
       </Paper>
       <Paper shadow="xs" p="md">
@@ -102,23 +101,27 @@ const StationDetails = () => {
           Station Details
         </Title>
         <Text>
-          {open247 ? <>Open 24/7</> : <>See Hours Below</>}
+          <Badge radius="sm" variant="filled" color={active ? 'green' : 'red'}>
+            {active ? <>Active</> : <>Coming Soon/Closed</>}
+          </Badge>
+          <br />
+          <Badge radius="sm" variant="filled" color={homeCharger ? 'green' : 'indigo'}>
+            {homeCharger ? <>Residential Charger</> : <>Public Charger</>}
+          </Badge>
+          <br />
+          {open247 ? <>Open 24/7</> : <>{hours ? <>Hours: {hours}</> : <>No hours were listed</>}</>}
           <br />
           {restricted ? <>Restrictions</> : <>No Restrictions</>}
           <br />
           {paymentRequired ? <>Payment Required</> : <>No Payment Required</>}
           <br />
-          {active ? <>Active/Open</> : <>Coming Soon/Closed</>}
-          <br />
-          {homeCharger ? <>Home Charger</> : <>Public Location</>}
-          <br />
-          Hours: {hours}
-          <br />
-          Phone Number: {phoneNumber}
+          {phoneNumber ? <>Phone Number: {phoneNumber}</> : <>No phone number was listed</>}
           <br />
           Parking Level: {parkingLevel}
           <br />
-          Lat: {lat}, Long: {long}
+          {count ? <>Stations: {count}</> : <>Number of stations is unknown</>}
+          <br />
+          Latitude: {lat}, Longitude: {long}
         </Text>
       </Paper>
       <Paper shadow="xs" p="md">

@@ -1,28 +1,44 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import { StationContext } from '../../context/stationContext/StationContext';
+import { getStations } from '../../context/stationContext/apiCalls';
 
 const containerStyle = {
   height: '1100px',
 };
 
-const center = {
-  lat: 38.2563789,
-  lng: -85.764802
-};
+const onLoad = marker => {
+  console.log('marker: ', marker)
+}
 
 const Map = () => {
+  const { stations, isFetching, dispatch } = useContext(StationContext);
+
+  useEffect(() => {
+    getStations(dispatch);
+  }, [dispatch]);
   
   return (
     <div>
       <LoadScript
-      googleMapsApiKey={process.env.GOOGLE_MAPS}
+      googleMapsApiKey="test"
       >
         <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
+        center={{ lat: 40.037553610713836, lng: -99.62907762197115 }}
         zoom={7}
         >
-          { /* Child components, such as markers, info windows, etc. */ }
+          {
+            stations.map((station, idx) => {
+              return (
+                <Marker
+                onLoad={onLoad}
+                position={{ lat: parseFloat(station.lat), lng: parseFloat(station.long) }}
+                clickable
+                />
+              )
+            })
+          }
           <></>
         </GoogleMap>
       </LoadScript>
