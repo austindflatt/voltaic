@@ -11,14 +11,13 @@ const onLoad = marker => {
   console.log('marker: ', marker)
 }
 
-
 const StationMap = ({ latitudeProp, longitudeProp, titleProp }) => {
   const position = { lat: parseFloat(latitudeProp), lng: parseFloat(longitudeProp)};
 
   return (
     <div>
       <LoadScript
-      googleMapsApiKey="test"
+      googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY}
       >
         <GoogleMap
         mapContainerStyle={containerStyle}

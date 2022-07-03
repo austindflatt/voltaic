@@ -82,7 +82,7 @@ const plugs = [
   'NEMA TT-30'
 ];
 
-Geocode.setApiKey("test");
+Geocode.setApiKey(process.env.GOOGLE_MAPS_API_KEY);
 
 const AddCharger = ({ addOpened, setAddOpened }) => {
   const { dispatch } = useContext(StationContext);
