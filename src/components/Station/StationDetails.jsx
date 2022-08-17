@@ -190,7 +190,7 @@ const StationDetails = () => {
           Share Link
         </Title>
         <TextInput
-        defaultValue={`http://localhost:3000/charger/${params.stationId}`}
+        defaultValue={`https://www.voltaicapp.com/charger/${params.stationId}`}
         description="You can also copy the link from your browser's address bar."
         style={{ marginTop: '10px' }}
         />
