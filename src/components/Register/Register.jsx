@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import axios from 'axios';
 import { TextInput, Button, SimpleGrid, Textarea, Modal } from '@mantine/core';
 import { At, User, Eye, Location } from 'tabler-icons-react';
-import { usePlacesWidget } from "react-google-autocomplete";
+import Geocode from "react-geocode";
+
+Geocode.setApiKey(process.env.GOOGLE_MAPS_API_KEY);
 
 const Register = ({ registerOpened, setRegisterOpened }) => {
   const [firstName, setFirstName] = useState('');
@@ -14,13 +16,13 @@ const Register = ({ registerOpened, setRegisterOpened }) => {
   const [bio, setBio] = useState('');
   const [location, setLocation] = useState('');
 
-  const { ref } = usePlacesWidget({
-    apiKey: '',
-    onPlaceSelected: (place) => console.log(place)
-  })
-
   const handleFinish = async (e) => {
     e.preventDefault();
+
+    const response = await Geocode.fromAddress(location);
+    const { lat, lng } = response.results[0].geometry.location;
+    console.log('lat, lng: ', {lat, lng});
+
     const newBody = {
       email: email,
       firstName: firstName,
@@ -30,6 +32,8 @@ const Register = ({ registerOpened, setRegisterOpened }) => {
       profilePic: profilePic,
       bio: bio,
       location: location,
+      lat: lat,
+      long: lng
     }
     try {
       await axios.post('http://localhost:3001/api/auth/register', newBody);
@@ -56,7 +60,7 @@ const Register = ({ registerOpened, setRegisterOpened }) => {
         onChange={(e) => setProfilePic(e.target.value)}
         />
 
-        <SimpleGrid cols={2} style={{ marginTop: '20px' }} breakpoints={[
+        <SimpleGrid cols={2} style={{ marginTop: '10px' }} breakpoints={[
           { maxWidth: 'lg', cols: 2 },
           { maxWidth: 'sm', cols: 1 },
         ]}>
@@ -113,12 +117,12 @@ const Register = ({ registerOpened, setRegisterOpened }) => {
           <TextInput
           placeholder="City, State"
           label="Location"
-          ref={ref}
           id="password"
           size="md"
           icon={<Location size={14} />}
           type="location"
           onChange={(e) => setLocation(e.target.value)}
+          required
           />
           
         </SimpleGrid>
@@ -128,6 +132,7 @@ const Register = ({ registerOpened, setRegisterOpened }) => {
         label="Bio"
         id="bio"
         size="md"
+        style={{ marginTop: '10px' }}
         onChange={(e) => setBio(e.target.value)}
         />
         

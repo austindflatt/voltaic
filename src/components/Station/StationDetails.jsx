@@ -15,6 +15,7 @@ const StationDetails = () => {
   const [plugType, setPlugType] = useState('');
   const [network, setNetwork] = useState('');
   const [open247, setOpen247] = useState(false);
+  const [starlink, setStarlink] = useState(false);
   const [restricted, setRestricted] = useState(false);
   const [paymentRequired, setPaymentRequired] = useState(false);
   const [active, setActive] = useState(false);
@@ -41,6 +42,7 @@ const StationDetails = () => {
       setPlugType(data.plugType);
       setNetwork(data.network);
       setOpen247(data.open247);
+      setStarlink(data.starlink);
       setRestricted(data.restricted);
       setPaymentRequired(data.paymentRequired);
       setActive(data.active);
@@ -52,10 +54,19 @@ const StationDetails = () => {
       setParkingAttributes(data.parkingAttributes);
       setAccessRestrictions(data.accessRestrictions);
       setAmenities(data.amenities);
-      console.log(response);
     }
     getStationData();
   }, [params.stationId]);
+
+  const handleFavorite = async () => {
+    await axios.post(`http://localhost:3001/api/users/save-station/${params.stationId}`, {
+      headers: {
+        ContentType: 'application/json',
+        Accept: 'application/json',
+        token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
+      }
+    })
+  }
 
   return (
     <>
@@ -72,7 +83,8 @@ const StationDetails = () => {
       titleProp={name}
       />
     </div>
-    <Button color="red" style={{ marginBottom: '20px' }}>
+    {/* Able to save station through postman now, make function to make post from front end */}
+    <Button color="red" style={{ marginBottom: '20px' }} onClick={handleFavorite}>
       Add To Favorites
     </Button>
     <Paper shadow="xs" p="md">
@@ -95,6 +107,16 @@ const StationDetails = () => {
           <br />
           Network: {network}
         </Text>
+        <br />
+        <Text style={{ display: 'flex', justifyContent: 'center' }}>Charger Image</Text>
+        <Image
+        radius="md"
+        src={image}
+        alt={name}
+        height='200px'
+        width='350px'
+        style={{ display: 'flex', justifyContent: 'center' }}
+        />
       </Paper>
       <Paper shadow="xs" p="md">
         <Title order={3}>
@@ -109,19 +131,34 @@ const StationDetails = () => {
             {homeCharger ? <>Residential Charger</> : <>Public Charger</>}
           </Badge>
           <br />
-          {open247 ? <>Open 24/7</> : <>{hours ? <>Hours: {hours}</> : <>No hours were listed</>}</>}
+          <Badge radius="sm" variant="filled" color={starlink ? 'green' : 'orange'}>
+            {starlink ? <>Starlink</> : <>Starlink not available</>}
+          </Badge>
           <br />
-          {restricted ? <>Restrictions</> : <>No Restrictions</>}
+          <Badge radius="sm" variant="filled" color={restricted ? 'red' : 'green'}>
+            {restricted ? <>This Station Has Restrictions</> : <>No Restrictions</>}
+          </Badge>
           <br />
-          {paymentRequired ? <>Payment Required</> : <>No Payment Required</>}
+          <Badge radius="sm" variant="filled" color={paymentRequired ? 'green' : 'gray'}>
+            {paymentRequired ? <>Payment Required</> : <>No Payment Required</>}
+          </Badge>
           <br />
-          {phoneNumber ? <>Phone Number: {phoneNumber}</> : <>No phone number was listed</>}
+          <Badge radius="sm" variant="filled" color="gray">
+            {count ? <>Stations: {count}</> : <>Stations: N/A</>}
+          </Badge>
           <br />
-          Parking Level: {parkingLevel}
+          <Badge radius="sm" variant="filled" color="gray">
+            {phoneNumber ? <>{phoneNumber}</> : <>Phone number: N/A</>}
+          </Badge>
           <br />
-          {count ? <>Stations: {count}</> : <>Number of stations is unknown</>}
+          <Badge radius="sm" variant="filled" color="gray">
+            {parkingLevel ? <>{parkingLevel}</> : <>Parking level: N/A</>}
+          </Badge>
           <br />
-          Latitude: {lat}, Longitude: {long}
+          <Badge radius="sm" variant="filled" color="gray">
+            {open247 ? <>Open 24/7</> : <>{hours ? <>Hours: {hours}</> : <>No hours were listed</>}</>}
+          </Badge>
+          <br />
         </Text>
       </Paper>
       <Paper shadow="xs" p="md">
@@ -153,7 +190,7 @@ const StationDetails = () => {
           Share Link
         </Title>
         <TextInput
-        value={`http://localhost:3000/charger/${params.stationId}`}
+        defaultValue={`http://localhost:3000/charger/${params.stationId}`}
         description="You can also copy the link from your browser's address bar."
         style={{ marginTop: '10px' }}
         />

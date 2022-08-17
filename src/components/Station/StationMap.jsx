@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
+import React from 'react';
+import { GoogleMap, LoadScript, Marker, TrafficLayer } from '@react-google-maps/api';
 
 const containerStyle = {
   width: '100%',
   height: '500px',
   borderRadius: '4px',
 };
-
-const onLoad = marker => {
-  console.log('marker: ', marker)
-}
 
 const StationMap = ({ latitudeProp, longitudeProp, titleProp }) => {
   const position = { lat: parseFloat(latitudeProp), lng: parseFloat(longitudeProp)};
@@ -25,11 +21,11 @@ const StationMap = ({ latitudeProp, longitudeProp, titleProp }) => {
         zoom={17}
         >
           <Marker
-          onLoad={onLoad}
           position={position}
           clickable
           />
-          <></>
+          <TrafficLayer
+          />
         </GoogleMap>
       </LoadScript>
     </div>

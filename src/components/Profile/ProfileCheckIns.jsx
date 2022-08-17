@@ -42,14 +42,16 @@ const ProfileCheckIns = ({ checkInOpened, setCheckInOpened }) => {
     onClose={() => setCheckInOpened(false)}
     title={`${firstName}'s Recent Check In History`}
     size="lg"
+    overflow="inside"
     >
-
+      {checkIns.length < 1 ? <><Text>{firstName} has not checked in to any charging stations</Text></> : <></> }
       {
         checkIns
         .slice(0, 5)
-        .map((checkIn) => {
+        .reverse()
+        .map((checkIn, index) => {
         return (
-          <Paper shadow="xs" p="md" style={{ marginTop: '20px' }}>
+          <Paper shadow="xs" p="md" style={{ marginTop: '20px' }} key={index}>
             <Group>
               <Avatar src={avatar} alt='Austin' radius="xl" />
               <div>
@@ -77,7 +79,6 @@ const ProfileCheckIns = ({ checkInOpened, setCheckInOpened }) => {
         )
       })
     }
-
     </Modal>
     </>
   )

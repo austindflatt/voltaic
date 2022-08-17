@@ -5,6 +5,9 @@ import axios from 'axios';
 import { AuthContext } from '../../context/authContext/AuthContext';
 import { updateUser } from '../../context/userContext/apiCalls';
 import { UserContext } from '../../context/userContext/UserContext';
+import Geocode from "react-geocode";
+
+Geocode.setApiKey("AIzaSyCgZsdtwOZ3Sbutj5N-DhBkGKv9TwS5TzQ");
 
 const Account = ({ accountOpened, setAccountOpened }) => {
   const { user } = useContext(AuthContext);
@@ -43,10 +46,14 @@ const Account = ({ accountOpened, setAccountOpened }) => {
       setBio(data.bio);
     }
     getEditData();
-  }, [user._id]);
+  }, []);
 
-  const handleUpdate = (e) => {
-    e.preventDefault();
+  const handleUpdate = async () => {
+
+    const response = await Geocode.fromAddress(location);
+    const { lat, lng } = response.results[0].geometry.location;
+    console.log('lat, lng: ', {lat, lng});
+
     const updatedData = {
       id: user._id,
       firstName: firstName,
@@ -55,6 +62,8 @@ const Account = ({ accountOpened, setAccountOpened }) => {
       email: email,
       password: password,
       location: location,
+      lat: lat,
+      long: lng,
       bio: bio,
       profilePic: profilePic,
       coverPhoto: coverPhoto,
@@ -84,6 +93,7 @@ const Account = ({ accountOpened, setAccountOpened }) => {
         label="Cover Photo"
         size="md"
         value={coverPhoto}
+        style={{ marginTop: '20px' }}
         onChange={(e) => setCoverPhoto(e.target.value)}
       />
 
@@ -158,11 +168,12 @@ const Account = ({ accountOpened, setAccountOpened }) => {
         size="md"
         minRows={4}
         value={bio}
+        style={{ marginTop: '20px' }}
         onChange={(e) => setBio(e.target.value)}
       />
       
       <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
-        <Button variant="light" size="sm" color="indigo" onClick={handleUpdate}>Update Account</Button>
+        <Button size="sm" color="indigo" onClick={handleUpdate}>Update Account</Button>
       </div>
 
     </Modal>

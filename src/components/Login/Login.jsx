@@ -58,6 +58,7 @@ const Login = ({ opened, setOpened }) => {
       onChange={(e) => setPassword(e.target.value)}
       size="md"
       icon={<Eye size={14} />}
+      style={{ marginTop: '10px' }}
       type="password"
       required
       />

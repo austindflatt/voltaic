@@ -16,6 +16,7 @@ function StationComments() {
   const params = useParams();
   const [checkins, setCheckins] = useState([]);
   const [checkInOpened, setCheckInOpened] = useState(false);
+  const [ratingsList, setRatingsList] = useState([]);
 
   // Using params below to get the stations ID and used a GET request to get the data from that ID
   useEffect(() => {
@@ -23,14 +24,21 @@ function StationComments() {
       const response = await axios.get(`http://localhost:3001/api/stations/find/${params.stationId}`);
       const data = response.data.payload;
       setCheckins(data.checkIns);
-      console.log(response)
+      console.log(data)
     }
     getStationData();
   }, [params.stationId]);
-
+ 
   const showCheckInModal = () => {
     setCheckInOpened(true);
   }
+
+  // // Calculate ratings average
+  // Object.keys(checkins).forEach(item => {
+  //   const sum = checkins[item].map(i => i.rating).reduce((accumulator, currentValue) => parseInt(accumulator, 5) + parseInt(currentValue, 5));
+  //   const avg = sum / checkins[item].length;
+  //   console.log(item, avg);
+  // });
 
   return (
     <>
@@ -45,20 +53,22 @@ function StationComments() {
       <Button color="green" onClick={() => showCheckInModal()}>
         Check In
       </Button>
+      {checkins.map((obj) => { return obj.rating })}
       <SimpleGrid cols={2} style={{ marginTop: '20px' }} breakpoints={[
       { maxWidth: 'sm', cols: 1 },
     ]}>
       {
         checkins
-        .map((checkIn) => {
+        .reverse()
+        .map((checkIn, index) => {
           return (
-            <Paper shadow="xs" p="md">
+            <Paper shadow="xs" p="md" key={index}>
               <Group>
                 {/* <Avatar src='https://www.austinflatt.com/images/headshot.webp' alt='Austin' radius="xl" /> */}
                 <div>
                   <Text size="sm">User: <Anchor href={`/user/${checkIn.chargerUser}`}>{checkIn.chargerUser}</Anchor></Text>
                   <Text size="xs" color="dimmed">
-                    Posted {checkIn.createdAt} • {checkIn.chargeStatus}
+                    Posted {checkIn.createdAt} • {checkIn.chargeStatus} • Rating: {checkIn.rating}
                   </Text>
                 </div>
               </Group>

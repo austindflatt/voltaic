@@ -11,7 +11,7 @@ import {
   deleteStationSuccess, 
   getStationsFailure, 
   getStationsStart, 
-  getStationsSuccess 
+  getStationsSuccess,
 } from './StationActions';
 
 // GET STATIONS

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { createStyles, Card, Avatar, Text, Group, Button, SimpleGrid } from '@mantine/core';
 import ProfileCheckIns from './ProfileCheckIns';
@@ -17,14 +17,17 @@ const useStyles = createStyles((theme) => ({
 const ProfileTop = () => {
   const { classes } = useStyles();
   const params = useParams();
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
   const [profilePic, setProfilePic] = useState('');
   const [coverPhoto, setCoverPhoto] = useState('');
   const [bio, setBio] = useState('');
-  const [followers, setFollowers] = useState([]);
-  const [following, setFollowing] = useState([]);
+  const [stations, setStations] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  // const [followers, setFollowers] = useState([]);
+  // const [following, setFollowing] = useState([]);
   const [checkIns, setCheckins] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [checkInOpened, setCheckInOpened] = useState(false);
@@ -40,8 +43,10 @@ const ProfileTop = () => {
       setProfilePic(data.profilePic);
       setCoverPhoto(data.coverPhoto);
       setBio(data.bio);
-      setFollowers(data.followers);
-      setFollowing(data.following);
+      setStations(data.addedStations);
+      setFavorites(data.savedStations);
+      // setFollowers(data.followers);
+      // setFollowing(data.following);
       setCheckins(data.checkIns);
       setIsAdmin(data.isAdmin);
     }
@@ -81,16 +86,16 @@ const ProfileTop = () => {
       </Text>
       <Group mt="md" position="center" spacing={30}>
         <Text align="center" size="lg" weight={500}>
-          {followers.length}
+          {stations.length}
         </Text>
         <Text align="center" size="sm" color="dimmed">
-          Followers
+          Stations
         </Text>
         <Text align="center" size="lg" weight={500}>
-          {following.length}
+          {favorites.length}
         </Text>
         <Text align="center" size="sm" color="dimmed">
-          Following
+          Favorites
         </Text>
         <Text align="center" size="lg" weight={500}>
           {checkIns.length}
@@ -102,8 +107,8 @@ const ProfileTop = () => {
       <SimpleGrid cols={2} style={{ marginTop: '20px' }} breakpoints={[
         { maxWidth: 'sm', cols: 1 },
       ]}>
-        <Button color="indigo" fullWidth mt="md">
-          Follow
+        <Button color="indigo" fullWidth mt="md" onClick={() => navigate(-1)}>
+          Go Back
         </Button>
         <Button color="green" fullWidth mt="md" onClick={() => showCheckIns()}>
           View Check In History

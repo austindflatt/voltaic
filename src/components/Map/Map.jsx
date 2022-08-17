@@ -1,18 +1,21 @@
 import React, { useContext, useEffect } from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 import { StationContext } from '../../context/stationContext/StationContext';
+import { AuthContext } from '../../context/authContext/AuthContext';
 import { getStations } from '../../context/stationContext/apiCalls';
 
 const containerStyle = {
   height: '1100px',
 };
 
-const onLoad = marker => {
-  console.log('marker: ', marker)
-}
-
 const Map = () => {
-  const { stations, isFetching, dispatch } = useContext(StationContext);
+  const { stations, dispatch } = useContext(StationContext);
+  const { user } = useContext(AuthContext);
+
+  // Used ternary below to get current users lat & lng and if there is no user in the state
+  // then display United States lat & lng
+  const lat = user ? user.lat : 37.09024;
+  const lng = user ? user.long : -95.712891;
 
   useEffect(() => {
     getStations(dispatch);
@@ -25,21 +28,19 @@ const Map = () => {
       >
         <GoogleMap
         mapContainerStyle={containerStyle}
-        center={{ lat: 40.037553610713836, lng: -99.62907762197115 }}
-        zoom={7}
+        center={{ lat: parseFloat(lat), lng: parseFloat(lng)}}
+        zoom={user ? 12 : 5}
         >
           {
             stations.map((station, idx) => {
               return (
                 <Marker
-                onLoad={onLoad}
                 position={{ lat: parseFloat(station.lat), lng: parseFloat(station.long) }}
                 clickable
                 />
               )
             })
           }
-          <></>
         </GoogleMap>
       </LoadScript>
     </div>

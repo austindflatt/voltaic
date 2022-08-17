@@ -1,12 +1,11 @@
 import React, { useState, useContext } from 'react';
 import { createStyles, Container, Avatar, UnstyledButton, Group, Text, Menu, Divider } from '@mantine/core';
-import { Logout, Heart, PlugConnected, GasStation, Settings, User, Trash, ChevronDown } from 'tabler-icons-react';
+import { Logout, GasStation, Settings, User, Trash, ChevronDown } from 'tabler-icons-react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/authContext/AuthContext';
 import { logout } from '../../context/authContext/AuthActions';
 import Login from '../Login/Login';
 import Account from '../Profile/AccountModal';
-import AddCharger from '../Profile/AddChargerModal';
 
 const useStyles = createStyles((theme) => ({
   header: {
@@ -67,7 +66,6 @@ function NavBar() {
   const { user, dispatch } = useContext(AuthContext);
   const [opened, setOpened] = useState(false);
   const [accountOpened, setAccountOpened] = useState(false);
-  const [addOpened, setAddOpened] = useState(false);
   
   // showLogin function will open the modal for logging a user in.
   const showLogin = () => {
@@ -77,11 +75,6 @@ function NavBar() {
   // showEdit function will open the modal for editing a users account details.
   const showEdit = () => {
     setAccountOpened(true);
-  }
-  
-  // showAdd will open the modal for creating a charging station.
-  const showAdd = () => {
-    setAddOpened(true);
   }
   
   return (
@@ -99,14 +92,9 @@ function NavBar() {
           setOpened={setOpened}
           />
 
-          {/* <Account
+          <Account
           accountOpened={accountOpened}
           setAccountOpened={setAccountOpened}
-          /> */}
-
-          <AddCharger
-          addOpened={addOpened}
-          setAddOpened={setAddOpened}
           />
 
           { user ?
@@ -155,9 +143,11 @@ function NavBar() {
             <Divider />
 
             <Menu.Label>Account Controls</Menu.Label>
-            <Menu.Item color="indigo" icon={<GasStation size={14} />} onClick={() => showAdd()}>
-                Add a station
-            </Menu.Item>
+            <Link to={`/add-station`}>
+              <Menu.Item color="indigo" icon={<GasStation size={14} />}>
+                  Add a station
+              </Menu.Item>
+            </Link>
             <Menu.Item color="red" icon={<Trash size={14} />}>
               Delete account
             </Menu.Item>

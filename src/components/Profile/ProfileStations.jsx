@@ -24,7 +24,7 @@ const ProfileStations = () => {
     <>
       <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginTop: '10px' }}>
         <Title order={3}>
-          {stations.length <= 0 ? <>{name} hasn't added any stations yet 😕</> : <>Charging Stations Added By {name}</>}
+          {stations.length <= 0 ? <>{name} hasn't added any stations yet 😕</> : <>Charging Stations Added By {name} ⚡️</>}
         </Title>
       </div>
       <UsersStations />

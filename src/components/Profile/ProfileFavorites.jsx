@@ -24,7 +24,7 @@ const ProfileStations = () => {
     <>
       <div style={{ width: '100%', marginLeft: 'auto', marginRight: 'auto', marginTop: '10px' }}>
         <Title order={3}>
-        {favorites.length <= 0 ? <>{name} doesn't have any favorites yet 💔</> : <>{name}'s Favorite Stations</>}
+        {favorites.length <= 0 ? <>{name} doesn't have any favorites yet 💔</> : <>{name}'s Favorite Stations ❤️</>}
         </Title>
       </div>
       <UsersFavStations />

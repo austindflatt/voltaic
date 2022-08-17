@@ -11,6 +11,7 @@ const CheckInModal = ({ checkInOpened, setCheckInOpened }) => {
   const { user } = useContext(AuthContext);
   const { dispatch } = useContext(CheckinContext);
   const [status, setStatus] = useState('');
+  const [rating, setRating] = useState('');
   const [photo, setPhoto] = useState('');
   const [review, setReview] = useState('');
 
@@ -30,6 +31,7 @@ const CheckInModal = ({ checkInOpened, setCheckInOpened }) => {
       chargerUser: user._id,
       chargeStation: params.stationId,
       chargeStatus: status,
+      rating: rating,
       review: review,
       photo: photo,
     }
@@ -57,6 +59,18 @@ const CheckInModal = ({ checkInOpened, setCheckInOpened }) => {
     required
     />
 
+    <NativeSelect
+    size="md"
+    label="Rating"
+    data={['1', '2', '3', '4', '5']}
+    onChange={(e) => setRating(e.target.value)}
+    value={rating}
+    placeholder="Select one"
+    type="number"
+    style={{ marginTop: '10px', marginBottom: '10px' }}
+    required
+    />
+
     <TextInput
     placeholder=""
     label="Photo"
@@ -68,8 +82,10 @@ const CheckInModal = ({ checkInOpened, setCheckInOpened }) => {
     placeholder=""
     label="Review"
     size="md"
-    required
+    style={{ marginTop: '10px' }}
+    minRows="4"
     onChange={(e) => setReview(e.target.value)}
+    required
     />
 
     <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
