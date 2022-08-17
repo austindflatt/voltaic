@@ -18,7 +18,7 @@ import {
 export const getCheckins = async (dispatch) => {
   dispatch(getCheckinsStart())
   try {
-    const res = await axios.get('http://localhost:3001/api/checkins/')
+    const res = await axios.get(`${process.env.SERVER}/api/checkins/`)
     dispatch(getCheckinsSuccess(res.data))
   } catch (error) {
     dispatch(getCheckinsFailure())
@@ -29,7 +29,7 @@ export const getCheckins = async (dispatch) => {
 export const createCheckin = async (checkin, dispatch) => {
   dispatch(createCheckinStart())
   try {
-    const res = await axios.post(`http://localhost:3001/api/checkins/create`, checkin, {
+    const res = await axios.post(`${process.env.SERVER}/api/checkins/create`, checkin, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
@@ -44,7 +44,7 @@ export const createCheckin = async (checkin, dispatch) => {
 export const updateCheckin = async (checkin, dispatch) => {
   dispatch(updateCheckinStart())
   try {
-    const res = await axios.put(`http://localhost:3001/api/checkins/update/${checkin.id}`, checkin, {
+    const res = await axios.put(`${process.env.SERVER}/api/checkins/update/${checkin.id}`, checkin, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
@@ -60,7 +60,7 @@ export const updateCheckin = async (checkin, dispatch) => {
 export const deleteCheckin = async (id, dispatch) => {
   dispatch(deleteCheckinStart())
   try {
-    await axios.delete(`http://localhost:3001/api/checkins/delete/${id}`, {
+    await axios.delete(`${process.env.SERVER}/api/checkins/delete/${id}`, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
