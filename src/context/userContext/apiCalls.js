@@ -15,7 +15,7 @@ import {
 export const getUsers = async (dispatch) => {
   dispatch(getUsersStart())
   try {
-    const res = await axios.get(`${process.env.SERVER}/api/users`, {
+    const res = await axios.get(`https://voltaic-app.herokuapp.com/api/users`, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
@@ -30,7 +30,7 @@ export const getUsers = async (dispatch) => {
 export const updateUser = async (user, dispatch) => {
   dispatch(updateUserStart())
   try {
-    const res = await axios.put(`${process.env.SERVER}/api/users/update/${user.id}`, user, {
+    const res = await axios.put(`https://voltaic-app.herokuapp.com/api/users/update/${user.id}`, user, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
@@ -46,7 +46,7 @@ export const updateUser = async (user, dispatch) => {
 export const deleteUser = async (id, dispatch) => {
   dispatch(deleteUserStart())
   try {
-    await axios.delete(`${process.env.SERVER}/api/users/delete/${id}`, {
+    await axios.delete(`https://voltaic-app.herokuapp.com/api/users/delete/${id}`, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }

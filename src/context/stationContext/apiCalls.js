@@ -18,7 +18,7 @@ import {
 export const getStations = async (dispatch) => {
   dispatch(getStationsStart())
   try {
-    const res = await axios.get(`${process.env.SERVER}/api/stations/`)
+    const res = await axios.get(`https://voltaic-app.herokuapp.com/api/stations/`)
     dispatch(getStationsSuccess(res.data))
   } catch (error) {
     dispatch(getStationsFailure())
@@ -29,7 +29,7 @@ export const getStations = async (dispatch) => {
 export const createStation = async (station, dispatch) => {
   dispatch(createStationStart())
   try {
-    const res = await axios.post(`${process.env.SERVER}/api/stations/create`, station, {
+    const res = await axios.post(`https://voltaic-app.herokuapp.com/api/stations/create`, station, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
@@ -44,7 +44,7 @@ export const createStation = async (station, dispatch) => {
 export const updateStation = async (station, dispatch) => {
   dispatch(updateStationStart())
   try {
-    const res = await axios.put(`${process.env.SERVER}/api/stations/update/${station.id}`, station, {
+    const res = await axios.put(`https://voltaic-app.herokuapp.com/api/stations/update/${station.id}`, station, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
@@ -60,7 +60,7 @@ export const updateStation = async (station, dispatch) => {
 export const deleteStation = async (id, dispatch) => {
   dispatch(deleteStationStart())
   try {
-    await axios.delete(`${process.env.SERVER}/api/stations/delete/${id}`, {
+    await axios.delete(`https://voltaic-app.herokuapp.com/api/stations/delete/${id}`, {
       headers: {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
