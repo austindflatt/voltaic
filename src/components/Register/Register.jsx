@@ -36,7 +36,7 @@ const Register = ({ registerOpened, setRegisterOpened }) => {
       long: lng
     }
     try {
-      await axios.post('http://localhost:3001/api/auth/register', newBody);
+      await axios.post('https://voltaic-app.herokuapp.com/api/auth/register', newBody);
       setRegisterOpened(false)
     } catch (error) {
       console.log('Error')

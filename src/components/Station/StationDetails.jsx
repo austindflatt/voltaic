@@ -31,7 +31,7 @@ const StationDetails = () => {
   // Using params below to get the stations ID and used a GET request to get the data from that ID
   useEffect(() => {
     const getStationData = async () => {
-      const response = await axios.get(`http://localhost:3001/api/stations/find/${params.stationId}`);
+      const response = await axios.get(`https://voltaic-app.herokuapp.com/api/stations/find/${params.stationId}`);
       const data = response.data.payload;
       setName(data.name);
       setImage(data.image);
@@ -59,7 +59,7 @@ const StationDetails = () => {
   }, [params.stationId]);
 
   const handleFavorite = async () => {
-    await axios.post(`http://localhost:3001/api/users/save-station/${params.stationId}`, {
+    await axios.post(`https://voltaic-app.herokuapp.com/api/users/save-station/${params.stationId}`, {
       headers: {
         ContentType: 'application/json',
         Accept: 'application/json',

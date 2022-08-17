@@ -27,7 +27,7 @@ const Account = ({ accountOpened, setAccountOpened }) => {
       // I created a GET request below, taking the current users ID from the state and put
       // it into the users api route to find that user with the ID and got the JSON from it
       // setting the state with all the data.
-      const response = await axios.get(`http://localhost:3001/api/users/find/${user._id}`, {
+      const response = await axios.get(`https://voltaic-app.herokuapp.com/api/users/find/${user._id}`, {
         headers: {
           token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
         }

@@ -18,7 +18,7 @@ const CheckInModal = ({ checkInOpened, setCheckInOpened }) => {
   // Using params below to get the stations ID and used a GET request to get the data from that ID
   useEffect(() => {
     const getStationData = async () => {
-      const response = await axios.get(`http://localhost:3001/api/stations/find/${params.stationId}`);
+      const response = await axios.get(`https://voltaic-app.herokuapp.com/api/stations/find/${params.stationId}`);
       const data = response.data.payload;
     }
     getStationData();

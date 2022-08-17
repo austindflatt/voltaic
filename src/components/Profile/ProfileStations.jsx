@@ -12,7 +12,7 @@ const ProfileStations = () => {
   // Using params below to get the user ID and used a GET request to get the data from that ID
   useEffect(() => {
     const getUserData = async () => {
-      const response = await axios.get(`http://localhost:3001/api/users/find/${params.userId}`);
+      const response = await axios.get(`https://voltaic-app.herokuapp.com/api/users/find/${params.userId}`);
       const data = response.data.info;
       setName(data.firstName);
       setStations(data.addedStations);
