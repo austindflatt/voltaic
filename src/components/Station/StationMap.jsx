@@ -10,10 +10,12 @@ const containerStyle = {
 const StationMap = ({ latitudeProp, longitudeProp, titleProp }) => {
   const position = { lat: parseFloat(latitudeProp), lng: parseFloat(longitudeProp)};
 
+  console.log('REACT_APP_GOOGLE_MAPS_API_KEY: ', process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
+
   return (
     <div>
       <LoadScript
-      googleMapsApiKey={process.env.GOOGLE_MAPS_API_KEY}
+      googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
       >
         <GoogleMap
         mapContainerStyle={containerStyle}

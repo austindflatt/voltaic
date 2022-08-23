@@ -85,7 +85,7 @@ const plugs = [
   'NEMA TT-30'
 ];
 
-Geocode.setApiKey(process.env.GOOGLE_MAPS_API_KEY);
+Geocode.setApiKey(process.env.REACT_APP_GOOGLE_MAPS_API_KEY);
 
 const AddStation = () => {
 	const { dispatch } = useContext(StationContext);

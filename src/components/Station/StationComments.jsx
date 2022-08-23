@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { createStyles, Text, Title, Button, Avatar, Group, Paper, Image, SimpleGrid, Anchor } from '@mantine/core';
 import CheckInModal from './CheckInModal';
+import { getRatingAverage } from '../../utils';
 
 const useStyles = createStyles((theme) => ({
   body: {
@@ -33,6 +34,13 @@ function StationComments() {
     setCheckInOpened(true);
   }
 
+  console.log('checkins: ', checkins);
+
+  const ratingAverage = getRatingAverage(checkins);
+
+  console.log('ratingAverage: ', ratingAverage);
+
+
   // // Calculate ratings average
   // Object.keys(checkins).forEach(item => {
   //   const sum = checkins[item].map(i => i.rating).reduce((accumulator, currentValue) => parseInt(accumulator, 5) + parseInt(currentValue, 5));
@@ -53,7 +61,7 @@ function StationComments() {
       <Button color="green" onClick={() => showCheckInModal()}>
         Check In
       </Button>
-      {checkins.map((obj) => { return obj.rating })}
+      {ratingAverage}
       <SimpleGrid cols={2} style={{ marginTop: '20px' }} breakpoints={[
       { maxWidth: 'sm', cols: 1 },
     ]}>
