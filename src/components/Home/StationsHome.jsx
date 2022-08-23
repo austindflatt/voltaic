@@ -6,7 +6,7 @@ import { getStations } from '../../context/stationContext/apiCalls';
 
 const StationsHome = () => {
   const { stations, isFetching, dispatch } = useContext(StationContext);
-
+console.log(stations)
   useEffect(() => {
     getStations(dispatch);
   }, [dispatch]);

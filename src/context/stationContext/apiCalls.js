@@ -34,7 +34,7 @@ export const createStation = async (station, dispatch) => {
         token: 'Bearer ' + JSON.parse(localStorage.getItem('user')).accessToken,
       }
     })
-    dispatch(createStationSuccess(res.data))
+    dispatch(createStationSuccess(res.data.payload))
   } catch (error) {
     dispatch(createStationFailure())
   }

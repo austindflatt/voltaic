@@ -26,7 +26,7 @@ const StationReducer = (state, action) => {
       };
     case "CREATE_STATION_SUCCESS":
       return {
-        stations: [...state.stations, action.payload],
+        stations: action.payload,
         isFetching: false,
         error: false
       };

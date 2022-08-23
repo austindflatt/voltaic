@@ -8,6 +8,7 @@ import Geocode from "react-geocode";
 import { List, ThemeIcon } from '@mantine/core';
 import { Star } from 'tabler-icons-react';
 import Layout from '../../components/Layout/Layout';
+import { useNavigate } from 'react-router-dom';
 
 // const parkingAttributesList = [
 //   "Pull Through Parking",
@@ -110,6 +111,8 @@ const AddStation = () => {
 	const [payment, setPayment] = useState(false);
 	const [active, setActive] = useState(false);
 	const [homeCharger, setHomeCharger] = useState(false);
+  const navigate = useNavigate();
+    
   
 	const removeAmenity = (i) => {
 	  const newAmenities = [ ...amenities ];
@@ -200,6 +203,8 @@ const AddStation = () => {
 		chargerCreator: user._id
 	  }
 	  createStation(station, dispatch);
+    navigate('/');
+    
 	}
 
   return (
