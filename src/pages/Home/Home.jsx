@@ -8,7 +8,7 @@ const Home = () => {
   return (
   <Layout>
     <Banner />
-    <Filters />
+    {/* <Filters /> */}
     <StationsHome />
   </Layout>
   )

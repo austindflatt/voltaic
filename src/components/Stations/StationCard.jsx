@@ -99,9 +99,9 @@ function StationCard(props) {
           {props.stationType ? <>Residential</> : <>Public</>}
         </Badge>
 
-        <Badge radius="sm" variant="filled" className={classes.rating} color="gray">
+        {/* <Badge radius="sm" variant="filled" className={classes.rating} color="gray">
           {props.rating}
-        </Badge>
+        </Badge> */}
 
           <Text size="lg" className={classes.title} weight={500}>
             {props.chargerName}
